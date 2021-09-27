@@ -12,41 +12,48 @@
         
        
     </div>
-    <div class="row mt-2">
-        <div class="col-8" style="margin-left: 1%;">
-            <span>Page size: <select name="" id="" class="form-select" style="width: 8%;float: right; margin-right: 82%;">
-                <option value="1">1</option>
-                <option value="1">5</option>
-                <option value="1">7</option>
-            </select></span>
+    <div class="row mt-2 searchAndPdf">
+        <div class="col-8">
+            <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
         </div>
         <div class="col-3">
-            <input type="text" class="form-control" placeholder="search all field...">
+            <input type="text" appAutoFocusDirective class="form-control" (input)="search(key.value)" #key="ngModel"
+                ngModel name="key" placeholder="search by name...">
         </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <table class="table table-bordered">
+                <thead class="table-dark">
                   <tr>
-                    <th scope="col">STT</th>
+                    <th scope="col" style="width: 10px;">STT</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Unit price</th>
+                    <th scope="col">Name <a (click)="sort('name')" class="srt"><i
+                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
+                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                    <th scope="col">Quantity <a (click)="sort('quantity')" class="srt"><i
+                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('quantity')"
+                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                    <th scope="col">Unit price <a (click)="sort('unitPrice')" class="srt"><i
+                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('unitPrice')"
+                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                    <th scope="col">EnteredDate <a (click)="sort('enteredDate')" class="srt"><i
+                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('enteredDate')"
+                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
                     <th scope="col">Description</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">h</th>
-                    <th scope="row">h</th>
-                    <th scope="row">h</th>
-                    <th scope="row">h</th>
-                    <th scope="row">h</th>
-                    <td>h</td>
-                    <td>
+                  <tr *ngFor="let items of products |orderBy :orderSort : isDesc;let i=index">
+                    <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
+                    <th scope="row"><img src="{{this.productService.host+'/rest/files/image/'+items.image}}" alt="" style = "height :70px;width:fil-content"></th>
+                    <th scope="row">{{items.name}}</th>
+                    <td scope="row">{{items.quantity}}</td>
+                    <td scope="row">{{items.unitPrice}}</td>
+                    <td scope="row">{{items.enteredDate | date:'dd-MM-yyyy'}}</td>
+                    <td>{{items.description}}</td>
+                    <td class="text-center">
                         <a  class="btn btn-warning btn-circle btn-sm">
                             <i class="fas fa-edit"></i>
                         </a> &nbsp;&nbsp;
@@ -57,8 +64,51 @@
                   </tr>
                 </tbody>
               </table>
+              <p *ngIf="products.length == 0" style="text-align: center;">No items displayed!</p>
         </div>
-        <!-- <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls> -->
-        <!-- Showing <b>[[${cinemas.numberOfElements }]]</b> of <b>[[${cinemas.totalElements }]]</b> entries   -->
+        <div class="pg">
+            <div class="c" *ngIf="products.length != 0">
+                <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                <select class="form-select" [(ngModel)]="pageSize" (change)="getAllProducts()"
+                    style="width: 4.3rem;float: right;">
+                    <option [value]="3">3</option>
+                    <option [value]="7">7</option>
+                    <option [value]="15">15</option>
+                    <option [value]="products.length">All</option>
+                </select>
+            </div>
+            <div class="pagina">
+                <div class="pg a">
+                    <label
+                        *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">Showing <b>{{page}}</b> -
+                        <b>{{page*pageSize}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                    <label
+                        *ngIf="page!=1&&(page*pageSize)<totalLength  && products.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label
+                        *ngIf="page!=1&&(page*pageSize)>=totalLength  && products.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label
+                        *ngIf="page==1&&(page*pageSize)>=totalLength  && products.length != 0">Showing <b>{{page}}</b>
+                        - <b>{{totalLength}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                </div> &nbsp;&nbsp;
+                <div class=" b">
+                    <input *ngIf="products.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"
+                        class="form-control custom-pages-input" id="paginationInput" [value]="page"
+                        (keyup.enter)="selectPage(i.value)" (blur)="selectPage(i.value)"
+                        (input)="formatInput($any($event).target)"
+                        aria-labelledby="paginationInputLabel paginationDescription" style="width: 2.5rem" />
+                </div>
+                <div class="pg d">
+                    <ngb-pagination *ngIf="products.length != 0" [collectionSize]="totalLength" [(page)]="page"
+                        [pageSize]="pageSize" (pageChange)="getAllProducts()" [maxSize]="3" [rotate]="true"
+                        [boundaryLinks]="true"></ngb-pagination>
+                </div>
+
+            </div>
     </div>
 </div>

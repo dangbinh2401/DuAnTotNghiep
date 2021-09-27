@@ -9,6 +9,7 @@ export class Product {
     enteredDate!: Date;
     image!: string;
     description!: string;
+    categoryId!: any;
     category!: Category;
 
 }

@@ -1,0 +1,66 @@
+.pg{
+    display: flex;
+    justify-content: space-between;
+    position: relative; 
+    padding-left: 5px;
+    // padding-right: 5px;
+}
+
+.a {
+    padding-top: 1%;
+}
+
+.select {
+    // padding-top: 7px;
+    // padding-bottom:6px;
+    height: 67%;
+    width: 36%;
+    border-color: darkgray;
+}
+
+th {
+    width: 150px;
+}
+
+td
+{
+ max-width: 100px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+.stt {
+    width: 5px;
+}
+
+.pagina {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lbsize {
+    padding-top:4%;
+}
+
+.searchAndPdf {
+    display: flex;
+    justify-content: space-between;
+    position: relative; 
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.sx {
+    color: wheat;
+    opacity: 0.5;
+    font-size: small;
+    // float: right;
+}
+.sx:hover {
+    opacity: 1;
+}
+
+.srt {
+    float: right;
+}

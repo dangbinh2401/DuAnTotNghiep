@@ -152,6 +152,9 @@ export class CategoryListComponent implements OnInit {
           if (data.status === 500) {
             Swal.fire("Delete category error!", "System error!", "error");
           }
+          if (data.status === 501) {
+            Swal.fire("Category exists in the product.!", "System error!", "error");
+          }
         })
       }
       else if (result.dismiss == Swal.DismissReason.cancel) { }

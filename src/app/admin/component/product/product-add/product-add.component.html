@@ -16,30 +16,44 @@
             </div>
             <!-- <span class="err">{{err | slice:53:75}}</span> -->
             <hr>
-            <form>
+            <form appAutoFocusDirective [formGroup]="productForm" (ngSubmit)="onSubmit()">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="row mb-4">
                     <div class="col-3 fle">
                         <img [src]="imgURL == null ? '../assets/image/cloud-upload.jpg' : imgURL"  alt="" class="img-fluid" style="max-height: 170px; max-width: 250px;">
-                        <input class="form-control ifile" type="file" id="" accept="image/*" (change)="onSelectFile($event)" />
+                        <input class="form-control ifile" type="file" id="" formControlName="image" accept="image/*" (change)="onSelectFile($event)" #input appAutoFocusDirective tabindex="1"
+                        [ngClass]="{
+                            'is-valid': (f?.image?.valid && (f?.image?.touched)),
+                            'is-invalid': (f?.image?.invalid && (f?.image?.touched))}" />
+                            <control-message field="Image" [control]="productForm.get('image')" style="float: none;"></control-message>
                     </div>
 
                     <div class="col-4">
                         <div class="form-group">
                             <label class="form-label" for="form6Example2">Name</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="name..."
-                                required />
+                            <control-message field="Name" [control]="productForm.get('name')" style="float: none;"></control-message>
+                            <input type="text" name="name" id="name" formControlName="name" class="form-control" placeholder="name..." tabindex="2"
+                                required [ngClass]="{
+                                    'is-valid': (f?.name?.valid && (f?.name?.touched)),
+                                    'is-invalid': (f?.name?.invalid && (f?.name?.touched))}"/>
 
                         </div> <br>
                         <div class="form-group">
                             <label class="form-label" for="form6Example2">Quantity</label>
-                            <input type="number" name="quantity" id="quantity" class="form-name" id="name" class="form-control" placeholder="quantity..."
-                                required />
+                            <control-message field="Quantity" [control]="productForm.get('quantity')" style="float: none;"></control-message>
+                            <input type="number" name="quantity" id="quantity" formControlName="quantity" class="form-name" id="name" class="form-control" placeholder="quantity..." tabindex="4"
+                                required [ngClass]="{
+                                    'is-valid': (f?.quantity?.valid && (f?.quantity?.touched)),
+                                    'is-invalid': (f?.quantity?.invalid && (f?.quantity?.touched))}"/>
 
                         </div> <br>
                         <div class="form-group">
                             <label class="form-label" for="form6Example2">Category</label>
-                            <select name="category" id="category" class="form-select">
+                            <control-message field="Category" [control]="productForm.get('categoryId')" style="float: none;"></control-message>
+                            <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-select" tabindex="6" [ngClass]="{
+                                'is-valid': (f?.categoryId?.valid && (f?.categoryId?.touched)),
+                                'is-invalid': (f?.categoryId?.invalid && (f?.categoryId?.touched))}">
+                                <!-- <option class="ple" value="">--------------------Please choose--------------------</option> -->
                                 <option *ngFor="let c of categories" [value]="c.categoryId">{{c.name}}</option>
                             </select>
 
@@ -50,19 +64,28 @@
 
                         <div class="form-group">
                             <label class="form-label" for="form6Example2">Entered date</label>
-                            <input type="date" name="enteredDate" id="enteredDate" class="form-control" placeholder="entered date..."
-                                required />
+                            <control-message field="EnteredDate" [control]="productForm.get('enteredDate')" style="float: none;"></control-message>
+                            <input type="date" name="enteredDate" id="enteredDate" formControlName="enteredDate" class="form-control" placeholder="entered date..." tabindex="3"
+                                required [ngClass]="{
+                                    'is-valid': (f?.enteredDate?.valid && (f?.enteredDate?.touched)),
+                                    'is-invalid': (f?.enteredDate?.invalid && (f?.enteredDate?.touched))}"/>
                         </div> <br>
                         <div class="form-group">
                             <label class="form-label" for="form6Example2">Unit price</label>
-                            <input type="number" name="unitPrice" id="unitPrice" class="form-control" placeholder="unitPrice..."
-                                required />
+                            <control-message field="UnitPrice" [control]="productForm.get('unitPrice')" style="float: none;"></control-message>
+                            <input type="number" name="unitPrice" id="unitPrice" formControlName="unitPrice" class="form-control" placeholder="unitPrice..." tabindex="5"
+                                required [ngClass]="{
+                                    'is-valid': (f?.unitPrice?.valid && (f?.unitPrice?.touched)),
+                                    'is-invalid': (f?.unitPrice?.invalid && (f?.unitPrice?.touched))}"/>
 
                         </div> <br>
                         <div class="form-group">
                             <label class="form-label" for="form6Example2">Discount</label>
-                            <input type="number" name="discount" id="discount" class="form-control" placeholder="discount..."
-                                required />
+                            <control-message field="Discount" [control]="productForm.get('discount')" style="float: none;"></control-message>
+                            <input type="number" name="discount" id="discount" formControlName="discount" class="form-control" placeholder="discount..." tabindex="7"
+                                required [ngClass]="{
+                                    'is-valid': (f?.discount?.valid && (f?.discount?.touched)),
+                                    'is-invalid': (f?.discount?.invalid && (f?.discount?.touched))}"/>
 
                         </div>
                     </div>
@@ -73,7 +96,11 @@
                         <br>
                         <div class="form-group">
                             <label class="form-label" for="form6Example2">Description</label>
-                            <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="description..."></textarea>
+                            <control-message field="Description" [control]="productForm.get('description')" style="float: none;"></control-message>
+                            <textarea name="description" id="description" formControlName="description" cols="30" rows="5" class="form-control" placeholder="description..." tabindex="8"
+                            [ngClass]="{
+                                'is-valid': (f?.description?.valid && (f?.description?.touched)),
+                                'is-invalid': (f?.description?.invalid && (f?.description?.touched))}"></textarea>
 
                         </div>
                     </div>
@@ -82,8 +109,8 @@
                     </div>
                 </div>
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-secondary btn-block mb-4" style="float: right;margin-right: 9%;"><i class="fas fa-sync-alt"></i> Cancel</button>
-                <button type="submit" class="btn btn-primary btn-block mb-4 bsave" style="float: right;margin-right: 1%;"><i class="fas fa-save"></i> Save</button>
+                <button  type="submit" tabindex="8" class="btn btn-secondary btn-block mb-4" style="float: right;margin-right: 9%;"><i class="fas fa-sync-alt"></i> Cancel</button>
+                <button (keydown.Tab)="onKey($event);false;" type="submit" tabindex="9" class="btn btn-primary btn-block mb-4 bsave" style="float: right;margin-right: 1%;"><i class="fas fa-save"></i> Save</button>
             
             </form>
         </div>

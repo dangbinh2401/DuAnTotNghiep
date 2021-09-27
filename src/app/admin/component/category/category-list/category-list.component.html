@@ -64,19 +64,19 @@
             </div>
             <div class="pagina">
                 <div class="pg a">
-                    <label class="canhtren"
+                    <label
                         *ngIf="page==1&&(page*pageSize)<totalLength && categories.length != 0">Showing <b>{{page}}</b> -
                         <b>{{page*pageSize}}</b> of
                         <b>{{totalLength}}</b> items</label>
-                    <label class="canhtren"
+                    <label
                         *ngIf="page!=1&&(page*pageSize)<totalLength  && categories.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label class="canhtren"
+                    <label
                         *ngIf="page!=1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label class="canhtren"
+                    <label
                         *ngIf="page==1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing <b>{{page}}</b>
                         - <b>{{totalLength}}</b> of
                         <b>{{totalLength}}</b> items</label>
