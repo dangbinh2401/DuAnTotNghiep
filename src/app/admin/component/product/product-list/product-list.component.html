@@ -1,0 +1,64 @@
+<div class="card shadow mb-4 col-md-11">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-10">
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST PRODUCT</a>
+            </div>
+            <div class="col-2">
+                <a class="m-0 float-right" routerLink="/admin/product/add" style="text-decoration: none;">Product management <i
+                    class="far fa-arrow-alt-circle-right"></i></a>
+            </div>
+        </div>
+        
+       
+    </div>
+    <div class="row mt-2">
+        <div class="col-8" style="margin-left: 1%;">
+            <span>Page size: <select name="" id="" class="form-select" style="width: 8%;float: right; margin-right: 82%;">
+                <option value="1">1</option>
+                <option value="1">5</option>
+                <option value="1">7</option>
+            </select></span>
+        </div>
+        <div class="col-3">
+            <input type="text" class="form-control" placeholder="search all field...">
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Unit price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">h</th>
+                    <th scope="row">h</th>
+                    <th scope="row">h</th>
+                    <th scope="row">h</th>
+                    <th scope="row">h</th>
+                    <td>h</td>
+                    <td>
+                        <a  class="btn btn-warning btn-circle btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </a> &nbsp;&nbsp;
+                        <a  class="btn btn-danger btn-circle btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <!-- <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls> -->
+        <!-- Showing <b>[[${cinemas.numberOfElements }]]</b> of <b>[[${cinemas.totalElements }]]</b> entries   -->
+    </div>
+</div>

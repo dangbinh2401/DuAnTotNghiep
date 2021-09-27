@@ -1,0 +1,52 @@
+.navigation{
+    position: fixed;
+    width: 60px;
+    height: 100%;
+    background: black;
+    transition: 0.5s;
+    overflow: hidden;
+    
+}
+.navigation:hover{
+    width: 200px;
+}
+.navigation ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+}
+.navigation ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+.navigation ul li a:hover{
+    background: white;
+    color: black;
+}
+.navigation ul li a{
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+.navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}

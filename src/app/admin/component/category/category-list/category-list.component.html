@@ -1,0 +1,100 @@
+<div class="card shadow mb-4 col-md-11">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-10">
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST CATEGORY</a>
+            </div>
+            <div class="col-2">
+                <a class="m-0 float-right" routerLink="/admin/category/add" style="text-decoration: none;">Category
+                    management <i class="far fa-arrow-alt-circle-right"></i></a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row mt-2 searchAndPdf">
+        <div class="col-8">
+            <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
+        </div>
+        <div class="col-3">
+            <input type="text" appAutoFocusDirective class="form-control" (input)="search(key.value)" #key="ngModel"
+                ngModel name="key" placeholder="search by name...">
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" style="width: 10px;">STT</th>
+                        <th scope="col">Name <a (click)="sort('name')" class="srt"><i
+                            class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
+                        class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col" style="width: 30px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let items of categories |orderBy :orderSort : isDesc;let i=index">
+                        <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
+                        <td>{{items.name}}</td>
+                        <td class="text-center" style="width: 30px;">
+                            <a (click)="getCategoryEdit(items.categoryId)" class="btn btn-warning btn-circle btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a> &nbsp;&nbsp;
+                            <a (click)="deleteCategory(items.categoryId)" class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="categories.length == 0" style="text-align: center;">No items displayed!</p>
+        </div>
+
+        <div class="pg">
+            <div class="c" *ngIf="categories.length != 0">
+                <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                <select class="form-select" [(ngModel)]="pageSize" (change)="getAllCategories()"
+                    style="width: 4.3rem;float: right;">
+                    <option [value]="3">3</option>
+                    <option [value]="7">7</option>
+                    <option [value]="15">15</option>
+                    <option [value]="categories.length">All</option>
+                </select>
+            </div>
+            <div class="pagina">
+                <div class="pg a">
+                    <label class="canhtren"
+                        *ngIf="page==1&&(page*pageSize)<totalLength && categories.length != 0">Showing <b>{{page}}</b> -
+                        <b>{{page*pageSize}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                    <label class="canhtren"
+                        *ngIf="page!=1&&(page*pageSize)<totalLength  && categories.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label class="canhtren"
+                        *ngIf="page!=1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label class="canhtren"
+                        *ngIf="page==1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing <b>{{page}}</b>
+                        - <b>{{totalLength}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                </div> &nbsp;&nbsp;
+                <div class=" b">
+                    <input *ngIf="categories.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"
+                        class="form-control custom-pages-input" id="paginationInput" [value]="page"
+                        (keyup.enter)="selectPage(i.value)" (blur)="selectPage(i.value)"
+                        (input)="formatInput($any($event).target)"
+                        aria-labelledby="paginationInputLabel paginationDescription" style="width: 2.5rem" />
+                </div>
+                <div class="pg d">
+                    <ngb-pagination *ngIf="categories.length != 0" [collectionSize]="totalLength" [(page)]="page"
+                        [pageSize]="pageSize" (pageChange)="getAllCategories()" [maxSize]="3" [rotate]="true"
+                        [boundaryLinks]="true"></ngb-pagination>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
