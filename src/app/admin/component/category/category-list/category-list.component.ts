@@ -133,7 +133,7 @@ export class CategoryListComponent implements OnInit {
         this.categoryService.deleteCategory(categoryId).subscribe((data: any) => {
           if (data.status === true) {
             Swal.fire("Delete category successfull!", "You clicked the button!", "success");
-            this.getAllCategories();
+            this.ngOnInit();
           }
           if (data.status === false) {
             Swal.fire({

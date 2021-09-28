@@ -10,6 +10,7 @@ import { CustommerUpdateComponent } from './component/custommer/custommer-update
 import { HomeAdminComponent } from './component/home-admin/home-admin.component';
 import { ProductAddComponent } from './component/product/product-add/product-add.component';
 import { ProductListComponent } from './component/product/product-list/product-list.component';
+import { ProductUpdateComponent } from './component/product/product-update/product-update.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
         { path: 'home', component: HomeAdminComponent },
         { path: 'product/add', component: ProductAddComponent },
         { path: 'product/list', component: ProductListComponent },
+        { path: 'product/update/:productId', component: ProductUpdateComponent },
         { path: 'category/add', component: CategoryAddComponent },
         { path: 'category/list', component: CategoryListComponent },
         { path: 'category/update/:categoryId', component: CategoryUpdateComponent },

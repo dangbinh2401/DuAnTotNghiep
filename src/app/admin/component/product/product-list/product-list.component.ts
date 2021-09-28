@@ -89,4 +89,72 @@ export class ProductListComponent implements OnInit {
       this.ngOnInit()
     }
   }
+
+  /** Get product edit by id  */
+
+  getProductEdit(productId: any) {
+    this.productService.getProductById(productId).subscribe((data: any) => {
+      if (data.status === true) {
+        this.router.navigate(['/admin/product/update', productId]);
+      }
+      if (data.status === false) {
+        Swal.fire({
+          title: 'Product does not exist!',
+          text: 'Do you want to reload page?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, reload page!',
+          cancelButtonText: 'No, keep it'
+        }).then((result) => {
+          if (result.value) {
+            this.ngOnInit();
+          }
+          else if (result.dismiss == Swal.DismissReason.cancel) { }
+        })
+      }
+      if (data.status === 500) {
+        Swal.fire("Error!", "System error!", "error");
+      }
+    })
+  }
+
+  /** Delete product by id */
+
+  deleteProduct(productId: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete your category?!',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.productService.deleteProduct(productId).subscribe((data: any) => {
+          if (data.status === true) {
+            Swal.fire("Delete product successfull!", "You clicked the button!", "success");
+            this.ngOnInit();
+          }
+          if (data.status === false) {
+            Swal.fire({
+              title: 'Product has been deleted by someone else!',
+              text: 'Do you want to reload page?',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonText: 'Yes, reload page!',
+              cancelButtonText: 'No, keep it'
+            }).then((result) => {
+              if (result.value) {
+                this.ngOnInit();
+              }
+            })
+          }
+          if (data.status === 500) {
+            Swal.fire("Delete product error!", "System error!", "error");
+          }
+        })
+      }
+      else if (result.dismiss == Swal.DismissReason.cancel) { }
+    })
+  }
 }

@@ -54,10 +54,10 @@
                     <td scope="row">{{items.enteredDate | date:'dd-MM-yyyy'}}</td>
                     <td>{{items.description}}</td>
                     <td class="text-center">
-                        <a  class="btn btn-warning btn-circle btn-sm">
+                        <a (click)="getProductEdit(items.productId)" class="btn btn-warning btn-circle btn-sm">
                             <i class="fas fa-edit"></i>
                         </a> &nbsp;&nbsp;
-                        <a  class="btn btn-danger btn-circle btn-sm">
+                        <a (click)="deleteProduct(items.productId)" class="btn btn-danger btn-circle btn-sm">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
