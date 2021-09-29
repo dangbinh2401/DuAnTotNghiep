@@ -1,6 +1,6 @@
 import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { Category } from 'src/model/category';
-import { ProductService } from 'src/service/productService/product.service';
+import { ProductService } from 'src/service/adminService/productService/product.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { Product } from 'src/model/product';

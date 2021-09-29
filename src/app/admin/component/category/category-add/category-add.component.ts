@@ -2,7 +2,7 @@ import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from 'src/model/category';
-import { CategoryService } from 'src/service/adminService/categoryService/category.service';
+import { CategoryService } from 'src/service/adminService/categoryService/category.service'; 
 import Swal from 'sweetalert2'
 
 @Component({

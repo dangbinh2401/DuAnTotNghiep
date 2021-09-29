@@ -1,7 +1,7 @@
 import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/model/account';
-import { AccountService } from 'src/service/adminService/accountService/account.service';
+import { AccountService } from 'src/service/adminService/accountService/account.service'; 
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
 

@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/model/category';
 import { Product } from 'src/model/product';
-import { ProductService } from 'src/service/productService/product.service';
+import { ProductService } from 'src/service/adminService/productService/product.service';
 import Swal from 'sweetalert2'
 
 @Component({
