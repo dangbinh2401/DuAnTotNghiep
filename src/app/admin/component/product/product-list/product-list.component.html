@@ -47,11 +47,11 @@
                 <tbody>
                   <tr *ngFor="let items of products |orderBy :orderSort : isDesc;let i=index">
                     <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
-                    <th scope="row"><img src="{{this.productService.host+'/rest/files/image/'+items.image}}" alt="" style = "height :70px;width:fil-content"></th>
+                    <th scope="row" class="text-center"><img src="{{this.productService.host+'/rest/files/image/'+items.image}}" alt="" style = "height :65px;width:fil-content"></th>
                     <th scope="row">{{items.name}}</th>
-                    <td scope="row">{{items.quantity}}</td>
-                    <td scope="row">{{items.unitPrice}}</td>
-                    <td scope="row">{{items.enteredDate | date:'dd-MM-yyyy'}}</td>
+                    <td scope="row" class="numberss">{{items.quantity}}</td>
+                    <td scope="row" class="numberss">{{items.unitPrice}}</td>
+                    <td scope="row" class="text-center">{{items.enteredDate | date:'dd-MM-yyyy'}}</td>
                     <td>{{items.description}}</td>
                     <td class="text-center">
                         <a (click)="getProductEdit(items.productId)" class="btn btn-warning btn-circle btn-sm">
@@ -74,7 +74,7 @@
                     <option [value]="3">3</option>
                     <option [value]="7">7</option>
                     <option [value]="15">15</option>
-                    <option [value]="products.length">All</option>
+                    <option [value]="totalLength">All</option>
                 </select>
             </div>
             <div class="pagina">

@@ -1,22 +1,26 @@
+<!-- Breadcrumb Section Start -->
+
 <section class="breadcrumb-section set-bg listss" data-setbg="">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>Clothes Detail</h2>
+                    <h2>Clothes Shop</h2>
                     <div class="breadcrumb__option">
-                        <a th:href="@{/user}">Home</a>
-                        <a th:href="@{/shop}">Shop</a>
-                        <span>Clothes detail</span>
+                        <a routerLink="/user">Home</a>
+                        <a routerLink="/user/productList">Shop</a>
+                        <span>Clothes list</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <!-- Breadcrumb Section End -->
 
-<!-- Product Section Begin -->
+<!-- Product Section Start -->
+
 <section class="product spad">
     <div class="container">
         <div class="row">
@@ -24,8 +28,8 @@
                 <div class="sidebar">
                     <div class="sidebar__item">
                         <h4>Category</h4>
-                        <ul *ngFor="let category of categories">
-                            <li><a href="#">{{category.name}}</a></li>
+                        <ul *ngFor="let category of categories | slice: (page-1) * pageSize : page * pageSize">
+                            <li><a class="ca" href="#">{{category.name}}</a></li>
                         </ul>
                     </div>
                     <div class="sidebar__item">
@@ -114,173 +118,119 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-7">
-                <!-- <div class="product__discount">
-                    <div class="section-title product__discount__title">
-                        <h2>Sale Off</h2>
-                    </div>
-                    <div class="row">
-                        <div class="product__discount__slider owl-carousel">
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                        data-setbg="img/product/discount/pd-1.jpg">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-                                        <span>Dried Fruit</span>
-                                        <h5><a href="#">Raisin’n’nuts</a></h5>
-                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                        data-setbg="img/product/discount/pd-2.jpg">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-                                        <span>Vegetables</span>
-                                        <h5><a href="#">Vegetables’package</a></h5>
-                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                        data-setbg="img/product/discount/pd-3.jpg">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-                                        <span>Dried Fruit</span>
-                                        <h5><a href="#">Mixed Fruitss</a></h5>
-                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                        data-setbg="img/product/discount/pd-4.jpg">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-                                        <span>Dried Fruit</span>
-                                        <h5><a href="#">Raisin’n’nuts</a></h5>
-                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                        data-setbg="img/product/discount/pd-5.jpg">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-                                        <span>Dried Fruit</span>
-                                        <h5><a href="#">Raisin’n’nuts</a></h5>
-                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                        data-setbg="img/product/discount/pd-6.jpg">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-                                        <span>Dried Fruit</span>
-                                        <h5><a href="#">Raisin’n’nuts</a></h5>
-                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="filter__item">
                     <div class="row">
                         <div class="col-lg-4 col-md-5">
                             <div class="filter__sort">
-                                <span>Sort By</span>
-                                <select>
+                                <span>Sort By:</span>
+                                <!-- <select>
                                     <option value="0">Default</option>
                                     <option value="0">Default</option>
-                                </select>
+                                </select> -->
+                                &nbsp;Name&nbsp;<a (click)="sort('name')" class="sot"><i
+                                        class="fas fa-sort-alpha-down"></i></a>
+                                &nbsp;&nbsp;<a (click)="sort('name')" class="sot"><i
+                                        class="fas fa-sort-alpha-up"></i></a>&nbsp;&nbsp;
+                                &nbsp;Price&nbsp;<a (click)="sort('unitPrice')" class="sot"><i
+                                        class="fas fa-sort-numeric-down"></i></a>
+                                &nbsp;&nbsp;<a (click)="sort('unitPrice')" class="sot"><i
+                                        class="fas fa-sort-numeric-up"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            <div class="filter__found">
+                            <!-- <div class="filter__found">
                                 <h6><span>16</span> Products found</h6>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="col-lg-4 col-md-3">
-                            <div class="filter__option">
-                                <span class="icon_grid-2x2"></span>
-                                <span class="icon_ul"></span>
-                            </div>
+                        <div class="col-lg-4 col-md-3" style="margin-top: -10px;">
+                            <form>
+                                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                                    <div class="input-group">
+                                        <input type="search" name="name" (input)="search(key.value)" #key="ngModel"
+                                            ngModel name="key" placeholder="Nhập từ bạn cần tìm?"
+                                            class="form-control border-0 bg-light fs">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let items of products">
+                    <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let items of products | slice: (page-1) * pageSize : page * pageSize">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="">
                                 <img src="{{this.productListService.host+'/rest/files/image/'+items.image}}" alt="">
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a routerLink="/user/productDetail/{{items.productId}}"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a routerLink="/user/productDetail/{{items.productId}}"><i
+                                                class="fa fa-retweet"></i></a></li>
                                     <li><a (click)="addToCart(items)"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="#">{{items.name}}</a></h6>
-                                <h5>{{items.unitPrice}}</h5>
+                                <h5 style="color:red">{{items.unitPrice | currency:
+                                    'VND'}}</h5>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
-                <div class="product__pagination">
+                <div class="pg">
+                    <div class="c" *ngIf="products.length != 0">
+                        <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                        <select class="form-select" style="width: 4.3rem;float: right;" [(ngModel)]="pageSize">
+                            <option [value]="3">3</option>
+                            <option [value]="6">6</option>
+                            <option [value]="15">15</option>
+                            <option [value]="totalLength">All</option>
+                        </select>
+                    </div>
+                    <div class="pagina">
+
+                        <div class="pg a">
+                            <label class="canhtren"
+                                *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">Showing
+                                <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
+                                <b>{{totalLength}}</b> items</label>
+                            <label class="canhtren"
+                                *ngIf="page!=1&&(page*pageSize)<totalLength && products.length != 0">Showing
+                                <b>{{((page-1)*pageSize)+1}}</b> -
+                                <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
+                            <label class="canhtren"
+                                *ngIf="page!=1&&(page*pageSize)>=totalLength && products.length != 0">Showing
+                                <b>{{((page-1)*pageSize)+1}}</b> -
+                                <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
+                            <label class="canhtren"
+                                *ngIf="page==1&&(page*pageSize)>=totalLength && products.length != 0">Showing
+                                <b>{{page}}</b> -
+                                <b>{{totalLength}}</b> of
+                                <b>{{totalLength}}</b> items</label>
+                        </div> &nbsp;&nbsp;
+                        <div class=" b">
+                            <input *ngIf="products.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"
+                                class="form-control custom-pages-input" id="paginationInput" [value]="page"
+                                (keyup.enter)="selectPage(i.value)" (blur)="selectPage(i.value)"
+                                (input)="formatInput($any($event).target)"
+                                aria-labelledby="paginationInputLabel paginationDescription" style="width: 2.5rem" />
+                        </div>
+                        <div class="pg d">
+                            <ngb-pagination *ngIf="products.length != 0" [collectionSize]="totalLength" [(page)]="page"
+                                [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true">
+                            </ngb-pagination>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- <div class="product__pagination">
                     <a href="#">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </section>
+
+<!-- Product Section End -->

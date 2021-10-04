@@ -17,10 +17,12 @@ import { CategoryAddComponent } from './component/category/category-add/category
 import { CategoryListComponent } from './component/category/category-list/category-list.component';
 import { CategoryUpdateComponent } from './component/category/category-update/category-update.component';
 import { ProductUpdateComponent } from './component/product/product-update/product-update.component';
-import { CustommerAddComponent } from './component/custommer/custommer-add/custommer-add.component';
-import { CustommerListComponent } from './component/custommer/custommer-list/custommer-list.component';
-import { CustommerUpdateComponent } from './component/custommer/custommer-update/custommer-update.component';
-import { ControlMessageComponent } from './component/validate/control-message.component'; 
+import { ControlMessageComponent } from './component/validate/control-message.component';
+import { AccountListComponent } from './component/account/account-list/account-list.component';
+import { AccountAddComponent } from './component/account/account-add/account-add.component';
+import { AccountUpdateComponent } from './component/account/account-update/account-update.component';
+import { OrderComponent } from './component/order/order.component';
+import { StatisticsComponent } from './component/statistics/statistics.component';
 
 
 @NgModule({
@@ -35,11 +37,13 @@ import { ControlMessageComponent } from './component/validate/control-message.co
     CategoryListComponent,
     CategoryUpdateComponent,
     ProductUpdateComponent,
-    CustommerAddComponent,
-    CustommerListComponent,
-    CustommerUpdateComponent,
     ControlMessageComponent,
-    AutoFocusDirectiveDirective
+    AutoFocusDirectiveDirective,
+    AccountListComponent,
+    AccountAddComponent,
+    AccountUpdateComponent,
+    OrderComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

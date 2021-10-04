@@ -1,0 +1,62 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-8">
+            <div class="d-flex flex-column comment-section">
+                <div *ngIf="comments?.length != 0">
+                    <div class="bg-white p-2"
+                        *ngFor="let comment of comments | slice: (page-1) * pageSize : page * pageSize">
+                        <div class="d-flex flex-row user-info">
+                            <img class="d-flex g-width-50 g-height-50 rounded-circle"
+                                src="https://bootdey.com/img/Content/avatar/avatar7.png">
+                            <div class="d-flex flex-column justify-content-start ml-2">
+                                <span class="d-block font-weight-bold name">{{comment.custommer.fullname}}</span>
+                                <span class="date text-black-50 datess"><i class="far fa-edit"></i>
+                                    {{comment.dateCreated |
+                                    date:'dd-MM-yyyy'}}</span>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment-text">&nbsp;&nbsp;&nbsp;{{comment.content}}</p>
+                            <div class="d-flex flex-row fs-12">
+                                <div class="like p-2 cursor"><i class="far fa-thumbs-up"></i><span
+                                        class="ml-1">Like</span>
+                                </div>
+                                <div class="like p-2 cursor"><i class="far fa-comment"></i><span
+                                        class="ml-1">Comment</span>
+                                </div>
+                                <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="d-flex flex-row align-items-start">
+
+                    </div>
+                    <div class="mt-2 text-right" style="float: right;">
+                        <ngb-pagination *ngIf="comments.length != 0" [collectionSize]="totalLength" [(page)]="page"
+                            [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+
+                </div>
+                <div class="bg-light p-2" *ngIf="!isAuthenticated">
+                    <p>Please login to comment!&nbsp;<a routerLink="/user/login"><b>Login</b></a></p>
+                </div>
+                <div class="bg-light p-2" *ngIf="isAuthenticated">
+                    <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+                        <div class="d-flex flex-row align-items-start">
+                            <textarea formControlName="content"
+                                class="form-control ml-1 shadow-none textarea"></textarea>
+                        </div>
+                        <div class="mt-2 text-right">
+                            <button class="btn btn-outline-danger btn-sm shadow-none" type="submit">Post
+                                comment</button>
+                            <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="reset">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

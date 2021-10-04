@@ -1,3 +1,5 @@
+<!-- Start header -->
+
 <div class="header">
     <div class="header__top">
         <div class="container">
@@ -19,18 +21,21 @@
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__language">
-                            <div>English</div>
+                            <div>Vietnamese</div>
                             <ul>
                                 <li><a class="n" href="#">Spanis</a></li>
                                 <li><a class="n" href="#">English</a></li>
                             </ul>
                         </div>
-                        <div class="header__top__right__language" th:if="${#request.remoteUser}">
+                        <div class="header__top__right__language" *ngIf="!isLoggedIn">
+                            <div routerLink="/user/login">Login</div>
+                        </div>
+                        <div class="header__top__right__language" *ngIf="isLoggedIn">
                             <div>Account</div>
                             <ul>
-                                <li><a class="n" >Logout</a></li>
-                                <li><a class="n" >Profile</a></li>
-                                <li><a class="n" >ChangePass</a></li>
+                                <li><a class="n" (click)="logout()">Logout</a></li>
+                                <li><a class="n">Profile</a></li>
+                                <li><a class="n">ChangePass</a></li>
                             </ul>
                         </div>
                     </div>
@@ -38,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="container"> 
+    <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
@@ -52,21 +57,22 @@
                         <li><a href="#">Shop</a>
                             <ul class="header__menu__dropdown">
                                 <li><a routerLink="/user/productList">List Product</a></li>
-                                <li><a >Shoping Cart</a></li>
-                                <li><a >Your Order</a></li>
+                                <li><a routerLink="/user/cart">Shoping Cart</a></li>
+                                <li><a routerLink="/user/orderHistory">Your Order</a></li>
                             </ul>
                         </li>
-                        <li><a >Pages</a></li>
-                        <li><a >Blog</a></li>
-                        <li><a >Contact</a></li>
+                        <li><a routerLink="">Pages</a></li>
+                        <li><a routerLink="">Blog</a></li>
+                        <li><a routerLink="">Contact</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a ><i class="fa fa-heart"></i> <span>1</span></a></li> &nbsp;
-                        <li><a routerLink="/user/cart"><i class="fa fa-shopping-bag"></i> <span>{{totalQuantity}}</span></a></li>
+                        <li><a><i class="fa fa-heart"></i> <span>1</span></a></li> &nbsp;
+                        <li><a routerLink="/user/cart"><i class="fa fa-shopping-bag"></i>
+                                <span>{{totalQuantity}}</span></a></li>
                     </ul>
                     <div class="header__cart__price">item: <b>{{totalPrice | currency: 'VND'}}</b><span></span></div>
                 </div>
@@ -78,7 +84,15 @@
     </div>
 </div>
 
+<!-- End header -->
+
+<!-- Start main -->
+
 <router-outlet></router-outlet>
+
+<!-- End main -->
+
+<!-- Start footer -->
 
 <footer class="footer spad">
     <div class="container">
@@ -89,9 +103,9 @@
                         <a href="./index.html"><img src="img/logo.png" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello@colorlib.com</li>
+                        <li>Address: 10 Chau Thuy - Quang Nam</li>
+                        <li>Phone: +0975 463 309</li>
+                        <li>Email: tien1107@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -118,7 +132,7 @@
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
+                    <h6>T-Clothes shop</h6>
                     <p>Get E-mail updates about our latest shop and special offers.</p>
                     <form action="#">
                         <input type="text" placeholder="Enter your mail">
@@ -136,12 +150,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="footer__copyright">
-                    <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                    <div class="footer__copyright__text">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">le van tien</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
                     <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                 </div>
             </div>
         </div>
     </div>
 </footer>
+
+<!-- End footer -->

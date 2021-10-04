@@ -30,7 +30,7 @@
 
                     <div class="col-4">
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Name</label>
+                            <label class="form-label" for="form6Example2">Name<span class="bb"> *</span></label>
                             <control-message field="Name" [control]="productForm.get('name')" style="float: none;"></control-message>
                             <input type="text" name="name" id="name" formControlName="name" class="form-control" placeholder="name..." tabindex="2"
                                 required [ngClass]="{
@@ -39,7 +39,7 @@
 
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Quantity</label>
+                            <label class="form-label" for="form6Example2">Quantity<span class="bb"> *</span></label>
                             <control-message field="Quantity" [control]="productForm.get('quantity')" style="float: none;"></control-message>
                             <input type="number" name="quantity" id="quantity" formControlName="quantity" class="form-name" id="name" class="form-control" placeholder="quantity..." tabindex="4"
                                 required [ngClass]="{
@@ -48,7 +48,7 @@
 
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Category</label>
+                            <label class="form-label" for="form6Example2">Category<span class="bb"> *</span></label>
                             <control-message field="Category" [control]="productForm.get('categoryId')" style="float: none;"></control-message>
                             <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-select" tabindex="6" [ngClass]="{
                                 'is-valid': (f?.categoryId?.valid && (f?.categoryId?.touched)),
@@ -63,7 +63,7 @@
                     <div class="col-4">
 
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Entered date</label>
+                            <label class="form-label" for="form6Example2">Entered date<span class="bb"> *</span></label>
                             <control-message field="EnteredDate" [control]="productForm.get('enteredDate')" style="float: none;"></control-message>
                             <input type="date" name="enteredDate" id="enteredDate" formControlName="enteredDate" class="form-control" placeholder="entered date..." tabindex="3"
                                 required [ngClass]="{
@@ -71,7 +71,7 @@
                                     'is-invalid': (f?.enteredDate?.invalid && (f?.enteredDate?.touched))}"/>
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Unit price</label>
+                            <label class="form-label" for="form6Example2">Unit price<span class="bb"> *</span></label>
                             <control-message field="UnitPrice" [control]="productForm.get('unitPrice')" style="float: none;"></control-message>
                             <input type="number" name="unitPrice" id="unitPrice" formControlName="unitPrice" class="form-control" placeholder="unitPrice..." tabindex="5"
                                 required [ngClass]="{
@@ -80,7 +80,7 @@
 
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Discount</label>
+                            <label class="form-label" for="form6Example2">Discount<span class="bb"> *</span></label>
                             <control-message field="Discount" [control]="productForm.get('discount')" style="float: none;"></control-message>
                             <input type="number" name="discount" id="discount" formControlName="discount" class="form-control" placeholder="discount..." tabindex="7"
                                 required [ngClass]="{

@@ -12,6 +12,8 @@ export class CartDetailComponent implements OnInit {
   cartItemss: cartItems[] = [];
   totalPrice: number = 0;
   totalQuantity: number = 0;
+  isAuthenticated!: string;
+  store: Storage = sessionStorage;
 
   constructor(
     public cartService: CartService,
@@ -19,6 +21,8 @@ export class CartDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartDetails();
+
+    this.isAuthenticated = this.store.getItem('isLogin') as string;
   }
 
   cartDetails(){

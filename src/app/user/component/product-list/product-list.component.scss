@@ -574,6 +574,52 @@ ol {
 .listss {
 	background-image: url(https://zunezx.com/upload/image/cache/data/tin-tuc/BIRTHDAY-TOUR/17222636111732923931371361067613859702537828n-030-crop-400-300.jpg);
 }
+
+.pg{
+    display: flex;
+    justify-content: space-between;
+    position: relative; 
+    padding-left: 5px;
+    // padding-right: 5px;
+}
+
+.a {
+    padding-top: 1%;
+}
+
+.select {
+    // padding-top: 7px;
+    // padding-bottom:6px;
+    height: 67%;
+    width: 36%;
+    border-color: darkgray;
+}
+.pagina {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lbsize {
+    padding-top:4%;
+}
+
+ngb-pagination ::ng-deep a {
+	color: black !important;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+	border-color: gray;
+	background-color: brown;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+	box-shadow: 0 0 0 0.1rem brown;
+  }
+  
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+	box-shadow: 0 0 0 0.1rem #aaa;
+  }
+
 /*---------------------
   Pagination
 -----------------------*/

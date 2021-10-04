@@ -64,6 +64,7 @@ export class CartService {
     
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
+    
     this.persistCartItem();
   }
 

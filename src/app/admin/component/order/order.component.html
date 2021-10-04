@@ -1,0 +1,145 @@
+<div class="card shadow mb-4 col-md-11">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-10">
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST ORDER</a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row mt-2 searchAndPdf">
+        <div class="col-8">
+            <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
+        </div>
+        <div class="col-3">
+            <input type="text" appAutoFocusDirective class="form-control" (input)="searchOrder(key.value)"
+                #key="ngModel" ngModel name="key" placeholder="search by custommer...">
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" style="width: 10px;">STT</th>
+                        <th scope="col">Total quantity <a (click)="sort('totalQuantity')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('totalQuantity')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">Total price <a (click)="sort('totalPrice')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('totalPrice')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">Date created <a (click)="sort('dateCreated')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('dateCreated')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">Custommer <a (click)="sort('custommer.fullname')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a
+                                (click)="sort('custommer.fullname')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">Adress <a (click)="sort('adress')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('adress')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col" style="width: 30px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let items of orders |orderBy :orderSort : isDesc;let i=index">
+                        <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
+                        <td>{{items.totalQuantity}}</td>
+                        <td>{{items.totalPrice}}</td>
+                        <td>{{items.dateCreated | date:'dd-MM-yyyy'}}</td>
+                        <td>{{items.custommer.fullname}}</td>
+                        <td>{{items.adress}}</td>
+                        <td class="text-center" style="width: 30px;">
+                            <a (click)="getOrderDetail(items.orderId)" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class="btn btn-warning btn-circle btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a> &nbsp;&nbsp;
+                            <a (click)="confilmOrder(items.orderId)" class="btn btn-danger btn-circle btn-sm">
+                                <i class="far fa-check-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="orders.length == 0" style="text-align: center;">No items displayed!</p>
+        </div>
+
+        <div class="pg">
+            <div class="c" *ngIf="orders.length != 0">
+                <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                <select class="form-select" style="width: 4.3rem;float: right;" [(ngModel)]="pageSize">
+                    <option [value]="3">3</option>
+                    <option [value]="7">7</option>
+                    <option [value]="15">15</option>
+                    <option [value]="totalLength">All</option>
+                </select>
+            </div>
+            <div class="pagina">
+
+                <div class="pg a">
+                    <label *ngIf="page==1&&(page*pageSize)<totalLength && orders.length != 0">Showing
+                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && orders.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength && orders.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label *ngIf="page==1&&(page*pageSize)>=totalLength && orders.length != 0">Showing
+                        <b>{{page}}</b> -
+                        <b>{{totalLength}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                </div> &nbsp;&nbsp;
+                <div class=" b">
+                    <input *ngIf="orders.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"
+                        class="form-control custom-pages-input" id="paginationInput" [value]="page"
+                        (keyup.enter)="selectPage(i.value)" (blur)="selectPage(i.value)"
+                        (input)="formatInput($any($event).target)"
+                        aria-labelledby="paginationInputLabel paginationDescription" style="width: 2.5rem" />
+                </div>
+                <div class="pg d">
+                    <ngb-pagination *ngIf="orders.length != 0" [collectionSize]="totalLength" [(page)]="page"
+                        [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal table orderDetails -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Unit price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let details of orderDetails">
+                                <th>{{details[0]}}</th>
+                                <td><img src="{{this.orderService.host+'/rest/files/image/'+details[1]}}" alt=""
+                                        style="height :50px;width:fil-content"></td>
+                                <td>{{details[2]}}</td>
+                                <td>{{details[3]*details[2] | currency: 'VND'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

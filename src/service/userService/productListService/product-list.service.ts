@@ -20,4 +20,8 @@ export class ProductListService {
   getCategory(): Observable<Category[]>{
     return this.http.get<Category[]>(environment.baseUrl+'categories');
   }
+
+  getProductTop(): Observable<Product[]> {
+    return this.http.get<Product[]>(environment.baseUrl+'productTop');
+  }
 }
