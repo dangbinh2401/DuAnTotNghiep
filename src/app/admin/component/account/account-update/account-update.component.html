@@ -6,8 +6,9 @@
                     <span class="card-title" style="font-weight: bold; font-size:x-large">ACCOUNT MANAGEMENT</span>
                 </div>
                 <div class="col-2">
-                    <span class="card-title"><a routerLink="/admin/account/list" style="text-decoration: none;">LIST
-                            ACCOUNT <i class="fas fa-chevron-circle-right"></i></a></span>
+                    <span class="card-title"><a routerLink="/admin/account/list"
+                            style="text-decoration: none;padding-top: 5%; margin-left: 25%;">List Account <i
+                                style="padding-top: 5%;" class="far fa-arrow-alt-circle-right"></i></a></span>
                 </div>
             </div>
             <!-- <span class="err">{{err | slice:53:75}}</span> -->
@@ -21,7 +22,8 @@
                             <control-message field="Username" [control]="custommerForm.get('username')">
                             </control-message>
                             <input type="text" name="username" id="username" formControlName="username"
-                                class="form-control" placeholder="username..." required #input appAutoFocusDirective tabindex="1" [ngClass]="{
+                                class="form-control" placeholder="username..." required #input appAutoFocusDirective
+                                tabindex="1" [ngClass]="{
                                 'is-valid': (f?.username?.valid && (f?.username?.touched)),
                                 'is-invalid': (f?.username?.invalid && (f?.username?.touched))}" />
                         </div> <br>
@@ -59,11 +61,11 @@
                     </div>
                 </div>
                 <!-- Submit button -->
-                <button (keydown.Tab)="onKey($event);false;" type="submit" tabindex="7" class="btn btn-primary btn-block mb-4 bsave"><i class="fas fa-save"></i>
+                <button (keydown.Tab)="onKey($event);false;" type="submit" tabindex="7"
+                    class="btn btn-primary btn-block mb-4 bsave"><i class="fas fa-save"></i>
                     Update</button>
 
             </form>
         </div>
     </div>
 </div>
-

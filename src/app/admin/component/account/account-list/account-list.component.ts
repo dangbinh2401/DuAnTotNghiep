@@ -4,6 +4,7 @@ import { Custommer } from 'src/model/custommer';
 import { CustommerService } from 'src/service/adminService/custommerService/custommer.service';
 import { FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-account-list',
@@ -20,14 +21,15 @@ export class AccountListComponent implements OnInit {
   keyword: string = '';
   orderList: String = ''
   isDesc: boolean = true;
-  orderSort: String=''
+  orderSort: String = ''
   search = new FormControl();
   FILTER_PAG_REGEX = /[^0-9]/g;
 
   constructor(
     private custommerService: CustommerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -38,9 +40,13 @@ export class AccountListComponent implements OnInit {
   /** Get all custommers */
 
   getAllCustommer() {
+    this.spinner.show();
     this.custommerService.getCustommersPage(this.page - 1, this.pageSize).subscribe(data => {
-      console.log(data);
-      this.custommers = data;
+      setTimeout(() => {
+        console.log(data);
+        this.custommers = data;
+        this.spinner.hide();
+      },1500)
     })
   }
 
@@ -59,20 +65,20 @@ export class AccountListComponent implements OnInit {
   }
 
   /** Sort list custommers */
-  
-  sort(header:any){
-    this.isDesc =! this.isDesc
+
+  sort(header: any) {
+    this.isDesc = !this.isDesc
     this.orderSort = header
   }
 
-   /** Search custommer by username and fullname */
+  /** Search custommer by username and fullname */
 
-   searchCustommer(key: string): void {
+  searchCustommer(key: string): void {
     const result: Custommer[] = [];
     key = key.trim();
     for (const ct of this.custommers) {
       if (ct.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      ||  ct.fullname.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+        || ct.fullname.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
         result.push(ct)
       }
     }

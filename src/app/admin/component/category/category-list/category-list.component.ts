@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/model/category';
-import { CategoryService } from 'src/service/adminService/categoryService/category.service'; 
+import { CategoryService } from 'src/service/adminService/categoryService/category.service';
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-category-list',
@@ -17,12 +18,13 @@ export class CategoryListComponent implements OnInit {
   totalLength: any;
   orderList: String = ''
   isDesc: boolean = true;
-  orderSort: String=''
+  orderSort: String = ''
   FILTER_PAG_REGEX = /[^0-9]/g;
   constructor(
     private categoryService: CategoryService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private spinner: NgxSpinnerService
+  ) { }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -33,9 +35,13 @@ export class CategoryListComponent implements OnInit {
   /** Get all list categories */
 
   getAllCategories() {
+    this.spinner.show();
     this.categoryService.getAllCategories(this.page - 1, this.pageSize).subscribe(data => {
-      console.log(data);
-      this.categories = data;
+      setTimeout(() => {
+        console.log(data);
+        this.categories = data;
+        this.spinner.hide();
+      },1500)
     })
   }
 
@@ -62,9 +68,9 @@ export class CategoryListComponent implements OnInit {
   }
 
   /** Sort list categories */
-  
-  sort(header:any){
-    this.isDesc =! this.isDesc
+
+  sort(header: any) {
+    this.isDesc = !this.isDesc
     this.orderSort = header
   }
 

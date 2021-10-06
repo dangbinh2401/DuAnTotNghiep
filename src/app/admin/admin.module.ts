@@ -6,6 +6,8 @@ import { AutoFocusDirectiveDirective } from './component/focusService/focus.dire
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AdminComponent } from './admin.component';
 import { ProductAddComponent } from './component/product/product-add/product-add.component';
@@ -52,7 +54,9 @@ import { StatisticsComponent } from './component/statistics/statistics.component
     ReactiveFormsModule,
     NgbModule,
     Ng2SearchPipeModule,
-    Ng2OrderModule
+    Ng2OrderModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AdminComponent]

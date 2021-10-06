@@ -1,10 +1,11 @@
-import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/model/category';
 import { Product } from 'src/model/product';
 import { ProductService } from 'src/service/adminService/productService/product.service';
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-update',
@@ -16,11 +17,11 @@ export class ProductUpdateComponent implements OnInit {
   productId: any;
   product: Product = new Product();
   productForm!: FormGroup;
-  year= new Date().getFullYear();
+  year = new Date().getFullYear();
   imagePath: any;
   imgURL: any;
   userFile: any = File;
-  nameImg:any;
+  nameImg: any;
   categories!: Category[];
   @ViewChild('input') input!: ElementRef;
 
@@ -28,31 +29,36 @@ export class ProductUpdateComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.productId = this.activatedRoute.snapshot.params['productId'];
-    this.productService.getProductById(this.productId).subscribe((data:any) => {
-      if(data.status === true){
-        const rs = data.result;
-        console.log(rs);
-        this.product = rs;
-        this.productForm.controls['name'].setValue(rs.name);
-        this.productForm.controls['quantity'].setValue(rs.quantity);
-        this.productForm.controls['unitPrice'].setValue(rs.unitPrice);
-        this.productForm.controls['discount'].setValue(rs.discount);
-        this.productForm.controls['enteredDate'].setValue(rs.enteredDate);
-        // this.productForm.controls['image'].setValue(rs.image);
-        this.productForm.controls['categoryId'].setValue(rs.category.categoryId);
-        this.productForm.controls['description'].setValue(rs.description);
-        // this.productForm.patchValue(rs);
-        this.getCategory();
+    this.productService.getProductById(this.productId).subscribe((data: any) => {
+      if (data.status === true) {
+        setTimeout(() => {
+          const rs = data.result;
+          console.log(rs);
+          this.product = rs;
+          this.productForm.controls['name'].setValue(rs.name);
+          this.productForm.controls['quantity'].setValue(rs.quantity);
+          this.productForm.controls['unitPrice'].setValue(rs.unitPrice);
+          this.productForm.controls['discount'].setValue(rs.discount);
+          this.productForm.controls['enteredDate'].setValue(rs.enteredDate);
+          // this.productForm.controls['image'].setValue(rs.image);
+          this.productForm.controls['categoryId'].setValue(rs.category.categoryId);
+          this.productForm.controls['description'].setValue(rs.description);
+          // this.productForm.patchValue(rs);
+          this.getCategory();
+          this.spinner.hide();
+        },1500)
       }
-      else{
+      else {
         Swal.fire("error!", "System error!", "error");
       }
-      
+
     })
 
     this.productForm = this.formBuilder.group({
@@ -100,43 +106,43 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   getCategory() {
-    this.productService.getCategory().subscribe((data:any) => {
-      console.log("cr",data);
+    this.productService.getCategory().subscribe((data: any) => {
+      console.log("cr", data);
       this.categories = data;
     })
   }
 
-  onSelectFile(event:any) {
+  onSelectFile(event: any) {
     const file = event.target.files[0];
     this.userFile = file;
     console.log(file);
     var form = new FormData();
-		form.append('files',this.userFile);
-    this.productService.uploadImage(form).subscribe((data:any) => {
+    form.append('files', this.userFile);
+    this.productService.uploadImage(form).subscribe((data: any) => {
       console.log(data);
       this.productForm.value.image = data.name;
       this.nameImg = this.productForm.value.image;
     })
     var reader = new FileReader();
     this.imagePath = file;
-    reader.readAsDataURL(file); 
-    reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
     }
   }
 
-   /** Update product */
+  /** Update product */
 
-   updateproduct(){
-    this.productService.updateProduct(this.productId, this.product).subscribe((data:any) => {
-      if(data.status === true){
+  updateproduct() {
+    this.productService.updateProduct(this.productId, this.product).subscribe((data: any) => {
+      if (data.status === true) {
         Swal.fire("Update product successfull!", "You clicked the button!", "success");
         this.getListProducts();
       }
-      if(data.status === false){
+      if (data.status === false) {
         Swal.fire("Update product error!", "Product already exist!", "error");
       }
-      if(data.status === 500){
+      if (data.status === 500) {
         Swal.fire("Update product error!", "System error!", "error");
       }
     })
@@ -145,7 +151,7 @@ export class ProductUpdateComponent implements OnInit {
   /** OnSubmit form */
 
   onSubmit() {
-    if(this.productForm.valid){
+    if (this.productForm.valid) {
       this.product.name = this.productForm.value.name;
       this.product.quantity = this.productForm.value.quantity;
       this.product.unitPrice = this.productForm.value.unitPrice;
@@ -156,7 +162,7 @@ export class ProductUpdateComponent implements OnInit {
       this.product.categoryId = this.productForm.value.categoryId;
       this.updateproduct();
     }
-    else{
+    else {
       Swal.fire("Update product error!", "You clicked the button!", "error");
       this.validateAllFormFields(this.productForm);
     }

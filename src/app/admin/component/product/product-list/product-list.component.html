@@ -5,12 +5,10 @@
                 <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST PRODUCT</a>
             </div>
             <div class="col-2">
-                <a class="m-0 float-right" routerLink="/admin/product/add" style="text-decoration: none;">Product management <i
-                    class="far fa-arrow-alt-circle-right"></i></a>
+                <a class="m-0 float-right" routerLink="/admin/product/add" style="text-decoration: none;">Product
+                    management <i class="far fa-arrow-alt-circle-right"></i></a>
             </div>
         </div>
-        
-       
     </div>
     <div class="row mt-2 searchAndPdf">
         <div class="col-8">
@@ -25,46 +23,55 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead class="table-dark">
-                  <tr>
-                    <th scope="col" style="width: 10px;">STT</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Name <a (click)="sort('name')" class="srt"><i
-                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
-                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                    <th scope="col">Quantity <a (click)="sort('quantity')" class="srt"><i
-                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('quantity')"
-                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                    <th scope="col">Unit price <a (click)="sort('unitPrice')" class="srt"><i
-                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('unitPrice')"
-                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                    <th scope="col">EnteredDate <a (click)="sort('enteredDate')" class="srt"><i
-                        class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('enteredDate')"
-                    class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                    <th scope="col">Description</th>
-                    <th scope="col"></th>
-                  </tr>
+                    <tr>
+                        <th scope="row" style="width: 8px;"></th>
+                        <th scope="col" style="width: 10px;">STT</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name <a (click)="sort('name')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">Quantity <a (click)="sort('quantity')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('quantity')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">Unit price <a (click)="sort('unitPrice')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('unitPrice')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">EnteredDate <a (click)="sort('enteredDate')" class="srt"><i
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('enteredDate')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                        <th scope="col">Description</th>
+                        <th scope="col"></th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let items of products |orderBy :orderSort : isDesc;let i=index">
-                    <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
-                    <th scope="row" class="text-center"><img src="{{this.productService.host+'/rest/files/image/'+items.image}}" alt="" style = "height :65px;width:fil-content"></th>
-                    <th scope="row">{{items.name}}</th>
-                    <td scope="row" class="numberss">{{items.quantity}}</td>
-                    <td scope="row" class="numberss">{{items.unitPrice}}</td>
-                    <td scope="row" class="text-center">{{items.enteredDate | date:'dd-MM-yyyy'}}</td>
-                    <td>{{items.description}}</td>
-                    <td class="text-center">
-                        <a (click)="getProductEdit(items.productId)" class="btn btn-warning btn-circle btn-sm">
-                            <i class="fas fa-edit"></i>
-                        </a> &nbsp;&nbsp;
-                        <a (click)="deleteProduct(items.productId)" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
-                  </tr>
+                    <tr *ngFor="let items of products |orderBy :orderSort : isDesc;let i=index">
+                        <td scope="row" style="width: 8px;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                                (change)="getCheckedListProduct($event, items.productId)">
+                              </div>
+                        </td>
+                        <th scope="row" style="width: 10px;" class="numberss">{{((page-1)*pageSize)+i+1}}</th>
+                        <th scope="row" class="text-center"><img
+                                src="{{this.productService.host+'/rest/files/image/'+items.image}}" alt=""
+                                style="height :65px;width:fil-content"></th>
+                        <td scope="row">{{items.name}}</td>
+                        <td scope="row" class="numberss">{{items.quantity}}</td>
+                        <td scope="row" class="numberss">{{items.unitPrice}}</td>
+                        <td scope="row" class="text-center">{{items.enteredDate | date:'dd-MM-yyyy'}}</td>
+                        <td>{{items.description}}</td>
+                        <td class="text-center">
+                            <a (click)="getProductEdit(items.productId)" class="btn btn-warning btn-circle btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a> &nbsp;&nbsp;
+                            <a (click)="deleteProduct(items.productId)" class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
-              </table>
-              <p *ngIf="products.length == 0" style="text-align: center;">No items displayed!</p>
+            </table>
+            <p *ngIf="products.length == 0" style="text-align: center;">No items displayed!</p>
         </div>
         <div class="pg">
             <div class="c" *ngIf="products.length != 0">
@@ -79,20 +86,18 @@
             </div>
             <div class="pagina">
                 <div class="pg a">
-                    <label
-                        *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">Showing <b>{{page}}</b> -
+                    <label *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">Showing <b>{{page}}</b>
+                        -
                         <b>{{page*pageSize}}</b> of
                         <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page!=1&&(page*pageSize)<totalLength  && products.length != 0">Showing
+                    <label *ngIf="page!=1&&(page*pageSize)<totalLength  && products.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page!=1&&(page*pageSize)>=totalLength  && products.length != 0">Showing
+                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength  && products.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page==1&&(page*pageSize)>=totalLength  && products.length != 0">Showing <b>{{page}}</b>
+                    <label *ngIf="page==1&&(page*pageSize)>=totalLength  && products.length != 0">Showing
+                        <b>{{page}}</b>
                         - <b>{{totalLength}}</b> of
                         <b>{{totalLength}}</b> items</label>
                 </div> &nbsp;&nbsp;
@@ -108,7 +113,6 @@
                         [pageSize]="pageSize" (pageChange)="getAllProducts()" [maxSize]="3" [rotate]="true"
                         [boundaryLinks]="true"></ngb-pagination>
                 </div>
-
             </div>
+        </div>
     </div>
-</div>

@@ -15,6 +15,7 @@ import { OrderComponent } from './component/order/order.component';
 import { ProductAddComponent } from './component/product/product-add/product-add.component';
 import { ProductListComponent } from './component/product/product-list/product-list.component';
 import { ProductUpdateComponent } from './component/product/product-update/product-update.component';
+import { StatisticsComponent } from './component/statistics/statistics.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
         { path: 'account/list', component: AccountListComponent },
         { path: 'account/update/:id', component: AccountUpdateComponent },
         { path: 'order/list', component: OrderComponent },
+        { path: 'statistics/list', component: StatisticsComponent },
 
       ]
     }

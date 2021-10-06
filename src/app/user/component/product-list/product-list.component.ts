@@ -5,6 +5,7 @@ import { Product } from 'src/model/product';
 import { CartService } from 'src/service/userService/cartService/cart.service';
 import { ProductListService } from 'src/service/userService/productListService/product-list.service';
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-product-list',
@@ -20,12 +21,13 @@ export class ProductListComponent implements OnInit {
   totalLength = 0;
   orderList: String = ''
   isDesc: boolean = true;
-  orderSort: String=''
+  orderSort: String = ''
   FILTER_PAG_REGEX = /[^0-9]/g;
 
   constructor(
     public productListService: ProductListService,
     private cartService: CartService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -36,15 +38,19 @@ export class ProductListComponent implements OnInit {
   /** Load product to list */
 
   getAllListProduct() {
+    this.spinner.show();
     this.productListService.getAllProducts().subscribe(data => {
-      this.products = data;
-      this.totalLength = this.products.length;
+      setTimeout(() => {
+        this.products = data;
+        this.totalLength = this.products.length;
+        this.spinner.hide();
+      },1500)
     })
   }
 
-   /** Pagination list products */
+  /** Pagination list products */
 
-   selectPage(page: string) {
+  selectPage(page: string) {
     this.page = parseInt(page) || 1;
   }
 
@@ -55,9 +61,9 @@ export class ProductListComponent implements OnInit {
   }
 
   /** Sort list products */
-  
-  sort(header:any){
-    this.isDesc =! this.isDesc
+
+  sort(header: any) {
+    this.isDesc = !this.isDesc
     this.orderSort = header
   }
 

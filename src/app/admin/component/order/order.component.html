@@ -44,12 +44,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let items of orders |orderBy :orderSort : isDesc;let i=index">
-                        <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
-                        <td>{{items.totalQuantity}}</td>
-                        <td>{{items.totalPrice}}</td>
-                        <td>{{items.dateCreated | date:'dd-MM-yyyy'}}</td>
-                        <td>{{items.custommer.fullname}}</td>
-                        <td>{{items.adress}}</td>
+                        <th scope="row" style="width: 10px;text-align: right;">{{((page-1)*pageSize)+i+1}}</th>
+                        <td class="numberss">{{items.totalQuantity}}</td>
+                        <td class="numberss">{{items.totalPrice}}</td>
+                        <td class="text-center">{{items.dateCreated | date:'dd-MM-yyyy'}}</td>
+                        <td class="textss">{{items.custommer.fullname}}</td>
+                        <td class="textss">{{items.adress}}</td>
                         <td class="text-center" style="width: 30px;">
                             <a (click)="getOrderDetail(items.orderId)" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" class="btn btn-warning btn-circle btn-sm">

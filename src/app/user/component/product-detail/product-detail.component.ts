@@ -6,6 +6,7 @@ import { ProductService } from 'src/service/adminService/productService/product.
 import { CartService } from 'src/service/userService/cartService/cart.service';
 import { CommentService } from 'src/service/userService/commentService/comment.service';
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-product-detail',
@@ -24,21 +25,26 @@ export class ProductDetailComponent implements OnInit {
     private cartService: CartService,
     private commentService: CommentService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService
 
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.productId = this.activatedRoute.snapshot.params['productId'];
     this.productService.getProductById(this.productId).subscribe((data: any) => {
-      if (data.status === true) {
-        const rs = data.result;
-        this.product = rs;
-        console.log(this.product);
-      }
-      else {
-        Swal.fire("error!", "System error!", "error");
-      }
+      setTimeout(() => {
+        if (data.status === true) {    
+          const rs = data.result;
+          this.product = rs;
+          console.log(this.product);
+          this.spinner.hide();
+        }
+        else {
+          Swal.fire("error!", "System error!", "error");
+        }
+      },1500)
     })
 
     this.getCommentSize();

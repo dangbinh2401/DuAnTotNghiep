@@ -16,6 +16,7 @@
                             </div>
                         </div>
                         <div class="mt-2">
+                            &nbsp;&nbsp;&nbsp;<ngb-rating [(rate)]="comment.star" [readonly]="true"></ngb-rating>
                             <p class="comment-text">&nbsp;&nbsp;&nbsp;{{comment.content}}</p>
                             <div class="d-flex flex-row fs-12">
                                 <div class="like p-2 cursor"><i class="far fa-thumbs-up"></i><span
@@ -45,6 +46,7 @@
                 </div>
                 <div class="bg-light p-2" *ngIf="isAuthenticated">
                     <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+                        <ngb-rating [(rate)]="stars"></ngb-rating>
                         <div class="d-flex flex-row align-items-start">
                             <textarea formControlName="content"
                                 class="form-control ml-1 shadow-none textarea"></textarea>

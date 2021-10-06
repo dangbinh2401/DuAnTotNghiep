@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Product } from 'src/model/product';
 import { ProductService } from 'src/service/adminService/productService/product.service';
 import Swal from 'sweetalert2'
@@ -17,13 +18,16 @@ export class ProductListComponent implements OnInit {
   totalLength: any;
   orderList: String = ''
   isDesc: boolean = true;
-  orderSort: String=''
+  orderSort: String = ''
+  public load = false;
+  listCheckboxProducts: any[] = [];
   FILTER_PAG_REGEX = /[^0-9]/g;
 
   constructor(
     public productService: ProductService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private spinner: NgxSpinnerService
+  ) { }
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -33,9 +37,13 @@ export class ProductListComponent implements OnInit {
   /** Get all list products */
 
   getAllProducts() {
+    this.spinner.show();
     this.productService.getAllProducts(this.page - 1, this.pageSize).subscribe(data => {
-      console.log(data);
-      this.products = data;
+      setTimeout(() => {
+        console.log(data);
+        this.products = data;
+        this.spinner.hide();
+      },1500);
     })
   }
 
@@ -62,9 +70,9 @@ export class ProductListComponent implements OnInit {
   }
 
   /** Sort list products */
-  
-  sort(header:any){
-    this.isDesc =! this.isDesc
+
+  sort(header: any) {
+    this.isDesc = !this.isDesc
     this.orderSort = header
   }
 
@@ -89,6 +97,15 @@ export class ProductListComponent implements OnInit {
       this.ngOnInit()
     }
   }
+
+  getCheckedListProduct(e: any, id: any) {
+    if (e.target.checked) {
+      this.listCheckboxProducts.push(id);
+    } else {
+      this.listCheckboxProducts = this.listCheckboxProducts.filter(m => m != id)
+    }
+  }
+
 
   /** Get product edit by id  */
 

@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UserRoutingModule } from './user-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AutoFocusDirectiveDirective } from './component/auto-focus/focus.directive';
+import { NgxLoadingXConfig,POSITION,SPINNER,NgxLoadingXModule } from 'ngx-loading-x';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { UserComponent } from './user.component';
 import { HomeComponent } from './component/home/home.component';
@@ -13,10 +16,11 @@ import { CartDetailComponent } from './component/cart-detail/cart-detail.compone
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
 import { LoginUserComponent } from './component/loginUser/login-user/login-user.component';
 import { RegisterUserComponent } from './component/loginUser/register-user/register-user.component';
-import { CheckoutComponent } from './component/checkout/checkout.component'; 
+import { CheckoutComponent } from './component/checkout/checkout.component';
 import { ControlMessageComponent } from './component/validate/control-message.component';
 import { OrderHistoryComponent } from './component/order-history/order-history.component';
 import { CommentComponent } from './component/comment/comment.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +43,9 @@ import { CommentComponent } from './component/comment/comment.component';
     UserRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [UserComponent]

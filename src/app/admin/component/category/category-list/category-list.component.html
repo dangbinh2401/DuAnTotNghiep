@@ -35,7 +35,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let items of categories |orderBy :orderSort : isDesc;let i=index">
-                        <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
+                        <th scope="row" style="width: 10px;text-align: right;">{{((page-1)*pageSize)+i+1}}</th>
                         <td>{{items.name}}</td>
                         <td class="text-center" style="width: 30px;">
                             <a (click)="getCategoryEdit(items.categoryId)" class="btn btn-warning btn-circle btn-sm">

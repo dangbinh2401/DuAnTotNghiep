@@ -1,9 +1,10 @@
-import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/model/category';
-import { CategoryService } from 'src/service/adminService/categoryService/category.service'; 
+import { CategoryService } from 'src/service/adminService/categoryService/category.service';
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-category-update',
@@ -21,22 +22,27 @@ export class CategoryUpdateComponent implements OnInit {
     private categoryService: CategoryService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.categoryId = this.activatedRoute.snapshot.params['categoryId'];
-    this.categoryService.getCategoryById(this.categoryId).subscribe((data:any) => {
-      if(data.status === true){
-        const rs = data.result;
-        console.log(rs);
-        this.category = rs;
-        this.categoryForm.patchValue(rs);
+    this.categoryService.getCategoryById(this.categoryId).subscribe((data: any) => {
+      if (data.status === true) {
+        setTimeout(() => {
+          const rs = data.result;
+          console.log(rs);
+          this.category = rs;
+          this.categoryForm.patchValue(rs);
+          this.spinner.hide();
+        },1500)
       }
-      else{
+      else {
         Swal.fire("error!", "System error!", "error");
       }
-      
+
     })
 
     this.categoryForm = this.formBuilder.group({
@@ -71,16 +77,16 @@ export class CategoryUpdateComponent implements OnInit {
 
   /** Update category */
 
-  updateCategory(){
-    this.categoryService.updateCategory(this.categoryId, this.category).subscribe((data:any) => {
-      if(data.status === true){
+  updateCategory() {
+    this.categoryService.updateCategory(this.categoryId, this.category).subscribe((data: any) => {
+      if (data.status === true) {
         Swal.fire("Update category successfull!", "You clicked the button!", "success");
         this.getListCategories();
       }
-      if(data.status === false){
+      if (data.status === false) {
         Swal.fire("Update category error!", "Account already exist!", "error");
       }
-      if(data.status === 500){
+      if (data.status === 500) {
         Swal.fire("Update category error!", "System error!", "error");
       }
     })
@@ -95,11 +101,11 @@ export class CategoryUpdateComponent implements OnInit {
   /** OnSubmit form */
 
   onSubmit() {
-    if(this.categoryForm.valid){
+    if (this.categoryForm.valid) {
       this.category.name = this.categoryForm.value.name;
       this.updateCategory();
     }
-    else{
+    else {
       Swal.fire("Update category error!", "You clicked the button!", "error");
       this.validateAllFormFields(this.categoryForm);
     }

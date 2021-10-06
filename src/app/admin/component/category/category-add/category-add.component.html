@@ -10,8 +10,9 @@
                     <span class="card-title" style="font-weight: bold; font-size:x-large">CATEGORY MANAGEMENT</span>
                 </div>
                 <div class="col-2">
-                    <span class="card-title"><a routerLink="/admin/category/list" style="text-decoration: none;">LIST
-                            CATEGORY <i class="fas fa-chevron-circle-right"></i></a></span>
+                    <span class="card-title"><a routerLink="/admin/category/list"
+                            style="text-decoration: none;padding-top: 5%; margin-left: 25%;">List category <i
+                                style="padding-top: 5%;" class="far fa-arrow-alt-circle-right"></i></a></span>
                 </div>
             </div>
             <!-- <span class="err">{{err | slice:53:75}}</span> -->
@@ -25,17 +26,17 @@
                             <label class="form-label" for="form6Example2">Name<span class="bb"> *</span></label>
                             <control-message field="Name" [control]="categoryForm.get('name')">
                             </control-message>
-                            <input type="text" name="name" id="name" formControlName="name" class="form-control" placeholder="name..." #input appAutoFocusDirective
-                            [ngClass]="{
+                            <input type="text" name="name" id="name" formControlName="name" class="form-control"
+                                placeholder="name..." #input appAutoFocusDirective [ngClass]="{
                                 'is-valid': (f?.name?.valid && (f?.name?.touched)),
-                                'is-invalid': (f?.name?.invalid && (f?.name?.touched))}" 
-                                required />
+                                'is-invalid': (f?.name?.invalid && (f?.name?.touched))}" required />
 
                         </div>
                     </div>
                 </div>
                 <!-- Submit button -->
-                <button (keydown.Tab)="onKey($event);false;" type="submit" class="btn btn-primary btn-block mb-4">Save</button>
+                <button (keydown.Tab)="onKey($event);false;" type="submit"
+                    class="btn btn-primary btn-block mb-4">Save</button>
             </form>
         </div>
     </div>

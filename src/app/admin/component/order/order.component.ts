@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { OrderHistory } from 'src/model/orderHistory';
 import { OrderService } from 'src/service/adminService/orderService/order.service';
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-order',
@@ -24,7 +25,8 @@ export class OrderComponent implements OnInit {
 
   constructor(
     public orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -33,8 +35,13 @@ export class OrderComponent implements OnInit {
   }
 
   getAllOrders() {
+    this.spinner.show();
     return this.orderService.getAllOrders().subscribe(data => {
-      this.orders = data;
+      setTimeout(() => {
+        console.log(data);
+        this.orders = data;
+        this.spinner.hide();
+      },1500)
     })
   }
 

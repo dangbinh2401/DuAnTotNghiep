@@ -5,7 +5,7 @@
                 <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST ACCOUNT</a>
             </div>
             <div class="col-2">
-                <a class="m-0 float-right" routerLink="/admin/customer/add" style="text-decoration: none;">Account
+                <a class="m-0 float-right" routerLink="/admin/account/add" style="text-decoration: none;">Account
                     management <i class="far fa-arrow-alt-circle-right"></i></a>
             </div>
         </div>
@@ -41,7 +41,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let items of custommers |orderBy :orderSort : isDesc;let i=index">
-                        <th scope="row" style="width: 10px;">{{((page-1)*pageSize)+i+1}}</th>
+                        <th scope="row" style="width: 10px;text-align: right;">{{((page-1)*pageSize)+i+1}}</th>
                         <td scope="row">{{items.username}}</td>
                         <td scope="row">{{items.fullname}}</td>
                         <td scope="row">{{items.email}}</td>
