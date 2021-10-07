@@ -25,7 +25,8 @@ const routes: Routes = [
       { path: 'register', component: RegisterUserComponent },
       { path: 'login', component: LoginUserComponent },
       { path: 'checkout', component: CheckoutComponent },
-      { path: 'orderHistory', component: OrderHistoryComponent }
+      { path: 'orderHistory', component: OrderHistoryComponent },
+      { path: 'category/:categoryId', component: ProductListComponent }
     ]
   }
 ];

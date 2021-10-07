@@ -4,6 +4,8 @@ import { Category } from 'src/model/category';
 import { CategoryService } from 'src/service/adminService/categoryService/category.service';
 import Swal from 'sweetalert2'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category-list',
@@ -12,13 +14,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CategoryListComponent implements OnInit {
 
-  categories!: Category[];
+  categories: Category[] = [];
   page = 1;
   pageSize = 5;
   totalLength: any;
   orderList: String = ''
   isDesc: boolean = true;
   orderSort: String = ''
+  searchName: string = '';
+  searchs = new FormControl();
   FILTER_PAG_REGEX = /[^0-9]/g;
   constructor(
     private categoryService: CategoryService,
@@ -27,30 +31,62 @@ export class CategoryListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllCategories();
-    this.getCategorySize();
+    this.listCategories();
   }
 
+  /** List categories */
 
-  /** Get all list categories */
+  listCategories() {
+    if (this.searchName !== '') {
+      this.getCategoryByNameAndPage(this.searchName);
+    }
+    else {
+      this.getAllCategories();
+    }
+  }
+
+  /** Get list category by pagination and search */
+
+  getCategoryByNameAndPage(name: string) {
+    this.categoryService.getCategoriesByNameAndPage(name, this.page - 1, this.pageSize).subscribe(this.processResult());
+  }
+
+  /** Get all list categories by pagination */
 
   getAllCategories() {
-    this.spinner.show();
-    this.categoryService.getAllCategories(this.page - 1, this.pageSize).subscribe(data => {
-      setTimeout(() => {
-        console.log(data);
-        this.categories = data;
-        this.spinner.hide();
-      },1500)
-    })
+    this.categoryService.getAllCategories(this.page - 1, this.pageSize).subscribe(this.processResult());
   }
 
-  /** Get size of categories */
+  /** Result data */
 
-  getCategorySize() {
-    this.categoryService.getCategorySize().subscribe(data => {
-      this.totalLength = data;
-    })
+  processResult() {
+    this.spinner.show();
+    return (data: any) => {
+      setTimeout(() => {
+        console.log(data);
+        this.page = data.number + 1;
+        this.pageSize = data.size;
+        this.categories = data.content;
+        this.totalLength = data.totalElements;
+        this.spinner.hide();
+      }, 1000)
+
+    };
+  }
+
+  /** Search keyword category by name */
+
+  search() {
+    this.searchs.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(
+      value => {
+        console.log(value);
+        this.searchName = value;
+        this.getCategoryByNameAndPage(this.searchName);
+      }
+    )
   }
 
   /** Change pageSize */
@@ -72,28 +108,6 @@ export class CategoryListComponent implements OnInit {
   sort(header: any) {
     this.isDesc = !this.isDesc
     this.orderSort = header
-  }
-
-  /** Search category by name */
-
-  search(key: string): void {
-    const result: Category[] = [];
-    key = key.trim();
-    for (const ct of this.categories) {
-      if (ct.name.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
-        result.push(ct)
-      }
-    }
-    this.categories = result
-    this.totalLength = result.length
-    this.page = 1
-    if (result.length === 0 || !key) {
-      this.totalLength = result.length
-      this.page = 1
-    }
-    if (!key) {
-      this.ngOnInit()
-    }
   }
 
   /** Get category edit by id  */

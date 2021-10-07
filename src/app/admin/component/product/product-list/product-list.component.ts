@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Product } from 'src/model/product';
 import { ProductService } from 'src/service/adminService/productService/product.service';
 import Swal from 'sweetalert2'
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +14,7 @@ import Swal from 'sweetalert2'
 })
 export class ProductListComponent implements OnInit {
 
-  products!: Product[];
+  products: Product[] = [];
   page = 1;
   pageSize = 5;
   totalLength: any;
@@ -21,6 +23,8 @@ export class ProductListComponent implements OnInit {
   orderSort: String = ''
   public load = false;
   listCheckboxProducts: any[] = [];
+  searchName: string = '';
+  searchs = new FormControl();
   FILTER_PAG_REGEX = /[^0-9]/g;
 
   constructor(
@@ -30,29 +34,63 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllProducts();
-    this.getProductSize();
+    this.listProducts();
   }
 
-  /** Get all list products */
+  /** List products */
+
+  listProducts() {
+    if (this.searchName !== '') {
+      this.getProductByName(this.searchName);
+    }
+    else {
+      this.getAllProducts();
+    }
+  }
+
+  /** Get all list products by pagination */
 
   getAllProducts() {
     this.spinner.show();
-    this.productService.getAllProducts(this.page - 1, this.pageSize).subscribe(data => {
-      setTimeout(() => {
-        console.log(data);
-        this.products = data;
-        this.spinner.hide();
-      },1500);
-    })
+    this.productService.getAllProducts(this.page - 1, this.pageSize).subscribe(this.processResult());
   }
 
-  /** Get size of products */
+  /** Get all list products by pagination and search */
 
-  getProductSize() {
-    this.productService.getProductSize().subscribe(data => {
-      this.totalLength = data;
-    })
+  getProductByName(name: string) {
+    this.productService.getProductByNameAndPage(name, this.page - 1, this.pageSize).subscribe(this.processResult());
+  }
+
+  /** Result data */
+
+  processResult() {
+    this.spinner.show();
+    return (data: any) => {
+      setTimeout(() => {
+        console.log(data);
+        this.page = data.number + 1;
+        this.pageSize = data.size;
+        this.products = data.content;
+        this.totalLength = data.totalElements;
+        this.spinner.hide();
+      }, 1000)
+
+    };
+  }
+
+  /** Search keyword product by name */
+
+  search() {
+    this.searchs.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(
+      value => {
+        console.log(value);
+        this.searchName = value;
+        this.getProductByName(this.searchName);
+      }
+    )
   }
 
   /** Change pageSize */
@@ -76,28 +114,6 @@ export class ProductListComponent implements OnInit {
     this.orderSort = header
   }
 
-  /** Search product by name */
-
-  search(key: string): void {
-    const result: Product[] = [];
-    key = key.trim();
-    for (const ct of this.products) {
-      if (ct.name.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
-        result.push(ct)
-      }
-    }
-    this.products = result
-    this.totalLength = result.length
-    this.page = 1
-    if (result.length === 0 || !key) {
-      this.totalLength = result.length
-      this.page = 1
-    }
-    if (!key) {
-      this.ngOnInit()
-    }
-  }
-
   getCheckedListProduct(e: any, id: any) {
     if (e.target.checked) {
       this.listCheckboxProducts.push(id);
@@ -105,7 +121,6 @@ export class ProductListComponent implements OnInit {
       this.listCheckboxProducts = this.listCheckboxProducts.filter(m => m != id)
     }
   }
-
 
   /** Get product edit by id  */
 

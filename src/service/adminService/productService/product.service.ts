@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Category } from 'src/model/category';
 import { Product } from 'src/model/product';
+import { ResponseProducts } from 'src/response/productResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,12 @@ export class ProductService {
     return this.http.post(this.url,form);
   }
 
-  getAllProducts(page:any, size: any): Observable<Product[]> {
-    return this.http.get<Product[]>(environment.baseUrl+'productPage'+`?page=${page}&size=${size}`);
+  getAllProducts(page:any, size: any): Observable<ResponseProducts> {
+    return this.http.get<ResponseProducts>(environment.baseUrl+'productPage'+`?page=${page}&size=${size}`);
+  }
+
+  getProductByNameAndPage(name: string, page:any, size: any): Observable<ResponseProducts> {
+    return this.http.get<ResponseProducts>(environment.baseUrl+'productSearchAndPage'+`?name=${name}&page=${page}&size=${size}`);
   }
 
   getProductSize() {

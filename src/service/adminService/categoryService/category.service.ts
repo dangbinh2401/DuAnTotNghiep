@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Category } from 'src/model/category'; 
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ResponseCategories } from 'src/response/categoryResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,12 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCategories(page:any, size: any): Observable<Category[]> {
-    return this.http.get<Category[]>(environment.baseUrl+'categoryPage'+`?page=${page}&size=${size}`);
+  getAllCategories(page:any, size: any): Observable<ResponseCategories> {
+    return this.http.get<ResponseCategories>(environment.baseUrl+'categoryPage'+`?page=${page}&size=${size}`);
+  }
+
+  getCategoriesByNameAndPage(name:string, page:any, size: any): Observable<ResponseCategories> {
+    return this.http.get<ResponseCategories>(environment.baseUrl+'categorySearchAndPage'+`?name=${name}&page=${page}&size=${size}`);
   }
 
   getCategorySize() {

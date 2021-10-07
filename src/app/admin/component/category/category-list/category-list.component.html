@@ -17,8 +17,8 @@
             <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
         </div>
         <div class="col-3">
-            <input type="text" appAutoFocusDirective class="form-control" (input)="search(key.value)" #key="ngModel"
-                ngModel name="key" placeholder="search by name...">
+            <input type="text" appAutoFocusDirective class="form-control" [formControl]="searchs" (keyup)="search()"
+                placeholder="search by name...">
         </div>
     </div>
     <div class="card-body">
@@ -28,8 +28,8 @@
                     <tr>
                         <th scope="col" style="width: 10px;">STT</th>
                         <th scope="col">Name <a (click)="sort('name')" class="srt"><i
-                            class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
-                        class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
+                                    class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
+                                class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
                         <th scope="col" style="width: 30px;"></th>
                     </tr>
                 </thead>
@@ -64,20 +64,18 @@
             </div>
             <div class="pagina">
                 <div class="pg a">
-                    <label
-                        *ngIf="page==1&&(page*pageSize)<totalLength && categories.length != 0">Showing <b>{{page}}</b> -
+                    <label *ngIf="page==1&&(page*pageSize)<totalLength && categories.length != 0">Showing
+                        <b>{{page}}</b> -
                         <b>{{page*pageSize}}</b> of
                         <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page!=1&&(page*pageSize)<totalLength  && categories.length != 0">Showing
+                    <label *ngIf="page!=1&&(page*pageSize)<totalLength  && categories.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page!=1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing
+                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page==1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing <b>{{page}}</b>
+                    <label *ngIf="page==1&&(page*pageSize)>=totalLength  && categories.length != 0">Showing
+                        <b>{{page}}</b>
                         - <b>{{totalLength}}</b> of
                         <b>{{totalLength}}</b> items</label>
                 </div> &nbsp;&nbsp;

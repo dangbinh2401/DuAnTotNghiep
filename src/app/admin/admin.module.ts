@@ -8,6 +8,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DateInputConverter } from './convertDate/date-input-converter.directive';
 
 import { AdminComponent } from './admin.component';
 import { ProductAddComponent } from './component/product/product-add/product-add.component';
@@ -45,7 +46,8 @@ import { StatisticsComponent } from './component/statistics/statistics.component
     AccountAddComponent,
     AccountUpdateComponent,
     OrderComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    DateInputConverter
   ],
   imports: [
     BrowserModule,

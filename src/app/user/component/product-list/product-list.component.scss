@@ -620,6 +620,40 @@ ngb-pagination ::ng-deep a {
 	box-shadow: 0 0 0 0.1rem #aaa;
   }
 
+  .prByct {
+	  width: 70%;
+	  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .prByct:focus {
+	border-color: inherit;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+  }
+
+  .ctText {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .prInput:focus {
+	border-color: inherit;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+  }
+
+  .prInput {
+	  width: 70%;
+  }
+
+  .inputPrice {
+	  display: flex;
+  }
+
+  .inputPrice2 {
+	  margin-right: 5%;
+  }
+
+
 /*---------------------
   Pagination
 -----------------------*/

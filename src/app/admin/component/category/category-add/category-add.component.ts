@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Category } from 'src/model/category';
 import { CategoryService } from 'src/service/adminService/categoryService/category.service'; 
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-category-add',
@@ -18,7 +19,8 @@ export class CategoryAddComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {

@@ -43,15 +43,13 @@ export class CommentComponent implements OnInit {
 
     this.isAuthenticated = this.store.getItem('isLogin') as string;
 
-
-
     this.commentForm = this.formBuilder.group({
       content: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(300)]]
     });
 
-    this.getUsername();
-
     this.getComment();
+
+    this.getUsername();
 
     if (this.isAuthenticated) {
       this.commentService.findCustommerByUsername(this.username).subscribe((data: any) => {

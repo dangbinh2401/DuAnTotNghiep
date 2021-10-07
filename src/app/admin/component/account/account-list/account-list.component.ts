@@ -5,6 +5,7 @@ import { CustommerService } from 'src/service/adminService/custommerService/cust
 import { FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account-list',
@@ -13,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AccountListComponent implements OnInit {
 
-  custommers!: Custommer[];
+  custommers: Custommer[] = [];
   page = 1;
   pageSize = 5;
   totalLength: any;
@@ -22,7 +23,8 @@ export class AccountListComponent implements OnInit {
   orderList: String = ''
   isDesc: boolean = true;
   orderSort: String = ''
-  search = new FormControl();
+  searchName: string = '';
+  searchs = new FormControl();
   FILTER_PAG_REGEX = /[^0-9]/g;
 
   constructor(
@@ -33,29 +35,63 @@ export class AccountListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllCustommer();
-    this.getCustommerSize();
+    this.listProducts();
   }
 
-  /** Get all custommers */
+  /** List custommers */
+
+  listProducts() {
+    if (this.searchName !== '') {
+      this.getCustommerByName(this.searchName);
+    }
+    else {
+      this.getAllCustommer();
+    }
+  }
+
+  /** Get all custommers by pagination */
 
   getAllCustommer() {
     this.spinner.show();
-    this.custommerService.getCustommersPage(this.page - 1, this.pageSize).subscribe(data => {
-      setTimeout(() => {
-        console.log(data);
-        this.custommers = data;
-        this.spinner.hide();
-      },1500)
-    })
+    this.custommerService.getCustommersPage(this.page - 1, this.pageSize).subscribe(this.processResult());
   }
 
-  /** Get size of custommers */
+  /** Get all custommers by pagination and search */
 
-  getCustommerSize() {
-    this.custommerService.getCustommerSize().subscribe(data => {
-      this.totalLength = data;
-    })
+  getCustommerByName(fullname: string) {
+    this.custommerService.getCustommerByNameAndPage(fullname, this.page - 1, this.pageSize).subscribe(this.processResult());
+  }
+
+  /** Result data */
+
+  processResult() {
+    this.spinner.show();
+    return (data: any) => {
+      setTimeout(() => {
+        console.log(data);
+        this.page = data.number + 1;
+        this.pageSize = data.size;
+        this.custommers = data.content;
+        this.totalLength = data.totalElements;
+        this.spinner.hide();
+      }, 1000)
+
+    };
+  }
+
+  /** Search keyword custommer by fullname */
+
+  search() {
+    this.searchs.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(
+      value => {
+        console.log(value);
+        this.searchName = value;
+        this.getCustommerByName(this.searchName);
+      }
+    )
   }
 
   /** Format input */
@@ -69,29 +105,6 @@ export class AccountListComponent implements OnInit {
   sort(header: any) {
     this.isDesc = !this.isDesc
     this.orderSort = header
-  }
-
-  /** Search custommer by username and fullname */
-
-  searchCustommer(key: string): void {
-    const result: Custommer[] = [];
-    key = key.trim();
-    for (const ct of this.custommers) {
-      if (ct.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
-        || ct.fullname.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
-        result.push(ct)
-      }
-    }
-    this.custommers = result
-    this.totalLength = result.length
-    this.page = 1
-    if (result.length === 0 || !key) {
-      this.totalLength = result.length
-      this.page = 1
-    }
-    if (!key) {
-      this.ngOnInit()
-    }
   }
 
   /** Change page size */

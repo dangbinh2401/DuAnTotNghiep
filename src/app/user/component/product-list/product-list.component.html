@@ -28,23 +28,32 @@
                 <div class="sidebar">
                     <div class="sidebar__item">
                         <h4>Category</h4>
-                        <ul *ngFor="let category of categories | slice: (page-1) * pageSize : page * pageSize">
-                            <li><a class="ca" href="#">{{category.name}}</a></li>
-                        </ul>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                --- Please choose ---
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li *ngFor="let category of categories"><a class="dropdown-item"
+                                        routerLink="/user/category/{{ category.categoryId }}">{{category.name}}</a></li>
+                            </ul>
+                        </div>
+
                     </div>
                     <div class="sidebar__item">
                         <h4>Price</h4>
                         <div class="price-range-wrap">
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="10" data-max="540">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
+                            <div class="row">
+                                <div class="inputPrice1 mb-3">
+                                    <input type="number" class="form-control prInput" placeholder="Min..."
+                                        placement="bottom" ngbTooltip="Input min price" aria-label="Min price">
+                                </div>
+                                <div class="inputPrice2 mb-3">
+                                    <input type="number" class="form-control prInput" placement="bottom"
+                                        ngbTooltip="Input max price" placeholder="Max..." aria-label="Max price">
+                                </div>
+                                <div class="inputPrice2 mb-3">
+                                    <button type="button" class="btn btn-outline-danger">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -146,17 +155,17 @@
                             <form>
                                 <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
                                     <div class="input-group">
-                                        <input type="search" name="name" (input)="search(key.value)" #key="ngModel"
-                                            ngModel name="key" placeholder="Nhập từ bạn cần tìm?"
+                                        <input type="search" name="name" [formControl]="searchs" (keyup)="search()"
+                                            placeholder="Nhập từ bạn cần tìm?"
                                             class="form-control border-0 bg-light fs">
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>             
+                </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let items of products | slice: (page-1) * pageSize : page * pageSize">
+                    <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let items of products">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="">
                                 <img src="{{this.productListService.host+'/rest/files/image/'+items.image}}" alt="">
@@ -174,13 +183,15 @@
                             </div>
                         </div>
                     </div>
+                    <p *ngIf="products.length == 0" style="text-align: center;">No items displayed!</p>
                 </div>
                 <div class="pg">
                     <div class="c" *ngIf="products.length != 0">
                         <label class="lbsize">Page size&nbsp;&nbsp; </label>
-                        <select class="form-select" style="width: 4.3rem;float: right;" [(ngModel)]="pageSize">
+                        <select class="form-select" [(ngModel)]="pageSize" (change)="getAllListProduct()"
+                            style="width: 4.3rem;float: right;">
                             <option [value]="3">3</option>
-                            <option [value]="6">6</option>
+                            <option [value]="9">9</option>
                             <option [value]="15">15</option>
                             <option [value]="totalLength">All</option>
                         </select>
@@ -215,7 +226,8 @@
                         </div>
                         <div class="pg d">
                             <ngb-pagination *ngIf="products.length != 0" [collectionSize]="totalLength" [(page)]="page"
-                                [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true">
+                                [pageSize]="pageSize" (pageChange)="getAllListProduct()" [maxSize]="3" [rotate]="true"
+                                [boundaryLinks]="true">
                             </ngb-pagination>
                         </div>
 

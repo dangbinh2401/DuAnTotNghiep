@@ -17,8 +17,8 @@
             <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
         </div>
         <div class="col-3">
-            <input type="text" appAutoFocusDirective class="form-control" (input)="searchCustommer(key.value)" #key="ngModel"
-            ngModel name="key" placeholder="search by fullname and email...">
+            <input type="text" appAutoFocusDirective class="form-control" [formControl]="searchs" (keyup)="search()"
+                placeholder="search by fullname and email...">
         </div>
     </div>
     <div class="card-body">
@@ -62,8 +62,8 @@
         <div class="pg">
             <div class="c" *ngIf="custommers.length != 0">
                 <label class="lbsize">Page size&nbsp;&nbsp; </label>
-                <select class="form-select" [(ngModel)]="pageSize" (change)="getAllCustommer()" 
-                style="width: 4.3rem;float: right;">
+                <select class="form-select" [(ngModel)]="pageSize" (change)="getAllCustommer()"
+                    style="width: 4.3rem;float: right;">
                     <option [value]="3">3</option>
                     <option [value]="7">7</option>
                     <option [value]="15">15</option>
@@ -79,12 +79,11 @@
                     <label *ngIf="page!=1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page!=1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
+                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
                         <b>{{((page-1)*pageSize)+1}}</b> -
                         <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page==1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing <b>{{page}}</b> -
+                    <label *ngIf="page==1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
+                        <b>{{page}}</b> -
                         <b>{{totalLength}}</b> of
                         <b>{{totalLength}}</b> items</label>
                 </div> &nbsp;&nbsp;
@@ -97,7 +96,8 @@
                 </div>
                 <div class="pg d">
                     <ngb-pagination *ngIf="custommers.length != 0" [collectionSize]="totalLength" [(page)]="page"
-                        [pageSize]="pageSize" (pageChange)="getAllCustommer()" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                        [pageSize]="pageSize" (pageChange)="getAllCustommer()" [maxSize]="3" [rotate]="true"
+                        [boundaryLinks]="true"></ngb-pagination>
                 </div>
 
             </div>
