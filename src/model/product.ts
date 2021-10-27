@@ -11,5 +11,5 @@ export class Product {
     description!: string;
     categoryId!: any;
     category!: Category;
-
+    checked!: boolean;
 }

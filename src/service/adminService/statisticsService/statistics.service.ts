@@ -15,6 +15,6 @@ export class StatisticsService {
   }
 
   getImportProduct(enteredDate:any): Observable<Object[]> {
-    return this.http.get<Object[]>(environment.baseUrl+'reportProduct'+`?enteredDate=${enteredDate}`);
+    return this.http.get<Object[]>(environment.baseUrl+'reportProduct/'+enteredDate);
   }
 }

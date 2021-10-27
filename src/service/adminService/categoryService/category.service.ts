@@ -39,4 +39,8 @@ export class CategoryService {
   deleteCategory(categoryId:any) {
     return this.http.delete(environment.baseUrl+'category/'+categoryId);
   }
+
+  deleteMultipleCategories(categoryIds:number[] | undefined): Observable<void> {
+    return this.http.delete<void>(environment.baseUrl+'multipleCategories/'+categoryIds);
+  }
 }

@@ -14,7 +14,7 @@
 
         </div>
         <div class="col-3">
-            <input type="text" class="form-control" placeholder="search by fullname and email...">
+            <!-- <input type="text" class="form-control" placeholder="search by fullname and email..."> -->
         </div>
     </div>
     <div class="card-body">
@@ -34,6 +34,96 @@
                         <td scope="row">{{items[0]}}</td>
                         <td scope="row" style="text-align: right">{{items[2]}}</td>
                         <td scope="row" style="text-align: right">{{items[1] | currency : 'VND'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <p *ngIf="custommers.length == 0" style="text-align: center;">No items displayed!</p> -->
+        </div>
+
+        <!-- <div class="pg">
+            <div class="c" *ngIf="custommers.length != 0">
+                <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                <select class="form-select" [(ngModel)]="pageSize" (change)="getAllCustommer()" 
+                style="width: 4.3rem;float: right;">
+                    <option [value]="3">3</option>
+                    <option [value]="7">7</option>
+                    <option [value]="15">15</option>
+                    <option [value]="totalLength">All</option>
+                </select>
+            </div>
+            <div class="pagina">
+
+                <div class="pg a">
+                    <label *ngIf="page==1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
+                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label
+                        *ngIf="page!=1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
+                        <b>{{((page-1)*pageSize)+1}}</b> -
+                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
+                    <label
+                        *ngIf="page==1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing <b>{{page}}</b> -
+                        <b>{{totalLength}}</b> of
+                        <b>{{totalLength}}</b> items</label>
+                </div> &nbsp;&nbsp;
+                <div class=" b">
+                    <input *ngIf="custommers.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"
+                        class="form-control custom-pages-input" id="paginationInput" [value]="page"
+                        (keyup.enter)="selectPage(i.value)" (blur)="selectPage(i.value)"
+                        (input)="formatInput($any($event).target)"
+                        aria-labelledby="paginationInputLabel paginationDescription" style="width: 2.5rem" />
+                </div>
+                <div class="pg d">
+                    <ngb-pagination *ngIf="custommers.length != 0" [collectionSize]="totalLength" [(page)]="page"
+                        [pageSize]="pageSize" (pageChange)="getAllCustommer()" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                </div>
+
+            </div>
+        </div> -->
+
+    </div>
+
+</div>
+
+<br>
+<hr class="col-11">
+<br>
+
+<div class="card shadow mb-4 col-md-11">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-10">
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">REPORT PRODUCT IMPORT BY
+                    DATE</a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2 ipDateAndSearch">
+        <div class="col-11">
+            <input [formControl]="dateStringControl" class="form-control ipDate" type="date" id="date-string"/>
+        </div>
+        <div class="col-1">
+            <button (click)="reportImportProductByDate()" class="btn btn-outline-dark">Show</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Product name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">UnitPrice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let products of reportProduct">
+                        <td scope="row">{{products[0]}}</td>
+                        <td scope="row" style="text-align: right">{{products[1]}}</td>
+                        <td scope="row" style="text-align: right">{{products[2] | currency : 'VND'}}</td>
                     </tr>
                 </tbody>
             </table>

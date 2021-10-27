@@ -30,6 +30,10 @@ export class ProductService {
     return this.http.get<ResponseProducts>(environment.baseUrl+'productSearchAndPage'+`?name=${name}&page=${page}&size=${size}`);
   }
 
+  getProductByCategory(categoryId: any, page:any, size: any): Observable<ResponseProducts> {
+    return this.http.get<ResponseProducts>(environment.baseUrl+'productByCategory'+`?categoryId=${categoryId}&page=${page}&size=${size}`);
+  }
+
   getProductSize() {
     return this.http.get(environment.baseUrl+'productSize');
   }
@@ -48,5 +52,9 @@ export class ProductService {
 
   deleteProduct(productId:any) {
     return this.http.delete(environment.baseUrl+'product/'+productId);
+  }
+
+  deleteMultipleProducts(productIds:number[] | undefined): Observable<void> {
+    return this.http.delete<void>(environment.baseUrl+'multipleProducts/'+productIds);
   }
 }

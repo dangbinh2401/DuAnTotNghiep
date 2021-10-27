@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-category-list',
@@ -14,7 +15,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class CategoryListComponent implements OnInit {
 
-  categories: Category[] = [];
+  categories!: Category[];
   page = 1;
   pageSize = 5;
   totalLength: any;
@@ -110,6 +111,14 @@ export class CategoryListComponent implements OnInit {
     this.orderSort = header
   }
 
+  checkAllCheckBox(ev: any) {
+    this.categories?.forEach((x) => (x.checked = ev.target.checked));
+  }
+
+  allCheckBoxChecked() {
+    return this.categories?.every((c) => c.checked);
+  }
+
   /** Get category edit by id  */
 
   getCategoryEdit(categoryId: any) {
@@ -179,5 +188,37 @@ export class CategoryListComponent implements OnInit {
       }
       else if (result.dismiss == Swal.DismissReason.cancel) { }
     })
+  }
+
+  public deleteCategories() {
+    const selectedCategories = this.categories
+      ?.filter((category) => category.checked)
+      .map((c) => c.categoryId);
+    if (selectedCategories && selectedCategories.length > 0) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to delete the selected categories??!',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.categoryService.deleteMultipleCategories(selectedCategories).subscribe(
+            (response: void) => {
+              Swal.fire("Delete category successfull!", "You clicked the button!", "success");
+              this.ngOnInit();
+            },
+            (error: HttpErrorResponse) => {
+              console.log(error.error.message);
+              Swal.fire("error!", "System error!", "error");
+            }
+          );
+        }
+        else if (result.dismiss == Swal.DismissReason.cancel) { }
+      })
+    } else {
+      Swal.fire("Please choose!", "You have not selected any categories!", "error");
+    }
   }
 }

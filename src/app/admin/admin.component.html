@@ -1,8 +1,14 @@
-<app-header-admin></app-header-admin>
-<app-menu-admin></app-menu-admin>
-<div class="article">
-    <router-outlet></router-outlet>
+<div *ngIf="isLoggedIn">
+    <app-header-admin></app-header-admin>
+    <app-menu-admin></app-menu-admin>
+    <div class="article">
+        <router-outlet></router-outlet>
+    </div>
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-fussion">
+        <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
 </div>
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-fussion">
-    <p style="font-size: 20px; color: white">Loading...</p>
-</ngx-spinner>
+
+<div *ngIf="!isLoggedIn">
+    <app-login-admin></app-login-admin>
+</div>

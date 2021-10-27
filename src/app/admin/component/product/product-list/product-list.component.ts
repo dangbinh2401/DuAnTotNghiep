@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Product } from 'src/model/product';
 import { ProductService } from 'src/service/adminService/productService/product.service';
 import Swal from 'sweetalert2'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import * as $ from "jquery"
+import { HttpErrorResponse } from '@angular/common/http';
+import { Category } from 'src/model/category';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +17,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] = [];
+  products!: Product[];
+  categories!: Category[];
   page = 1;
   pageSize = 5;
   totalLength: any;
@@ -25,16 +29,25 @@ export class ProductListComponent implements OnInit {
   listCheckboxProducts: any[] = [];
   searchName: string = '';
   searchs = new FormControl();
+  selectedAll: any;
+  curCategoryId: number = 1;
+  preCategoryId: number = 1;
   FILTER_PAG_REGEX = /[^0-9]/g;
 
   constructor(
     public productService: ProductService,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.listProducts();
+    this.activatedRoute.paramMap.subscribe(
+      () => { 
+        this.listProducts(); 
+      });
+
+    this.getCategory();
   }
 
   /** List products */
@@ -42,6 +55,9 @@ export class ProductListComponent implements OnInit {
   listProducts() {
     if (this.searchName !== '') {
       this.getProductByName(this.searchName);
+    }
+    else if(this.activatedRoute.snapshot.paramMap.has('categoryId')) {
+      this.getProductByCategory();
     }
     else {
       this.getAllProducts();
@@ -61,6 +77,18 @@ export class ProductListComponent implements OnInit {
     this.productService.getProductByNameAndPage(name, this.page - 1, this.pageSize).subscribe(this.processResult());
   }
 
+  getProductByCategory() {
+    // check id parameter is avaiable
+    if (this.activatedRoute.snapshot.paramMap.has('categoryId')) {
+      this.curCategoryId = Number(this.activatedRoute.snapshot.paramMap.get('categoryId'));     
+    }
+    if(this.preCategoryId != this.curCategoryId) {
+      this.page = 1;
+    }
+    this.preCategoryId = this.curCategoryId;
+    this.productService.getProductByCategory(this.curCategoryId, this.page - 1, this.pageSize).subscribe(this.processResult());
+  }
+
   /** Result data */
 
   processResult() {
@@ -76,6 +104,12 @@ export class ProductListComponent implements OnInit {
       }, 1000)
 
     };
+  }
+
+  getCategory() {
+    this.productService.getCategory().subscribe(data => {
+      this.categories = data;
+    })
   }
 
   /** Search keyword product by name */
@@ -114,12 +148,12 @@ export class ProductListComponent implements OnInit {
     this.orderSort = header
   }
 
-  getCheckedListProduct(e: any, id: any) {
-    if (e.target.checked) {
-      this.listCheckboxProducts.push(id);
-    } else {
-      this.listCheckboxProducts = this.listCheckboxProducts.filter(m => m != id)
-    }
+  checkAllCheckBox(ev: any) {
+    this.products?.forEach((x) => (x.checked = ev.target.checked));
+  }
+
+  allCheckBoxChecked() {
+    return this.products?.every((p) => p.checked);
   }
 
   /** Get product edit by id  */
@@ -189,4 +223,37 @@ export class ProductListComponent implements OnInit {
       else if (result.dismiss == Swal.DismissReason.cancel) { }
     })
   }
+
+
+  public deleteProducts() {
+    const selectedProducts = this.products
+      ?.filter((product) => product.checked)
+      .map((p) => p.productId);
+    if (selectedProducts && selectedProducts.length > 0) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to delete the selected products??!',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.productService.deleteMultipleProducts(selectedProducts).subscribe(
+            (response: void) => {
+              Swal.fire("Delete product successfull!", "You clicked the button!", "success");
+              this.ngOnInit();
+            },
+            (error: HttpErrorResponse) => {
+              alert(error.message);
+            }
+          );
+        }
+        else if (result.dismiss == Swal.DismissReason.cancel) { }
+      })
+    } else {
+      Swal.fire("Please choose!", "You have not selected any products!", "error");
+    }
+  }
+
 }

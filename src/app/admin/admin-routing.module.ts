@@ -26,6 +26,7 @@ const routes: Routes = [
         { path: 'home', component: HomeAdminComponent },
         { path: 'product/add', component: ProductAddComponent },
         { path: 'product/list', component: ProductListComponent },
+        { path: 'cate/:categoryId', component: ProductListComponent },
         { path: 'product/update/:productId', component: ProductUpdateComponent },
         { path: 'category/add', component: CategoryAddComponent },
         { path: 'category/list', component: CategoryListComponent },

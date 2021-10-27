@@ -9,6 +9,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateInputConverter } from './convertDate/date-input-converter.directive';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 import { AdminComponent } from './admin.component';
 import { ProductAddComponent } from './component/product/product-add/product-add.component';
@@ -26,6 +27,7 @@ import { AccountAddComponent } from './component/account/account-add/account-add
 import { AccountUpdateComponent } from './component/account/account-update/account-update.component';
 import { OrderComponent } from './component/order/order.component';
 import { StatisticsComponent } from './component/statistics/statistics.component';
+import { LoginAdminComponent } from './component/login-admin/login-admin.component'; 
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import { StatisticsComponent } from './component/statistics/statistics.component
     AccountUpdateComponent,
     OrderComponent,
     StatisticsComponent,
-    DateInputConverter
+    DateInputConverter,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { StatisticsComponent } from './component/statistics/statistics.component
     Ng2SearchPipeModule,
     Ng2OrderModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AdminComponent]

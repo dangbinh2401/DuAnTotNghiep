@@ -2,3 +2,11 @@
     background: black;
     color: white;
 }
+
+.headerTop {
+    position: fixed; /*Cho menu cố định 1 vị trí với top và left*/
+    top: 0; /*Nằm trên cùng*/
+    left: 0; /*Nằm sát bên trái*/
+    right: 0;
+    z-index: 100000; /*Hiển thị lớp trên cùng*/
+}

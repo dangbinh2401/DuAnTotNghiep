@@ -6,7 +6,7 @@
             </div>
             <div class="col-2">
                 <a class="m-0 float-right" routerLink="/admin/category/add" style="text-decoration: none;">Category
-                    management <i class="far fa-arrow-alt-circle-right"></i></a>
+                    management<i class="far fa-arrow-alt-circle-right"></i></a>
             </div>
         </div>
 
@@ -14,7 +14,8 @@
     </div>
     <div class="row mt-2 searchAndPdf">
         <div class="col-8">
-            <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
+            <button class="btn btn-outline-danger" (click)="deleteCategories()"><i class="fas fa-trash-alt"></i> Delete
+                multiple</button>
         </div>
         <div class="col-3">
             <input type="text" appAutoFocusDirective class="form-control" [formControl]="searchs" (keyup)="search()"
@@ -26,6 +27,10 @@
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
+                        <th scope="row" style="width: 8px;">
+                            <input type="checkbox" class="form-check-input" [checked]="allCheckBoxChecked()"
+                                (change)="checkAllCheckBox($event)" />
+                        </th>
                         <th scope="col" style="width: 10px;">STT</th>
                         <th scope="col">Name <a (click)="sort('name')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
@@ -35,8 +40,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let items of categories |orderBy :orderSort : isDesc;let i=index">
+                        <td scope="row" style="width: 8px;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                                    value="{{items.categoryId}}" [(ngModel)]="items.checked">
+                            </div>
+                        </td>
                         <th scope="row" style="width: 10px;text-align: right;">{{((page-1)*pageSize)+i+1}}</th>
-                        <td>{{items.name}}</td>
+                        <td tooltip="{{items.name}}" placement="right" [hideDelay]="0" [showDelay]="250">{{items.name}}</td>
                         <td class="text-center" style="width: 30px;">
                             <a (click)="getCategoryEdit(items.categoryId)" class="btn btn-warning btn-circle btn-sm">
                                 <i class="fas fa-edit"></i>

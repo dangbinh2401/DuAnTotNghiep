@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { StatisticsService } from 'src/service/adminService/statisticsService/statistics.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class StatisticsComponent implements OnInit {
   isDesc: boolean = true;
   orderSort: String=''
   FILTER_PAG_REGEX = /[^0-9]/g;
+  dateStringControl = new FormControl('yyyy-MM-dd');
 
   constructor(
     private statisticsService: StatisticsService
@@ -27,9 +29,16 @@ export class StatisticsComponent implements OnInit {
   }
 
   reportByCategory() {
-    return this.statisticsService.getReportByCategory().subscribe(data => {
+      this.statisticsService.getReportByCategory().subscribe(data => {
       console.log(data);
       this.reportCategory = data;
+    })
+  }
+
+  reportImportProductByDate() {
+    this.statisticsService.getImportProduct(this.dateStringControl.value).subscribe(data => {
+      console.log(data);
+      this.reportProduct = data;
     })
   }
 

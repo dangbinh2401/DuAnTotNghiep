@@ -1,36 +1,36 @@
-<div class="navigation">
+<div class="navigation" *ngIf="showAdminBoard || showModeratorBoard">
     <ul>
-        <li>
+        <li *ngIf="showAdminBoard || showModeratorBoard">
             <a href="">
                 <span class="icon"><i class="fas fa-home"></i></span>
                 <span class="title">Home</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="showAdminBoard || showModeratorBoard">
             <a routerLink="/admin/category/add">
                 <span class="icon"><i class="fas fa-shopping-basket"></i></span>
                 <span class="title"><a>Category</a></span>
             </a>
         </li>
-        <li>
+        <li *ngIf="showAdminBoard || showModeratorBoard">
             <a routerLink="/admin/product/add">
                 <span class="icon"><i class="fas fa-shopping-cart"></i></span>
                 <span class="title">Product</span>
             </a>
         </li>
-        <li>
+        <li *ngIf="showAdminBoard || showModeratorBoard">
             <a routerLink="/admin/account/add">
                 <span class="icon"><i class="fas fa-user"></i></span>
                 <span class="title"><a>Account</a></span>
             </a>
         </li>
-        <li>
+        <li *ngIf="showAdminBoard">
             <a routerLink="/admin/order/list">
                 <span class="icon"><i class="fas fa-shipping-fast"></i></span>
                 <span class="title"><a>Order</a></span>
             </a>
         </li>
-        <li>
+        <li *ngIf="showAdminBoard">
             <a routerLink="/admin/statistics/list">
                 <span class="icon"><i class="fas fa-chart-line"></i></span>
                 <span class="title"><a>Statistical</a></span>

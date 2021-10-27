@@ -48,8 +48,8 @@
                         <td class="numberss">{{items.totalQuantity}}</td>
                         <td class="numberss">{{items.totalPrice}}</td>
                         <td class="text-center">{{items.dateCreated | date:'dd-MM-yyyy'}}</td>
-                        <td class="textss">{{items.custommer.fullname}}</td>
-                        <td class="textss">{{items.adress}}</td>
+                        <td class="textss" tooltip="{{items.custommer.fullname}}" placement="bottom" [hideDelay]="0" [showDelay]="250">{{items.custommer.fullname}}</td>
+                        <td class="textss" tooltip="{{items.adress}}" placement="right" [hideDelay]="0" [showDelay]="250">{{items.adress}}</td>
                         <td class="text-center" style="width: 30px;">
                             <a (click)="getOrderDetail(items.orderId)" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" class="btn btn-warning btn-circle btn-sm">
@@ -110,7 +110,7 @@
 
     <!-- Modal table orderDetails -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Order detail</h5>

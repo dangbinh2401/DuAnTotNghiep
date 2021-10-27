@@ -1,0 +1,16 @@
+.ipDateAndSearch {
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+th {
+    width: 150px;
+}
+
+td
+{
+ max-width: 150px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}

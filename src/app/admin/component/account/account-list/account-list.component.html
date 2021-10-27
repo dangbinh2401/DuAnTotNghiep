@@ -14,7 +14,8 @@
     </div>
     <div class="row mt-2 searchAndPdf">
         <div class="col-8">
-            <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
+            <button class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> Delete
+                multiple</button>
         </div>
         <div class="col-3">
             <input type="text" appAutoFocusDirective class="form-control" [formControl]="searchs" (keyup)="search()"
@@ -26,6 +27,10 @@
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
+                        <th scope="row" style="width: 8px;">
+                            <input type="checkbox" class="form-check-input"
+                                 />
+                        </th>
                         <th scope="col" style="width: 10px;">STT</th>
                         <th scope="col">Username <a (click)="sort('username')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('username')"
@@ -41,10 +46,16 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let items of custommers |orderBy :orderSort : isDesc;let i=index">
+                        <td scope="row" style="width: 8px;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                                    >
+                            </div>
+                        </td>
                         <th scope="row" style="width: 10px;text-align: right;">{{((page-1)*pageSize)+i+1}}</th>
                         <td scope="row">{{items.username}}</td>
-                        <td scope="row">{{items.fullname}}</td>
-                        <td scope="row">{{items.email}}</td>
+                        <td scope="row" tooltip="{{items.fullname}}" placement="left" [hideDelay]="0" [showDelay]="250">{{items.fullname}}</td>
+                        <td scope="row" tooltip="{{items.email}}" placement="right" [hideDelay]="0" [showDelay]="250">{{items.email}}</td>
                         <td class="text-center">
                             <a (click)="getCustommerEdit(items.id)" class="btn btn-warning btn-circle btn-sm">
                                 <i class="fas fa-edit"></i>

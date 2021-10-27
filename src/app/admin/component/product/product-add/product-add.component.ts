@@ -33,7 +33,7 @@ export class ProductAddComponent implements OnInit {
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(150), Validators.minLength(3), Validators.pattern("^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+)*$")]],
       quantity: ['', [Validators.required, Validators.min(1), Validators.max(1000)]],
-      unitPrice: ['', [Validators.required, Validators.min(10000)]],
+      unitPrice: ['', [Validators.required, Validators.min(10000), Validators.max(100000000)]],
       discount: ['', [Validators.required, Validators.min(1), Validators.max(90)]],
       enteredDate: ['', [Validators.required, Validators.max(this.year)]],
       image: ['', [Validators.required]],
