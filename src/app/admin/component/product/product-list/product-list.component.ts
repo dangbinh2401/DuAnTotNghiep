@@ -46,7 +46,7 @@ export class ProductListComponent implements OnInit {
       () => { 
         this.listProducts(); 
       });
-
+      console.log(this.products);
     this.getCategory();
   }
 
@@ -165,12 +165,12 @@ export class ProductListComponent implements OnInit {
       }
       if (data.status === false) {
         Swal.fire({
-          title: 'Product does not exist!',
-          text: 'Do you want to reload page?',
+          title: 'Sản phẩm không tồn tại!',
+          text: 'Bạn có muốn tải lại trang?',
           icon: 'question',
           showCancelButton: true,
-          confirmButtonText: 'Yes, reload page!',
-          cancelButtonText: 'No, keep it'
+          confirmButtonText: 'Có, Tải lại trang!',
+          cancelButtonText: 'Không, Giữ nguyên'
         }).then((result) => {
           if (result.value) {
             this.ngOnInit();
@@ -188,27 +188,27 @@ export class ProductListComponent implements OnInit {
 
   deleteProduct(productId: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to delete your category?!',
+      title: 'Bạn có chắc muốn xóa?',
+      text: 'Bạn có chắc muốn xóa sản phẩm?!',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Vâng, Xóa nó!',
+      cancelButtonText: 'Không, Giữ nguyên'
     }).then((result) => {
       if (result.value) {
         this.productService.deleteProduct(productId).subscribe((data: any) => {
           if (data.status === true) {
-            Swal.fire("Delete product successfull!", "You clicked the button!", "success");
+            Swal.fire("Xóa thành công!", "Nhấn vào nút để tiếp tục!", "success");
             this.ngOnInit();
           }
           if (data.status === false) {
             Swal.fire({
-              title: 'Product has been deleted by someone else!',
-              text: 'Do you want to reload page?',
+              title: 'Sản phẩm đã bị xóa bởi người khác!',
+              text: 'bạn có muốn tải lại trang không?',
               icon: 'question',
               showCancelButton: true,
-              confirmButtonText: 'Yes, reload page!',
-              cancelButtonText: 'No, keep it'
+              confirmButtonText: 'Có, Tải lại trang!',
+              cancelButtonText: 'Không, Giữ nguyên'
             }).then((result) => {
               if (result.value) {
                 this.ngOnInit();
@@ -216,7 +216,7 @@ export class ProductListComponent implements OnInit {
             })
           }
           if (data.status === 500) {
-            Swal.fire("Delete product error!", "System error!", "error");
+            Swal.fire("Xóa sản phẩm thất bại!", "Lỗi hệ thống!", "error");
           }
         })
       }
@@ -231,17 +231,17 @@ export class ProductListComponent implements OnInit {
       .map((p) => p.productId);
     if (selectedProducts && selectedProducts.length > 0) {
       Swal.fire({
-        title: 'Are you sure?',
-        text: 'Do you want to delete the selected products??!',
+        title: 'Bạn có chắc chắn muốn xóa?',
+        text: 'Bạn có chắc muốn xóa các sản phẩm được chọn??!',
         icon: 'question',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it'
+        confirmButtonText: 'Có, Xóa sản phẩm!',
+        cancelButtonText: 'Không, Giữ nguyên'
       }).then((result) => {
         if (result.isConfirmed) {
           this.productService.deleteMultipleProducts(selectedProducts).subscribe(
             (response: void) => {
-              Swal.fire("Delete product successfull!", "You clicked the button!", "success");
+              Swal.fire("Xóa thành công!", "Nhấn vào nút để tiếp tục!", "success");
               this.ngOnInit();
             },
             (error: HttpErrorResponse) => {
@@ -252,7 +252,7 @@ export class ProductListComponent implements OnInit {
         else if (result.dismiss == Swal.DismissReason.cancel) { }
       })
     } else {
-      Swal.fire("Please choose!", "You have not selected any products!", "error");
+      Swal.fire("Vui lòng chọn sản phẩm cần xóa!", "Xin hãy chọn các sản phẩm cần xóa!", "error");
     }
   }
 

@@ -7,8 +7,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> tien@gmail.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li><i class="fa fa-envelope"></i> binhdt10@gmail.com</li>
                         </ul>
                     </div>
                 </div>
@@ -28,14 +27,15 @@
                             </ul>
                         </div>
                         <div class="header__top__right__language" *ngIf="!isLoggedIn">
-                            <div routerLink="/user/login">Login</div>
+                            <div routerLink="/user/login">Đăng nhập</div>
                         </div>
                         <div class="header__top__right__language" *ngIf="isLoggedIn">
-                            <div>Account</div>
+                            <div>Tài khoản</div>
                             <ul>
-                                <li><a class="n" (click)="logout()">Logout</a></li>
-                                <li><a class="n">Profile</a></li>
-                                <li><a class="n">ChangePass</a></li>
+                                <li><a class="n" (click)="logout()">Đăng xuất</a></li>
+                                <li><a class="n" routerLink="/user/profile">Hồ sơ</a></li>
+                                <li><a class="n" routerLink="/user/orderHistory">Đơn hàng</a></li>
+                                <li><a class="n">Đổi mật khẩu</a></li>
                             </ul>
                         </div>
                     </div>
@@ -47,23 +47,25 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a><img src="../assets/image/logo.png" alt=""></a>
+                    <a routerLink="/user"><img src="../assets/image/logo.png" alt="" width="180px;">
+                    </a>
+                    
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a routerLink="/user">Home</a></li>
+                        <li class="active"><a routerLink="/user">Trang chủ</a></li>
                         <li><a href="#">Shop</a>
                             <ul class="header__menu__dropdown">
-                                <li><a routerLink="/user/productList">List Product</a></li>
-                                <li><a routerLink="/user/cart">Shoping Cart</a></li>
-                                <li><a routerLink="/user/orderHistory">Your Order</a></li>
+                                <li><a routerLink="/user/productList">Danh sách sản phẩm</a></li>
+                                <li><a routerLink="/user/cart">Giỏ hàng</a></li>
+                                <li><a routerLink="/user/orderHistory">Đơn hàng của bạn</a></li>
                             </ul>
                         </li>
                         <li><a routerLink="">Pages</a></li>
                         <li><a routerLink="">Blog</a></li>
-                        <li><a routerLink="">Contact</a></li>
+                        <li><a routerLink="/user/about">Giới thiệu</a></li>
                     </ul>
                 </nav>
             </div>
@@ -88,7 +90,7 @@
 
 <!-- Start main -->
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-fussion">
-    <p style="font-size: 20px; color: white">Loading...</p>
+    <p style="font-size: 20px; color: white">Đang tải...</p>
 </ngx-spinner>
 
 <router-outlet></router-outlet>
@@ -106,40 +108,31 @@
                         <a href="./index.html"><img src="img/logo.png" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: 10 Chau Thuy - Quang Nam</li>
-                        <li>Phone: +0975 463 309</li>
-                        <li>Email: tien1107@gmail.com</li>
+                        <li>Address: 20 lê ninh, thị trấn vũ quang, vũ quang hà tĩnh</li>
+                        <li>Phone: +096 114 3378</li>
+                        <li>Email: binhdt10@gmail.com</li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                 <div class="footer__widget">
-                    <h6>Useful Links</h6>
+                    <h6>Liên kết</h6>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">About Our Shop</a></li>
-                        <li><a href="#">Secure Shopping</a></li>
-                        <li><a href="#">Delivery infomation</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Our Sitemap</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Về cửa hàng của chúng tôi</a></li>
+                        <li><a href="#">Mua sắm an toàn</a></li>
+                        <li><a href="#">Thông tin giao hàng</a></li>
                     </ul>
-                    <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Innovation</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                    </ul>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
-                    <h6>T-Clothes shop</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
+                    <h6>CODE SHOP</h6>
+                    <p>Nhận thông tin cập nhật qua E-mail về cửa hàng mới nhất của chúng tôi và các ưu đãi đặc biệt.</p>
                     <form action="#">
                         <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
+                        <button type="submit" class="site-btn">Đăng ký</button>
                     </form>
                     <div class="footer__widget__social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -157,9 +150,8 @@
                         <p>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">le van tien</a>
+                            <script>document.write(new Date().getFullYear());</script> bản quyền<i class="fa fa-heart" aria-hidden="true"></i> bởi <a
+                                href="https://colorlib.com" target="_blank">dang thanh binh</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

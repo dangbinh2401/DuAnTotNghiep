@@ -2,7 +2,7 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col-10">
-                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST ORDER</a>
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">DANH SÁCH ĐẶT HÀNG</a>
             </div>
         </div>
 
@@ -10,11 +10,11 @@
     </div>
     <div class="row mt-2 searchAndPdf">
         <div class="col-8">
-            <button class="btn btn-outline-warning"><i class="fas fa-download"></i> Export PDF</button>
+           
         </div>
         <div class="col-3">
             <input type="text" appAutoFocusDirective class="form-control" (input)="searchOrder(key.value)"
-                #key="ngModel" ngModel name="key" placeholder="search by custommer...">
+                #key="ngModel" ngModel name="key" placeholder=" nhập tên khách hàng để tìm kiếm...">
         </div>
     </div>
     <div class="card-body">
@@ -23,20 +23,20 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col" style="width: 10px;">STT</th>
-                        <th scope="col">Total quantity <a (click)="sort('totalQuantity')" class="srt"><i
+                        <th scope="col">Tổng số lượng <a (click)="sort('totalQuantity')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('totalQuantity')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Total price <a (click)="sort('totalPrice')" class="srt"><i
+                        <th scope="col">Tổng giá <a (click)="sort('totalPrice')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('totalPrice')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Date created <a (click)="sort('dateCreated')" class="srt"><i
+                        <th scope="col">Ngày tạo <a (click)="sort('dateCreated')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('dateCreated')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Custommer <a (click)="sort('custommer.fullname')" class="srt"><i
+                        <th scope="col">Tên người đặt hàng <a (click)="sort('custommer.fullname')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a
                                 (click)="sort('custommer.fullname')" class="srt"><i
                                     class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Adress <a (click)="sort('adress')" class="srt"><i
+                        <th scope="col">Địa chỉ <a (click)="sort('adress')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('adress')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
                         <th scope="col" style="width: 30px;"></th>
@@ -53,16 +53,16 @@
                         <td class="text-center" style="width: 30px;">
                             <a (click)="getOrderDetail(items.orderId)" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" class="btn btn-warning btn-circle btn-sm">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Chi tiết đặt hàng"></i>
                             </a> &nbsp;&nbsp;
-                            <a (click)="confilmOrder(items.orderId)" class="btn btn-danger btn-circle btn-sm">
+                            <a (click)="confilmOrder(items.orderId)" class="btn btn-danger btn-circle btn-sm"  data-toggle="tooltip" data-placement="top" title="Xác nhận đơn hàng">
                                 <i class="far fa-check-circle"></i>
                             </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <p *ngIf="orders.length == 0" style="text-align: center;">No items displayed!</p>
+            <p *ngIf="orders.length == 0" style="text-align: center;">Không có sản phẩm nào được hiển thị!</p>
         </div>
 
         <div class="pg">
@@ -113,17 +113,17 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Order detail</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết đặt hàng</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <table class="table">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Unit price</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Ảnh</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Đơn giá</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -138,7 +138,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>

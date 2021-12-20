@@ -61,14 +61,14 @@ export class CategoryAddComponent implements OnInit {
     this.categoryService.createCategory(this.category).subscribe((data:any) => {
       console.log(data);
       if(data.status === true){
-        Swal.fire("Add category successfull!", "You clicked the button!", "success");
+        Swal.fire("Thêm thể loại thành công!", "nhấn vào nút để tiếp tục!", "success");
         this.getListCategories();
       }
       if(data.status === false){
-        Swal.fire("Add category error!", "Category already exist!", "error");
+        Swal.fire("Thêm thể loại thất bại!", "Thể loại đã tồn tại!", "error");
       }
       if(data.status === 500){
-        Swal.fire("Add category error!", "System error!", "error");
+        Swal.fire("Thêm thể loại thất bại!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -87,7 +87,7 @@ export class CategoryAddComponent implements OnInit {
       this.saveCategory();
     }
     else{
-      Swal.fire("Add category error!", "You clicked the button!", "error");
+      Swal.fire("Thêm thể loại thất bại!", "nhấn vào nút để tiếp tục!", "error");
       this.validateAllFormFields(this.categoryForm);
     }
   }

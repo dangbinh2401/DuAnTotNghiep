@@ -52,12 +52,12 @@ export class OrderHistoryComponent implements OnInit {
 
   updateCancel(orderId: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to cancel your order?!',
+      title: 'Bạn có chắc?',
+      text: 'Bạn có muốn hủy đơn đặt hàng của mình không?!',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Có, Xóa đơn hàng!',
+      cancelButtonText: 'Không, Giữ đơn hàng'
     }).then((result) => {
       if (result.value) {
         this.orderHistoryService.updateOrderCancel(orderId, this.orderHistory).subscribe((data: any) => {

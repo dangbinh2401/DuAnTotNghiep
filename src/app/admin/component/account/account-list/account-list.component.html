@@ -2,11 +2,10 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col-10">
-                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST ACCOUNT</a>
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">DANH SÁCH TÀI KHOẢN</a>
             </div>
             <div class="col-2">
-                <a class="m-0 float-right" routerLink="/admin/account/add" style="text-decoration: none;">Account
-                    management <i class="far fa-arrow-alt-circle-right"></i></a>
+                <a class="m-0 float-right" routerLink="/admin/account/add" style="text-decoration: none;">Thêm tài khoản<i class="far fa-arrow-alt-circle-right"></i></a>
             </div>
         </div>
 
@@ -14,12 +13,11 @@
     </div>
     <div class="row mt-2 searchAndPdf">
         <div class="col-8">
-            <button class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> Delete
-                multiple</button>
+            <button class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i>Xóa hàng loạt</button>
         </div>
         <div class="col-3">
             <input type="text" appAutoFocusDirective class="form-control" [formControl]="searchs" (keyup)="search()"
-                placeholder="search by fullname and email...">
+                placeholder="Nhập tên hoặc email để tìm kiếm...">
         </div>
     </div>
     <div class="card-body">
@@ -32,10 +30,10 @@
                                  />
                         </th>
                         <th scope="col" style="width: 10px;">STT</th>
-                        <th scope="col">Username <a (click)="sort('username')" class="srt"><i
+                        <th scope="col">Tài khoản <a (click)="sort('username')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('username')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Fullname <a (click)="sort('fullname')" class="srt"><i
+                        <th scope="col">Họ và tên <a (click)="sort('fullname')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('fullname')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
                         <th scope="col">Email <a (click)="sort('email')" class="srt"><i
@@ -67,36 +65,36 @@
                     </tr>
                 </tbody>
             </table>
-            <p *ngIf="custommers.length == 0" style="text-align: center;">No items displayed!</p>
+            <p *ngIf="custommers.length == 0" style="text-align: center;">Không có sản phẩm nào được hiển thị!</p>
         </div>
 
         <div class="pg">
             <div class="c" *ngIf="custommers.length != 0">
-                <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                <label class="lbsize">Kích thước trang&nbsp;&nbsp; </label>
                 <select class="form-select" [(ngModel)]="pageSize" (change)="getAllCustommer()"
                     style="width: 4.3rem;float: right;">
                     <option [value]="3">3</option>
                     <option [value]="7">7</option>
                     <option [value]="15">15</option>
-                    <option [value]="totalLength">All</option>
+                    <option [value]="totalLength">tất cả</option>
                 </select>
             </div>
             <div class="pagina">
 
                 <div class="pg a">
-                    <label *ngIf="page==1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
-                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
-                        <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
+                    <label *ngIf="page==1&&(page*pageSize)<totalLength && custommers.length != 0">Đang hiển thị
+                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> của
+                        <b>{{totalLength}}</b> sản phẩm</label>
+                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && custommers.length != 0">Đang hiển thị
                         <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
+                        <b>{{page*pageSize}}</b> của <b>{{totalLength}}</b> sản phẩm</label>
+                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength && custommers.length != 0">Đang hiển thị
                         <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page==1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
+                        <b>{{totalLength}}</b> của <b>{{totalLength}}</b> sản phẩm</label>
+                    <label *ngIf="page==1&&(page*pageSize)>=totalLength && custommers.length != 0">Đang hiển thị
                         <b>{{page}}</b> -
-                        <b>{{totalLength}}</b> of
-                        <b>{{totalLength}}</b> items</label>
+                        <b>{{totalLength}}</b> của
+                        <b>{{totalLength}}</b> sản phẩm</label>
                 </div> &nbsp;&nbsp;
                 <div class=" b">
                     <input *ngIf="custommers.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"

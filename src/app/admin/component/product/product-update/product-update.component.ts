@@ -135,9 +135,11 @@ export class ProductUpdateComponent implements OnInit {
 
   updateproduct() {
     this.productService.updateProduct(this.productId, this.product).subscribe((data: any) => {
+      console.log(data);
       if (data.status === true) {
         Swal.fire("Update product successfull!", "You clicked the button!", "success");
         this.getListProducts();
+        
       }
       if (data.status === false) {
         Swal.fire("Update product error!", "Product already exist!", "error");

@@ -1,24 +1,18 @@
 <div class="col-md-11 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <!-- <h4 class="card-title" style="font-weight: bold;">CATEGORY MANAGEMENT</h4>
-        <h4 class="card-title float-right" style="text-align: right;">CATEGORY MANAGEMENT</h4> -->
-            <!-- <span class="card-title" style="font-weight: bold; font-size:x-large">CATEGORY MANAGEMENT</span>
-        <span class="card-title" style="margin-left: 60%;"><a href="" style="text-decoration: none;">LIST CATEGORY <i class="fas fa-chevron-circle-right"></i></a></span> -->
             <div class="row">
                 <div class="col-10">
-                    <span class="card-title" style="font-weight: bold; font-size:x-large">PRODUCT MANAGEMENT</span>
+                    <span class="card-title" style="font-weight: bold; font-size:x-large">THÊM SẢN PHẨM</span>
                 </div>
                 <div class="col-2">
                     <span class="card-title"><a routerLink="/admin/product/list"
-                            style="text-decoration: none;padding-top: 5%; margin-left: 25%;">List product <i
+                            style="text-decoration: none;padding-top: 5%; margin-left: 25%;">Danh sách sản phẩm <i
                                 style="padding-top: 5%;" class="far fa-arrow-alt-circle-right"></i></a></span>
                 </div>
             </div>
-            <!-- <span class="err">{{err | slice:53:75}}</span> -->
             <hr>
             <form appAutoFocusDirective [formGroup]="productForm" (ngSubmit)="onSubmit()">
-                <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="row mb-4">
                     <div class="col-3 fle">
                         <img [src]="imgURL == null ? '../assets/image/cloud-upload.jpg' : imgURL" alt=""
@@ -33,28 +27,28 @@
 
                     <div class="col-4">
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Name<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Tên sản phẩm<span class="bb"> *</span></label>
                             <control-message field="Name" [control]="productForm.get('name')" style="float: none;">
                             </control-message>
                             <input type="text" name="name" id="name" formControlName="name" class="form-control"
-                                placeholder="name..." tabindex="2" required [ngClass]="{
+                                placeholder="nhập tên sản phẩm..." tabindex="2" required [ngClass]="{
                                     'is-valid': (f?.name?.valid && (f?.name?.touched)),
                                     'is-invalid': (f?.name?.invalid && (f?.name?.touched))}" />
 
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Quantity<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Số lượng<span class="bb"> *</span></label>
                             <control-message field="Quantity" [control]="productForm.get('quantity')"
                                 style="float: none;"></control-message>
                             <input type="number" name="quantity" id="quantity" formControlName="quantity"
-                                class="form-name" id="name" class="form-control" placeholder="quantity..." tabindex="4"
+                                class="form-name" id="name" class="form-control" placeholder="Nhập số lượng..." tabindex="4"
                                 required [ngClass]="{
                                     'is-valid': (f?.quantity?.valid && (f?.quantity?.touched)),
                                     'is-invalid': (f?.quantity?.invalid && (f?.quantity?.touched))}" />
 
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Category<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Thể loại<span class="bb"> *</span></label>
                             <control-message field="Category" [control]="productForm.get('categoryId')"
                                 style="float: none;"></control-message>
                             <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-select"
@@ -71,30 +65,30 @@
                     <div class="col-4">
 
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Entered date<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Ngày nhập<span class="bb"> *</span></label>
                             <control-message field="EnteredDate" [control]="productForm.get('enteredDate')"
                                 style="float: none;"></control-message>
                             <input type="date" name="enteredDate" id="enteredDate" formControlName="enteredDate"
-                                class="form-control" placeholder="entered date..." tabindex="3" required [ngClass]="{
+                                class="form-control" placeholder="Nhập ngày nhập..." tabindex="3" required [ngClass]="{
                                     'is-valid': (f?.enteredDate?.valid && (f?.enteredDate?.touched)),
                                     'is-invalid': (f?.enteredDate?.invalid && (f?.enteredDate?.touched))}" />
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Unit price<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Đơn giá<span class="bb"> *</span></label>
                             <control-message field="UnitPrice" [control]="productForm.get('unitPrice')"
                                 style="float: none;"></control-message>
                             <input type="number" name="unitPrice" id="unitPrice" formControlName="unitPrice"
-                                class="form-control" placeholder="unitPrice..." tabindex="5" required [ngClass]="{
+                                class="form-control" placeholder="nhập đơn giá..." tabindex="5" required [ngClass]="{
                                     'is-valid': (f?.unitPrice?.valid && (f?.unitPrice?.touched)),
                                     'is-invalid': (f?.unitPrice?.invalid && (f?.unitPrice?.touched))}" />
 
                         </div> <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Discount<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Giảm giá<span class="bb"> *</span></label>
                             <control-message field="Discount" [control]="productForm.get('discount')"
                                 style="float: none;"></control-message>
                             <input type="number" name="discount" id="discount" formControlName="discount"
-                                class="form-control" placeholder="discount..." tabindex="7" required [ngClass]="{
+                                class="form-control" placeholder="Nhập giảm giá..." tabindex="7" required [ngClass]="{
                                     'is-valid': (f?.discount?.valid && (f?.discount?.touched)),
                                     'is-invalid': (f?.discount?.invalid && (f?.discount?.touched))}" />
 
@@ -106,11 +100,11 @@
                     <div class="col-8">
                         <br>
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Description</label>
+                            <label class="form-label" for="form6Example2">Mô tả</label>
                             <control-message field="Description" [control]="productForm.get('description')"
                                 style="float: none;"></control-message>
                             <textarea name="description" id="description" formControlName="description" cols="30"
-                                rows="5" class="form-control" placeholder="description..." tabindex="8" [ngClass]="{
+                                rows="5" class="form-control" placeholder="nhập mô tả..." tabindex="8" [ngClass]="{
                                 'is-valid': (f?.description?.valid && (f?.description?.touched)),
                                 'is-invalid': (f?.description?.invalid && (f?.description?.touched))}"></textarea>
 
@@ -122,10 +116,10 @@
                 </div>
                 <!-- Submit button -->
                 <button type="submit" tabindex="8" class="btn btn-secondary btn-block mb-4"
-                    style="float: right;margin-right: 9%;"><i class="fas fa-sync-alt"></i> Cancel</button>
+                    style="float: right;margin-right: 9%;"><i class="fas fa-sync-alt"></i> Hủy</button>
                 <button (keydown.Tab)="onKey($event);false;" type="submit" tabindex="9"
                     class="btn btn-primary btn-block mb-4 bsave" style="float: right;margin-right: 1%;"><i
-                        class="fas fa-save"></i> Save</button>
+                        class="fas fa-save"></i> Lưu</button>
 
             </form>
         </div>

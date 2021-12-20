@@ -37,6 +37,21 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
+.hvr-bounce-in {
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transform: perspective(1px) translateZ(0);
+	transform: perspective(1px) translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+  }
+  .hvr-bounce-in:hover, .hvr-bounce-in:focus, .hvr-bounce-in:active {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	-webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+	transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+  }
 
 h1,
 h2,
@@ -108,11 +123,11 @@ ol {
 }
 
 .fi{
-	color: brown;
+	color: #366a3a;
 }
 .fi:hover{
 	font-weight: bold;
-	color: brown;
+	color: #366a3a;
 }
 /*---------------------
   Helper CSS
@@ -136,7 +151,7 @@ ol {
 	right: 0;
 	height: 4px;
 	width: 80px;
-	background: brown;
+	background: #366a3a;
 	content: "";
 	margin: 0 auto;
 }
@@ -174,7 +189,7 @@ ol {
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
-	background: brown;
+	background: #366a3a;
 	letter-spacing: 2px;
 }
 
@@ -185,7 +200,7 @@ ol {
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 13px 30px 12px;
-	background: brown;
+	background: #366a3a;
 	border: none;
 }
 
@@ -254,7 +269,7 @@ ol {
 }
 
 .bgrt {
-	background-image: url(https://zunezx.com/upload/image/cache/data/tin-tuc/BIRTHDAY-TOUR/DSCF1473-3ef-crop-400-300.JPG);
+	background-image: url(http://localhost:4200/assets/image/bia.jpg);
 }
 
 /*---------------------
@@ -644,7 +659,7 @@ ol {
 }
 
 .hero__categories__all {
-	background: brown;
+	background: #366a3a;
 	position: relative;
 	padding: 10px 25px 10px 40px;
 	cursor: pointer;
@@ -666,7 +681,7 @@ ol {
 	position: absolute;
 	right: 18px;
 	top: 9px;
-	content: "3";
+	content: "";
 	font-family: "ElegantIcons";
 	font-size: 18px;
 	color: #ffffff;

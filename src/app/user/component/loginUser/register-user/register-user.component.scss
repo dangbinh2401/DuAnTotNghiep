@@ -591,7 +591,7 @@ ol {
     .pagination > li > span:focus,
     .pagination > li > span:hover
     {
-        color: brown;
+        color:#366a3a;
         background-color: #eee;
         border-color: #ddd;
     }
@@ -874,7 +874,7 @@ ol {
     font-family: 'Kaushan Script', cursive;
     font-size: 3.0rem;
     font-weight: bold;
-    color: brown;
+    color: #366a3a;
     text-shadow: 0 0 2px #a069ee;
     font-style: italic
 }
@@ -900,17 +900,17 @@ ol {
 .button-section .bttn {
     background-color: #fff;
     border-radius: 20px;
-    border: 1.5px solid brown;
+    border: 1.5px solid #366a3a;
     padding: 5px 15px
 }
 
 .button-section .bttn.btn-primary {
-    background-color: brown;
+    background-color: #366a3a;
     color: #eee
 }
 
 .button-section .bttn:hover {
-    background-color: brown;
+    background-color: #366a3a;
     color: #eee
 }
 
@@ -930,12 +930,12 @@ ol {
 .bttn.btn-primary {
     background-color: #fff;
     color: #555;
-    border: 1px solid brown;
+    border: 1px solid #366a3a;
     width: 115px
 }
 
 .bttn.btn-primary:hover {
-    background-color: brown;
+    background-color: #366a3a;
     color: #fff
 }
 

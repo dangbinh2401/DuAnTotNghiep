@@ -152,6 +152,6 @@ export class ProductListComponent implements OnInit {
     console.log(`product name: ${product.name}, and price: ${product.unitPrice}`);
     const cartItem = new cartItems(product);
     this.cartService.addToCart(cartItem);
-    Swal.fire("success!", "Add cart successfully!", "success");
+    Swal.fire("Thêm thành công!", "Thêm vào giỏ hàng thành công!", "success");
   }
 }

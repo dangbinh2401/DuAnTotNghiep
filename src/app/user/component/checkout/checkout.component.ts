@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
         phone: ['', [Validators.required, Validators.pattern("[0][0-9]{9}")]]
       }),
       account: this.formBuilder.group({
-        username: [this.username, [Validators.required, Validators.maxLength(50), Validators.pattern("^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+)*$")]],
+        username: [this.username, [Validators.required, Validators.maxLength(50)]],
         fullname: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern("^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+)*$")]],
         email: ['', [Validators.required, Validators.pattern("^\\w{5,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]],
       })
@@ -107,6 +107,7 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     if (this.checkoutForm.invalid) {
+      console.log(this.checkoutForm);
       // this.checkoutForm.markAllAsTouched();
       Swal.fire("error!", "Order error!", "error");
       this.validateAllFormFields(this.checkoutForm);
@@ -135,9 +136,9 @@ export class CheckoutComponent implements OnInit {
       purchase.orderDetails = this.orderDetails;
 
       this.purchaseService.Order(purchase).subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.resetCart();
-        Swal.fire("Order successfull!", "You clicked the button!", "success");
+        Swal.fire("Đặt hàng thành công!", "Đơn hàng của bạn đang được xử lý!", "success");
         
       }, error => {
         console.log(error);

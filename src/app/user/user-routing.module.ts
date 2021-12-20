@@ -9,6 +9,7 @@ import { RegisterUserComponent } from './component/loginUser/register-user/regis
 import { OrderHistoryComponent } from './component/order-history/order-history.component';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
 import { ProductListComponent } from './component/product-list/product-list.component';
+import { ProfileComponent } from './component/profile/profile.component';
 import { UserComponent } from './user.component';
 
 
@@ -26,7 +27,8 @@ const routes: Routes = [
       { path: 'login', component: LoginUserComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'orderHistory', component: OrderHistoryComponent },
-      { path: 'category/:categoryId', component: ProductListComponent }
+      { path: 'category/:categoryId', component: ProductListComponent },
+      { path: 'profile', component: ProfileComponent }
     ]
   }
 ];

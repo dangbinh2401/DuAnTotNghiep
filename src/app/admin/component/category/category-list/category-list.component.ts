@@ -128,12 +128,12 @@ export class CategoryListComponent implements OnInit {
       }
       if (data.status === false) {
         Swal.fire({
-          title: 'Category does not exist!',
-          text: 'Do you want to reload page?',
+          title: 'Thể loại không tồn tại!',
+          text: 'bạn có muốn tải lại trang không?',
           icon: 'question',
           showCancelButton: true,
-          confirmButtonText: 'Yes, reload page!',
-          cancelButtonText: 'No, keep it'
+          confirmButtonText: 'Có, Tải lại!',
+          cancelButtonText: 'Không, Giữ nguyên'
         }).then((result) => {
           if (result.value) {
             this.ngOnInit();
@@ -142,7 +142,7 @@ export class CategoryListComponent implements OnInit {
         })
       }
       if (data.status === 500) {
-        Swal.fire("Error!", "System error!", "error");
+        Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -151,27 +151,27 @@ export class CategoryListComponent implements OnInit {
 
   deleteCategory(categoryId: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to delete your category?!',
+      title: 'Bạn có chắc?',
+      text: 'Bạn có muốn xóa danh mục của mình không?!',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Có, Xóa nó!',
+      cancelButtonText: 'Không, Giữ nguyên'
     }).then((result) => {
       if (result.value) {
         this.categoryService.deleteCategory(categoryId).subscribe((data: any) => {
           if (data.status === true) {
-            Swal.fire("Delete category successfull!", "You clicked the button!", "success");
+            Swal.fire("Xóa thể loại thành công!", "Nhấn vào nút để tiếp tục!", "success");
             this.ngOnInit();
           }
           if (data.status === false) {
             Swal.fire({
-              title: 'Category has been deleted by someone else!',
-              text: 'Do you want to reload page?',
+              title: 'Danh mục đã bị người khác xóa',
+              text: 'Bạn có muốn tải lại trang không?',
               icon: 'question',
               showCancelButton: true,
-              confirmButtonText: 'Yes, reload page!',
-              cancelButtonText: 'No, keep it'
+              confirmButtonText: 'Có, Tải lại trang!',
+              cancelButtonText: 'Không, Giữ nguyên'
             }).then((result) => {
               if (result.value) {
                 this.ngOnInit();
@@ -179,10 +179,10 @@ export class CategoryListComponent implements OnInit {
             })
           }
           if (data.status === 500) {
-            Swal.fire("Delete category error!", "System error!", "error");
+            Swal.fire("Xóa thất bại!", "Lỗi hệ thống!", "error");
           }
           if (data.status === 501) {
-            Swal.fire("Category exists in the product.!", "System error!", "error");
+            Swal.fire("Thể loại đang tồn tại trong sản phẩm.!", "Lỗi hệ thống!", "error");
           }
         })
       }
@@ -196,29 +196,29 @@ export class CategoryListComponent implements OnInit {
       .map((c) => c.categoryId);
     if (selectedCategories && selectedCategories.length > 0) {
       Swal.fire({
-        title: 'Are you sure?',
-        text: 'Do you want to delete the selected categories??!',
+        title: 'Bạn có chắc?',
+        text: 'Bạn có chắc muốn xóa các thể loại được chọn??!',
         icon: 'question',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it'
+        confirmButtonText: 'Vâng, Xóa nó!',
+        cancelButtonText: 'Không, Giữ nó'
       }).then((result) => {
         if (result.isConfirmed) {
           this.categoryService.deleteMultipleCategories(selectedCategories).subscribe(
             (response: void) => {
-              Swal.fire("Delete category successfull!", "You clicked the button!", "success");
+              Swal.fire("Xóa thành công!", "Nhấn vào nút để tiếp tục!", "success");
               this.ngOnInit();
             },
             (error: HttpErrorResponse) => {
               console.log(error.error.message);
-              Swal.fire("error!", "System error!", "error");
+              Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
             }
           );
         }
         else if (result.dismiss == Swal.DismissReason.cancel) { }
       })
     } else {
-      Swal.fire("Please choose!", "You have not selected any categories!", "error");
+      Swal.fire("Làm ơn chọn!", "Bạn chưa chọn bất kỳ thể loại nào!", "error");
     }
   }
 }

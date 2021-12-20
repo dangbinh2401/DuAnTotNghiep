@@ -1,39 +1,39 @@
-<div class="navigation" *ngIf="showAdminBoard || showModeratorBoard">
+<div class="navigation" style="margin-top: -15px;" *ngIf="showAdminBoard || showModeratorBoard">
     <ul>
         <li *ngIf="showAdminBoard || showModeratorBoard">
             <a href="">
                 <span class="icon"><i class="fas fa-home"></i></span>
-                <span class="title">Home</span>
+                <span class="title">Trang chủ</span>
             </a>
         </li>
         <li *ngIf="showAdminBoard || showModeratorBoard">
             <a routerLink="/admin/category/add">
                 <span class="icon"><i class="fas fa-shopping-basket"></i></span>
-                <span class="title"><a>Category</a></span>
+                <span class="title"><a>Thể loại</a></span>
             </a>
         </li>
         <li *ngIf="showAdminBoard || showModeratorBoard">
             <a routerLink="/admin/product/add">
                 <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-                <span class="title">Product</span>
+                <span class="title">Sản phẩm</span>
             </a>
         </li>
         <li *ngIf="showAdminBoard || showModeratorBoard">
             <a routerLink="/admin/account/add">
                 <span class="icon"><i class="fas fa-user"></i></span>
-                <span class="title"><a>Account</a></span>
+                <span class="title"><a>Tài khoản</a></span>
             </a>
         </li>
         <li *ngIf="showAdminBoard">
             <a routerLink="/admin/order/list">
                 <span class="icon"><i class="fas fa-shipping-fast"></i></span>
-                <span class="title"><a>Order</a></span>
+                <span class="title"><a>Đơn hàng</a></span>
             </a>
         </li>
         <li *ngIf="showAdminBoard">
             <a routerLink="/admin/statistics/list">
                 <span class="icon"><i class="fas fa-chart-line"></i></span>
-                <span class="title"><a>Statistical</a></span>
+                <span class="title"><a>Thống kê</a></span>
             </a>
         </li>
     </ul>

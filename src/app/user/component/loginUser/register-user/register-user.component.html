@@ -1,14 +1,13 @@
 <div class="wrapper bg-white">
-    <div class="h2 text-center">Register</div>
-    <div class="h2 text-center">T-Clothes</div>
+    <div class="h2 text-center">Đăng ký</div>
 
     <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <i th:text=${message} style="color: red;"></i> <br>
         <div class="d-sm-flex align-items-sm-center justify-content-sm-between pt-1">
-            <div class="form-group"> <label class="text-muted mandatory">Username</label> <input type="text"
+            <div class="form-group"> <label class="text-muted mandatory">Tên đăng nhập</label> <input type="text"
                     class="form-control frc" name="username" [(ngModel)]="form.username" required minlength="3"
                     maxlength="20" #username="ngModel"> </div>
-            <div class="form-group"> <label class="text-muted mandatory">Fullname</label> <input type="text"
+            <div class="form-group"> <label class="text-muted mandatory">Họ và tên</label> <input type="text"
                     class="form-control frc" name="fullname" [(ngModel)]="form.fullname" required minlength="5"
                     maxlength="30" #fullname="ngModel">
             </div>
@@ -17,18 +16,18 @@
             <div class="form-group"> <label class="text-muted mandatory">Email</label> <input type="email"
                 class="form-control frc" name="email" [(ngModel)]="form.email" required email #email="ngModel">
             </div>
-            <div class="form-group"> <label class="text-muted">Password</label> <input type="password"
+            <div class="form-group"> <label class="text-muted">Mật khẩu</label> <input type="password"
                     class="form-control frc" name="password" [(ngModel)]="form.password" required minlength="6"
                     #password="ngModel"> </div>
         </div>
         <div class="d-flex align-items-center justify-content-sm-end button-section"> <button
-                class="btn btn-primary mx-4 bttn" type="submit">Submit</button> <button type="reset"
-                class="btn bttn">Cancel</button> </div>
+                class="btn btn-primary mx-4 bttn" type="submit">Đăng ký</button> <button type="reset"
+                class="btn bttn">Hủy</button> </div>
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-            Signup failed!<br />{{ errorMessage }}
+            Đăng ký thất bại!<br />{{ errorMessage }}
         </div>
     </form>
     <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful! &nbsp;&nbsp; <a routerLink="/user/login">Login</a>
+        Đăng ký thành công! &nbsp;&nbsp; <a routerLink="/user/login">Login</a>
     </div>
 </div>

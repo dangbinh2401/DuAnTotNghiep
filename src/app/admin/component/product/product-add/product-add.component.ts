@@ -34,7 +34,7 @@ export class ProductAddComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(150), Validators.minLength(3), Validators.pattern("^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÁÂĂ]+)*$")]],
       quantity: ['', [Validators.required, Validators.min(1), Validators.max(1000)]],
       unitPrice: ['', [Validators.required, Validators.min(10000), Validators.max(100000000)]],
-      discount: ['', [Validators.required, Validators.min(1), Validators.max(90)]],
+      discount: ['', [Validators.required, Validators.min(0), Validators.max(90)]],
       enteredDate: ['', [Validators.required, Validators.max(this.year)]],
       image: ['', [Validators.required]],
       categoryId: ['', [Validators.required]],
@@ -108,11 +108,11 @@ export class ProductAddComponent implements OnInit {
     this.productService.createProduct(this.product).subscribe((data:any) => {
       console.log(data);
       if(data.status === true){
-        Swal.fire("Add product successfull!", "You clicked the button!", "success");
+        Swal.fire("Thêm sản phẩm thành côngl!", "nhấn vào nút để tiếp tục!", "success");
         this.getListProducts();
       }
       else{
-        Swal.fire("Add product error!", "System error!", "error");
+        Swal.fire("Thêm thất bại!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -135,7 +135,7 @@ export class ProductAddComponent implements OnInit {
       this.saveProduct();
     }
     else{
-      Swal.fire("Add product error!", "You clicked the button!", "error");
+      Swal.fire("Thêm thất bại!", "Ấn vào nút để tiếp tục!", "error");
       this.validateAllFormFields(this.productForm);
     }
   }

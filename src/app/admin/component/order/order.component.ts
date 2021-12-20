@@ -107,22 +107,22 @@ export class OrderComponent implements OnInit {
 
   confilmOrder(orderId: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to confirm your order?!',
+      title: 'Bạn có chắc?',
+      text: 'Bạn có chắc muốn xác nhận đơn hàng này?!',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Có, Xác nhận đơn hàng!',
+      cancelButtonText: 'Không, không xác nhận'
     }).then((result) => {
       if (result.value) {
         this.orderService.updateOrderDelivering(orderId, this.orderHistory).subscribe((data: any) => {
           if (data.status === true) {
             this.orderHistory.status = 2;
-            Swal.fire("success!", "Confilm order successfully!", "success");
+            Swal.fire("Thành công!", "Đơn hàng đã được xác nhận!", "success");
             this.ngOnInit();
           }
           if (data.status === false) {
-            Swal.fire("Confirm order error!", "System error!", "error");
+            Swal.fire("Xác nhận đơn hàng lỗi!", "System error!", "error");
           }
         })
       }

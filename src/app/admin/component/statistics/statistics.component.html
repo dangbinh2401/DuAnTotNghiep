@@ -2,8 +2,7 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col-10">
-                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">REPORT PRODUCT BY
-                    CATEGORY</a>
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">BÁO CÁO SẢN PHẨM THEO THỂ LOẠI</a>
             </div>
         </div>
 
@@ -23,9 +22,9 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col" style="width: 10px;">STT</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Total quantity product</th>
-                        <th scope="col">Total unitPrice product</th>
+                        <th scope="col">Thể loại</th>
+                        <th scope="col">Tổng số lượng sản phẩm</th>
+                        <th scope="col">Tổng đơn giá sản phẩm</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,52 +36,7 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- <p *ngIf="custommers.length == 0" style="text-align: center;">No items displayed!</p> -->
         </div>
-
-        <!-- <div class="pg">
-            <div class="c" *ngIf="custommers.length != 0">
-                <label class="lbsize">Page size&nbsp;&nbsp; </label>
-                <select class="form-select" [(ngModel)]="pageSize" (change)="getAllCustommer()" 
-                style="width: 4.3rem;float: right;">
-                    <option [value]="3">3</option>
-                    <option [value]="7">7</option>
-                    <option [value]="15">15</option>
-                    <option [value]="totalLength">All</option>
-                </select>
-            </div>
-            <div class="pagina">
-
-                <div class="pg a">
-                    <label *ngIf="page==1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
-                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
-                        <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
-                        <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page!=1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
-                        <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page==1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing <b>{{page}}</b> -
-                        <b>{{totalLength}}</b> of
-                        <b>{{totalLength}}</b> items</label>
-                </div> &nbsp;&nbsp;
-                <div class=" b">
-                    <input *ngIf="custommers.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"
-                        class="form-control custom-pages-input" id="paginationInput" [value]="page"
-                        (keyup.enter)="selectPage(i.value)" (blur)="selectPage(i.value)"
-                        (input)="formatInput($any($event).target)"
-                        aria-labelledby="paginationInputLabel paginationDescription" style="width: 2.5rem" />
-                </div>
-                <div class="pg d">
-                    <ngb-pagination *ngIf="custommers.length != 0" [collectionSize]="totalLength" [(page)]="page"
-                        [pageSize]="pageSize" (pageChange)="getAllCustommer()" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
-                </div>
-
-            </div>
-        </div> -->
 
     </div>
 
@@ -96,8 +50,7 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col-10">
-                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">REPORT PRODUCT IMPORT BY
-                    DATE</a>
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">BÁO CÁO NHẬP SẢN PHẨM BỞI NGÀY</a>
             </div>
         </div>
     </div>
@@ -106,7 +59,7 @@
             <input [formControl]="dateStringControl" class="form-control ipDate" type="date" id="date-string"/>
         </div>
         <div class="col-1">
-            <button (click)="reportImportProductByDate()" class="btn btn-outline-dark">Show</button>
+            <button (click)="reportImportProductByDate()" class="btn btn-outline-dark">Hiển thị</button>
         </div>
     </div>
     <div class="card-body">
@@ -114,9 +67,9 @@
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col">Product name</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">UnitPrice</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Đơn giá</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,52 +80,7 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- <p *ngIf="custommers.length == 0" style="text-align: center;">No items displayed!</p> -->
         </div>
-
-        <!-- <div class="pg">
-            <div class="c" *ngIf="custommers.length != 0">
-                <label class="lbsize">Page size&nbsp;&nbsp; </label>
-                <select class="form-select" [(ngModel)]="pageSize" (change)="getAllCustommer()" 
-                style="width: 4.3rem;float: right;">
-                    <option [value]="3">3</option>
-                    <option [value]="7">7</option>
-                    <option [value]="15">15</option>
-                    <option [value]="totalLength">All</option>
-                </select>
-            </div>
-            <div class="pagina">
-
-                <div class="pg a">
-                    <label *ngIf="page==1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
-                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
-                        <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && custommers.length != 0">Showing
-                        <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page!=1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing
-                        <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label
-                        *ngIf="page==1&&(page*pageSize)>=totalLength && custommers.length != 0">Showing <b>{{page}}</b> -
-                        <b>{{totalLength}}</b> of
-                        <b>{{totalLength}}</b> items</label>
-                </div> &nbsp;&nbsp;
-                <div class=" b">
-                    <input *ngIf="custommers.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"
-                        class="form-control custom-pages-input" id="paginationInput" [value]="page"
-                        (keyup.enter)="selectPage(i.value)" (blur)="selectPage(i.value)"
-                        (input)="formatInput($any($event).target)"
-                        aria-labelledby="paginationInputLabel paginationDescription" style="width: 2.5rem" />
-                </div>
-                <div class="pg d">
-                    <ngb-pagination *ngIf="custommers.length != 0" [collectionSize]="totalLength" [(page)]="page"
-                        [pageSize]="pageSize" (pageChange)="getAllCustommer()" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
-                </div>
-
-            </div>
-        </div> -->
 
     </div>
 

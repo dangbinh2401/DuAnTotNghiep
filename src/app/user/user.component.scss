@@ -108,11 +108,11 @@ ol {
 }
 
 .fi{
-	color: brown;
+	color: #366a3a;
 }
 .fi:hover{
 	font-weight: bold;
-	color: brown;
+	color: #366a3a;
 }
 /*---------------------
   Helper CSS
@@ -136,7 +136,7 @@ ol {
 	right: 0;
 	height: 4px;
 	width: 80px;
-	background: brown;
+	background: #366a3a;
 	content: "";
 	margin: 0 auto;
 }
@@ -174,7 +174,7 @@ ol {
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
-	background: brown;
+	background: #366a3a;
 	letter-spacing: 2px;
 }
 
@@ -185,7 +185,7 @@ ol {
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 13px 30px 12px;
-	background: brown;
+	background: #366a3a;
 	border: none;
 }
 
@@ -456,7 +456,7 @@ ol {
 }
 
 .header__menu ul li .header__menu__dropdown li:hover>a {
-	color: brown;
+	color: #366a3a;
 }
 
 .header__menu ul li .header__menu__dropdown li a {
@@ -467,7 +467,7 @@ ol {
 }
 
 .header__menu ul li.active a {
-	color: brown;
+	color: #366a3a;
 }
 
 .header__menu ul li:hover .header__menu__dropdown {
@@ -477,7 +477,7 @@ ol {
 }
 
 .header__menu ul li:hover>a {
-	color: brown;
+	color: #366a3a;
 }
 
 .header__menu ul li:last-child {
@@ -531,7 +531,7 @@ ol {
 .header__cart ul li a span {
 	height: 13px;
 	width: 13px;
-	background: brown;
+	background: #366a3a;
 	font-size: 10px;
 	color: #ffffff;
 	line-height: 13px;
@@ -564,11 +564,11 @@ ol {
 }
 
 .fogot{
-	color: brown;
+	color: #366a3a;
 	text-align: center;
 }
 .fogot:hover{
-	color: brown;
+	color: rgb(5, 105, 55);;
 }
 
 /*---------------------
@@ -577,13 +577,13 @@ ol {
 .pagination > li > a
     {
         background-color: white;
-        color: brown
+        color: #366a3a
     }
      
     .page-item.active .page-link
     {
-        background-color:brown;
-        border-color:brown
+        background-color:#366a3a;
+        border-color:#366a3a
     }
      
     .pagination > li > a:focus,
@@ -591,7 +591,7 @@ ol {
     .pagination > li > span:focus,
     .pagination > li > span:hover
     {
-        color: brown;
+        color: #366a3a;
         background-color: #eee;
         border-color: #ddd;
     }
@@ -599,14 +599,14 @@ ol {
     .pagination > .active > a
     {
         color: white;
-        background-color: brown;
-        border: solid 1px brown;
+        background-color: #366a3a;
+        border: solid 1px #366a3a;
     }
  
     .pagination > .active > a:hover
     {
-        background-color: brown;
-        border: solid 1px brown;
+        background-color: #366a3a;
+        border: solid 1px #366a3a;
     }
 
 /*---------------------
@@ -640,7 +640,7 @@ ol {
 }
 
 .hero__categories__all {
-	background: brown;
+	background: rgb(4, 121, 58);
 	position: relative;
 	padding: 10px 25px 10px 40px;
 	cursor: pointer;
@@ -753,7 +753,7 @@ ol {
 
 .hero__search__phone__icon {
 	font-size: 18px;
-	color: brown;
+	color: rgb(1, 98, 26);
 	height: 50px;
 	width: 50px;
 	background: #f5f5f5;
@@ -791,7 +791,7 @@ ol {
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 4px;
-	color: brown;
+	color: #366a3a;
 }
 
 .hero__text h2 {
@@ -874,7 +874,7 @@ ol {
     font-family: 'Kaushan Script', cursive;
     font-size: 3.0rem;
     font-weight: bold;
-    color: brown;
+    color: #366a3a;
     text-shadow: 0 0 2px #a069ee;
     font-style: italic
 }
@@ -900,17 +900,17 @@ ol {
 .button-section .bttn {
     background-color: #fff;
     border-radius: 20px;
-    border: 1.5px solid brown;
+    border: 1.5px solid #366a3a;
     padding: 5px 15px
 }
 
 .button-section .bttn.btn-primary {
-    background-color: brown;
+    background-color: #366a3a;
     color: #eee
 }
 
 .button-section .bttn:hover {
-    background-color: brown;
+    background-color: #366a3a;
     color: #eee
 }
 
@@ -930,12 +930,12 @@ ol {
 .bttn.btn-primary {
     background-color: #fff;
     color: #555;
-    border: 1px solid brown;
+    border: 1px solid #366a3a;
     width: 115px
 }
 
 .bttn.btn-primary:hover {
-    background-color: brown;
+    background-color: #366a3a;
     color: #fff
 }
 
@@ -996,7 +996,7 @@ ol {
 	bottom: -2px;
 	width: 100%;
 	height: 2px;
-	background: brown;
+	background: #366a3a;
 	content: "";
 	opacity: 0;
 }
@@ -1044,8 +1044,8 @@ ol {
 }
 
 .featured__item__pic__hover li:hover a {
-	background: brown;
-	border-color: brown;
+	background: #366a3a;
+	border-color: #366a3a;
 }
 
 .featured__item__pic__hover li:hover a i {
@@ -1483,8 +1483,8 @@ ol {
 }
 
 .product__item__pic__hover li:hover a {
-	background: brown;
-	border-color: brown;
+	background: #366a3a;
+	border-color: #366a3a;
 }
 
 .product__item__pic__hover li:hover a i {
@@ -1682,7 +1682,7 @@ ol {
 }
 
 .filter__option span:hover {
-	color: brown;
+	color: #366a3a;
 }
 
 .product__item {
@@ -1723,8 +1723,8 @@ ol {
 }
 
 .product__item__pic__hover li:hover a {
-	background: brown;
-	border-color: brown;
+	background: #366a3a;
+	border-color: #366a3a;
 }
 
 .product__item__pic__hover li:hover a i {
@@ -1804,8 +1804,8 @@ ol {
 
 .product__pagination a:hover,
 .blog__pagination a:hover {
-	background: brown;
-	border-color: brown;
+	background: #366a3a;
+	border-color: #366a3a;
 	color: #ffffff;
 }
 
@@ -2038,14 +2038,14 @@ ol {
 .card {
     border: none;
     border-radius: 10px;
-    background-color: brown;
+    background-color: #366a3a;
     width: 350px;
     margin-top: -60px
 }
 
 p.mb-1 {
     font-size: 25px;
-    color: brown;
+    color: #366a3a;
 }
 
 
@@ -2097,7 +2097,7 @@ p.mb-1 {
 .btn-block {
     border: none;
     border-radius: 8px;
-    background-color: brown;
+    background-color: #366a3a;
     padding: 10px 0 12px
 }
 
@@ -2512,7 +2512,7 @@ p.mb-1 {
 	color: black;
 }
 .sot:hover{
-	color: brown;
+	color: #366a3a;
 }
 /*---------------------
   Blog
@@ -2627,7 +2627,7 @@ p.mb-1 {
 }
 
 .blog__sidebar__item ul li a:hover {
-	color: brown;
+	color: #366a3a;
 }
 
 .blog__sidebar__search {
@@ -2875,7 +2875,7 @@ p.mb-1 {
 }
 
 .blog__details__widget .blog__details__social a:hover {
-	color: brown;
+	color: #366a3a;
 }
 
 .blog__details__widget .blog__details__social a:last-child {
@@ -2993,7 +2993,7 @@ p.mb-1 {
 }
 
 .footer__widget .footer__widget__social a:hover {
-	background: brown;
+	background: #366a3a;
 	color: #ffffff;
 	border-color: #ffffff;
 }
@@ -3031,7 +3031,7 @@ p.mb-1 {
 
 .contact__widget span {
 	font-size: 36px;
-	color: brown;
+	color: #366a3a;
 }
 
 .contact__widget h4 {
@@ -3048,11 +3048,11 @@ p.mb-1 {
 
 .ca:hover{
 	/* background: brown; */
-	color: brown;
+	color: #366a3a;
 	font-weight: bold;
 }
 .si:hover{
-	background: brown;
+	background: #366a3a;
 	color: white;
 }
 /*---------------------
@@ -3079,7 +3079,7 @@ p.mb-1 {
 
 .map .map-inside i {
 	font-size: 48px;
-	color: brown;
+	color: #366a3a;
 	position: absolute;
 	bottom: -75px;
 	left: 50%;
@@ -3336,7 +3336,7 @@ p.mb-1 {
 	.humberger__menu__cart ul li a span {
 		height: 13px;
 		width: 13px;
-		background: brown;
+		background: #366a3a;
 		font-size: 10px;
 		color: #ffffff;
 		line-height: 13px;
@@ -3402,7 +3402,7 @@ p.mb-1 {
 		-webkit-border-radius: 0;
 		border-radius: 0;
 		background: transparent;
-		color: brown;
+		color: #366a3a;
 	}
 	.humberger__menu__wrapper .slicknav_nav .slicknav_row,
 	.humberger__menu__wrapper .slicknav_nav a {
@@ -3442,7 +3442,7 @@ p.mb-1 {
 	}
 }
 	.n:hover {
-	color: brown;
+	color: #366a3a;
 }
 /* Wide Mobile = 480px */
 
@@ -3596,7 +3596,7 @@ p.mb-1 {
 	.humberger__menu__cart ul li a span {
 		height: 13px;
 		width: 13px;
-		background: brown;
+		background: #366a3a;
 		font-size: 10px;
 		color: #ffffff;
 		line-height: 13px;
@@ -3662,7 +3662,7 @@ p.mb-1 {
 		-webkit-border-radius: 0;
 		border-radius: 0;
 		background: transparent;
-		color: brown;
+		color: #366a3a;
 	}
 	.humberger__menu__wrapper .slicknav_nav .slicknav_row,
 	.humberger__menu__wrapper .slicknav_nav a {
@@ -3702,7 +3702,7 @@ p.mb-1 {
 	}
 }
 	.s:hover{
-		background: brown;
+		background: #366a3a;
 		color: white; 
 	}
 /* Small Device = 320px */

@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>Clothes Shop</h2>
+                    <h2 class="text-dark">Danh sách sản phẩm</h2>
                     <div class="breadcrumb__option">
-                        <a routerLink="/user">Home</a>
-                        <a routerLink="/user/productList">Shop</a>
-                        <span>Clothes list</span>
+                        <a class="text-dark" routerLink="/user">Home ></a>
+                        <a class="text-dark" routerLink="/user/productList">Shop  ></a>
+                        <span class="text-dark">Danh sách sản phẩm</span>
                     </div>
                 </div>
             </div>
@@ -27,11 +27,11 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
-                        <h4>Category</h4>
+                        <h4>Thể loại</h4>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle prByct" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                --- Please choose ---
+                                --- chọn thể loại ---
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li *ngFor="let category of categories"><a class="dropdown-item ctText"
@@ -41,85 +41,85 @@
 
                     </div>
                     <div class="sidebar__item">
-                        <h4>Price</h4>
+                        <h4>Giá</h4>
                         <div class="price-range-wrap">
                             <div class="row">
                                 <div class="inputPrice1 mb-3">
-                                    <input type="number" class="form-control prInput" placeholder="Min..."
+                                    <input type="number" class="form-control prInput" placeholder="Nhỏ nhất..."
                                         placement="bottom" ngbTooltip="Input min price" aria-label="Min price">
                                 </div>
                                 <div class="inputPrice2 mb-3">
                                     <input type="number" class="form-control prInput" placement="bottom"
-                                        ngbTooltip="Input max price" placeholder="Max..." aria-label="Max price">
+                                        ngbTooltip="Input max price" placeholder="Max..." aria-label="lớn nhất">
                                 </div>
                                 <div class="inputPrice2 mb-3">
-                                    <button type="button" class="btn btn-outline-danger">Search</button>
+                                    <button type="button" class="btn btn-outline-danger">Tìm kiếm</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="sidebar__item sidebar__item__color--option">
-                        <h4>Colors</h4>
+                        <h4>Màu</h4>
                         <div class="sidebar__item__color sidebar__item__color--white">
                             <label for="white">
-                                White
+                                Trắng
                                 <input type="radio" id="white">
                             </label>
                         </div>
                         <div class="sidebar__item__color sidebar__item__color--gray">
                             <label for="gray">
-                                Gray
+                                Xám
                                 <input type="radio" id="gray">
                             </label>
                         </div>
                         <div class="sidebar__item__color sidebar__item__color--red">
                             <label for="red">
-                                Red
+                                Đỏ
                                 <input type="radio" id="red">
                             </label>
                         </div>
                         <div class="sidebar__item__color sidebar__item__color--black">
                             <label for="black">
-                                Black
+                                Đen
                                 <input type="radio" id="black">
                             </label>
                         </div>
                         <div class="sidebar__item__color sidebar__item__color--blue">
                             <label for="blue">
-                                Blue
+                                xanh dương
                                 <input type="radio" id="blue">
                             </label>
                         </div>
                         <div class="sidebar__item__color sidebar__item__color--green">
                             <label for="green">
-                                Green
+                                xanh lá
                                 <input type="radio" id="green">
                             </label>
                         </div>
                     </div>
                     <div class="sidebar__item">
-                        <h4>Popular Size</h4>
+                        <h4>Kích thước phổ biến</h4>
                         <div class="sidebar__item__size">
-                            <label for="large">
-                                Large
+                            <label for="large">                         
+                                Lớn
                                 <input type="radio" id="large">
                             </label>
                         </div>
                         <div class="sidebar__item__size">
                             <label for="medium">
-                                Medium
+                                Trung bình
                                 <input type="radio" id="medium">
                             </label>
                         </div>
                         <div class="sidebar__item__size">
-                            <label for="small">
-                                Small
+                            <label for="small">                             
+                                Nhỏ
                                 <input type="radio" id="small">
                             </label>
                         </div>
                         <div class="sidebar__item__size">
                             <label for="tiny">
-                                Tiny
+                                Nhỏ bé
                                 <input type="radio" id="tiny">
                             </label>
                         </div>
@@ -131,16 +131,13 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-5">
                             <div class="filter__sort">
-                                <span>Sort By:</span>
-                                <!-- <select>
-                                    <option value="0">Default</option>
-                                    <option value="0">Default</option>
-                                </select> -->
-                                &nbsp;Name&nbsp;<a (click)="sort('name')" class="sot"><i
+                                <span>Sắp xếp theo:</span>
+
+                                &nbsp;Tên&nbsp;<a (click)="sort('name')" class="sot"><i
                                         class="fas fa-sort-alpha-down"></i></a>
                                 &nbsp;&nbsp;<a (click)="sort('name')" class="sot"><i
                                         class="fas fa-sort-alpha-up"></i></a>&nbsp;&nbsp;
-                                &nbsp;Price&nbsp;<a (click)="sort('unitPrice')" class="sot"><i
+                                &nbsp;Giá&nbsp;<a (click)="sort('unitPrice')" class="sot"><i
                                         class="fas fa-sort-numeric-down"></i></a>
                                 &nbsp;&nbsp;<a (click)="sort('unitPrice')" class="sot"><i
                                         class="fas fa-sort-numeric-up"></i></a>
@@ -165,15 +162,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let items of products">
+                    <div class="hvr-bounce-in col-lg-4 col-md-6 col-sm-6" *ngFor="let items of products">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="">
                                 <img src="{{this.productListService.host+'/rest/files/image/'+items.image}}" alt="">
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a routerLink="/user/productDetail/{{items.productId}}"><i
+                                    <li data-toggle="tooltip" data-placement="top" title="Thêm vào sản phẩm yêu thích"><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li data-toggle="tooltip" data-placement="top" title="Chi tiết sản phẩm"><a routerLink="/user/productDetail/{{items.productId}}"><i
                                                 class="fa fa-retweet"></i></a></li>
-                                    <li><a (click)="addToCart(items)"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li data-toggle="tooltip" data-placement="top" title="Thêm vào giỏ hàng"><a (click)="addToCart(items)"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
@@ -183,39 +180,39 @@
                             </div>
                         </div>
                     </div>
-                    <p *ngIf="products.length == 0" style="text-align: center;">No items displayed!</p>
+                    <p *ngIf="products.length == 0" style="text-align: center;">Không có sản phẩm nào được hiển thị!</p>
                 </div>
                 <div class="pg">
                     <div class="c" *ngIf="products.length != 0">
-                        <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                        <label class="lbsize">Kích thước trang&nbsp;&nbsp; </label>
                         <select class="form-select" [(ngModel)]="pageSize" (change)="getAllListProduct()"
                             style="width: 4.3rem;float: right;">
-                            <option [value]="3">3</option>
+                            <option [value]="5">5</option>
                             <option [value]="9">9</option>
                             <option [value]="15">15</option>
-                            <option [value]="totalLength">All</option>
+                            <option [value]="totalLength">tất cả</option>
                         </select>
                     </div>
                     <div class="pagina">
 
                         <div class="pg a">
                             <label class="canhtren"
-                                *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">Showing
-                                <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
-                                <b>{{totalLength}}</b> items</label>
+                                *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">Đang hiển thị
+                                <b>{{page}}</b> - <b>{{page*pageSize}}</b> của
+                                <b>{{totalLength}}</b> Sản phẩm</label>
                             <label class="canhtren"
-                                *ngIf="page!=1&&(page*pageSize)<totalLength && products.length != 0">Showing
+                                *ngIf="page!=1&&(page*pageSize)<totalLength && products.length != 0">Đang hiển thị
                                 <b>{{((page-1)*pageSize)+1}}</b> -
-                                <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
+                                <b>{{page*pageSize}}</b> của <b>{{totalLength}}</b> Sản phẩm</label>
                             <label class="canhtren"
-                                *ngIf="page!=1&&(page*pageSize)>=totalLength && products.length != 0">Showing
+                                *ngIf="page!=1&&(page*pageSize)>=totalLength && products.length != 0">Đang hiển thị
                                 <b>{{((page-1)*pageSize)+1}}</b> -
-                                <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
+                                <b>{{totalLength}}</b> của <b>{{totalLength}}</b> Sản phẩm</label>
                             <label class="canhtren"
-                                *ngIf="page==1&&(page*pageSize)>=totalLength && products.length != 0">Showing
+                                *ngIf="page==1&&(page*pageSize)>=totalLength && products.length != 0">Đang hiển thị
                                 <b>{{page}}</b> -
-                                <b>{{totalLength}}</b> of
-                                <b>{{totalLength}}</b> items</label>
+                                <b>{{totalLength}}</b> của
+                                <b>{{totalLength}}</b> Sản phẩm</label>
                         </div> &nbsp;&nbsp;
                         <div class=" b">
                             <input *ngIf="products.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"

@@ -6,20 +6,20 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>Tất cả thể loại</span>
                     </div>
                     <ul>
-                        <li><a href="#">Local branch</a></li>
-                        <li><a href="#">Mang Backpack</a></li>
-                        <li><a href="#">Kuro Pant</a></li>
-                        <li><a href="#">Maru Blazer</a></li>
-                        <li><a href="#">Minimalism</a></li>
-                        <li><a href="#">Techwear</a></li>
-                        <li><a href="#">Dark-wear</a></li>
-                        <li><a href="#">Moon Kimono</a></li>
-                        <li><a href="#">Master Wheel</a></li>
-                        <li><a href="#">Old school</a></li>
-                        <li><a href="#">Mimalist Tee</a></li>
+                        <li *ngFor="let category of categories">
+                            <a
+                            routerLink="/user/category/{{ category.categoryId }}">{{category.name}}</a></li>
+                        <!-- <li><a href="#">Áo sơ mi</a></li>
+                        <li><a href="#">Áo thun</a></li>
+                        <li><a href="#">Áo polo</a></li>
+                        <li><a href="#">Quần tây</a></li>
+                        <li><a href="#">Quần Kaki</a></li>
+                        <li><a href="#">Quần short</a></li>
+                        <li><a href="#">Thắt lưng</a></li>
+                        <li><a href="#">Ví da</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -28,11 +28,11 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                All Categories
+                                Tất cả thể loại
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <input type="text" placeholder="nhập tên để tìm kiếm sản phẩm bạn muốn">
+                            <button type="submit" class="site-btn">Tìm kiếm</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -40,17 +40,14 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+0975 463 309</h5>
-                            <span>support 24/7 time</span>
+                            <h5>+096 114 3378</h5>
+                            <span>Hỗ trợ 24/7</span>
                         </div>
                     </div>
                 </div>
                 <div class="hero__item set-bg bgrt" data-setbg="">
                         <div class="hero__text">
-                            <span>GRAND OPENING</span>
-                            <h2>Local Brand <br />10:00 - 12:00</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                           
                         </div>
                 </div>
             </div>
@@ -63,28 +60,19 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>Featured Product</h2>
-                </div>
-                <div class="featured__controls">
-                    <ul>
-                        <li class="active" data-filter="*">All</li>
-                        <li data-filter=".oranges">Sweater</li>
-                        <li data-filter=".fresh-meat">Bomber</li>
-                        <li data-filter=".vegetables">Jogger</li>
-                        <li data-filter=".fastfood">Jacket</li>
-                    </ul>
+                    <h2>Sản phẩm mới</h2>
                 </div>
             </div>
         </div>
         <div class="row featured__filter">
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" *ngFor="let items of productTop">
+            <div class="hvr-bounce-in col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" *ngFor="let items of productTop">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" data-setbg="">
                         <img src="{{this.productListService.host+'/rest/files/image/'+items.image}}" alt="">
                         <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a routerLink="/user/productDetail/{{items.productId}}"><i class="fa fa-retweet"></i></a></li>
-                            <li><a (click)="addToCart(items)"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li data-toggle="tooltip" data-placement="top" title="Thêm vào sản phẩm yêu thích"><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li  data-toggle="tooltip" data-placement="top" title="Chi tiết sản phẩm"><a routerLink="/user/productDetail/{{items.productId}}"><i class="fa fa-retweet" ></i></a></li>
+                            <li  data-toggle="tooltip" data-placement="top" title="Thêm vào giỏ hàng"><a (click)="addToCart(items)"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="featured__item__text">
@@ -98,63 +86,5 @@
     </div>
 </section>
 
-<section class="from-blog spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title from-blog__title">
-                    <h2>From The Blog</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="https://zunezx.com/upload/image/cache/data/tin-tuc/BIRTHDAY-TOUR/16658360411667272604603163721116536450078709n-eab-crop-400-300.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> May 5,2021</li>
-                            <li><i class="far fa-comment"></i> 9</li>
-                        </ul>
-                        <h5><a href="#">GRAND OPENING HCM STORE</a></h5>
-                        <p>Sở hữu mascot pin đầu tiên tại sự kiện GRAND OPENING HCM store </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="https://zunezx.com/upload/image/cache/data/tin-tuc/BIRTHDAY-TOUR/NHL6432-503-crop-400-300.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> May 9,2021</li>
-                            <li><i class="far fa-comment"></i> 7</li>
-                        </ul>
-                        <h5><a href="#">LOCAL BRAND PHONG CÁCH NHẬT</a></h5>
-                        <p>Local Brand thời trang đầu tiên mở Club phong cách Nhật để tạo sân chơi </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="https://zunezx.com/upload/image/cache/data/tin-tuc/BIRTHDAY-TOUR/17222636111732923931371361067613859702537828n-030-crop-400-300.jpg" alt="">
-                    </div>
-                    <div class="blog__item__text">
-                        <ul>
-                            <li><i class="fa fa-calendar-o"></i> May 8,2021</li>
-                            <li><i class="far fa-comment"></i> 5</li>
-                        </ul>
-                        <h5><a href="#">SIÊU DEAL NISHIKIGOI "TINH HOA"</a></h5>
-                        <p>Chương trình Lucky Sale "vòng tay nhân phẩm"-vừa được ưu đãi vừa nhận Koi Mascot Limited </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 

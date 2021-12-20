@@ -3,11 +3,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-10">
-                    <span class="card-title" style="font-weight: bold; font-size:x-large">ACCOUNT MANAGEMENT</span>
+                    <span class="card-title" style="font-weight: bold; font-size:x-large">Chỉnh sửa tài khoản</span>
                 </div>
                 <div class="col-2">
                     <span class="card-title"><a routerLink="/admin/account/list"
-                            style="text-decoration: none;padding-top: 5%; margin-left: 25%;">List Account <i
+                            style="text-decoration: none;padding-top: 5%; margin-left: 25%;">Danh sách tài khoản <i
                                 style="padding-top: 5%;" class="far fa-arrow-alt-circle-right"></i></a></span>
                 </div>
             </div>
@@ -18,11 +18,11 @@
                 <div class="row mb-4">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Username<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Tài khoản<span class="bb"> *</span></label>
                             <control-message field="Username" [control]="custommerForm.get('username')">
                             </control-message>
                             <input type="text" name="username" id="username" formControlName="username"
-                                class="form-control" placeholder="username..." required #input appAutoFocusDirective
+                                class="form-control" placeholder="nhập tài khoản..." required #input appAutoFocusDirective
                                 tabindex="1" [ngClass]="{
                                 'is-valid': (f?.username?.valid && (f?.username?.touched)),
                                 'is-invalid': (f?.username?.invalid && (f?.username?.touched))}" />
@@ -40,21 +40,21 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Fullname<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Họ và tên<span class="bb"> *</span></label>
                             <control-message field="Fullname" [control]="custommerForm.get('fullname')">
                             </control-message>
                             <input type="text" name="fullname" id="fullname" formControlName="fullname"
-                                class="form-control" placeholder="fullname..." tabindex="2" required [ngClass]="{
+                                class="form-control" placeholder="Nhập họ và tên..." tabindex="2" required [ngClass]="{
                                 'is-valid': (f?.fullname?.valid && (f?.fullname?.touched)),
                                 'is-invalid': (f?.fullname?.invalid && (f?.fullname?.touched))}" />
                         </div> <br>
 
                         <div class="form-group">
-                            <label class="form-label" for="form6Example2">Password<span class="bb"> *</span></label>
+                            <label class="form-label" for="form6Example2">Mật khẩu<span class="bb"> *</span></label>
                             <control-message field="Password" [control]="custommerForm.get('password')">
                             </control-message>
                             <input type="password" name="password" id="password" formControlName="password"
-                                class="form-control" placeholder="password..." required tabindex="4" [ngClass]="{
+                                class="form-control" placeholder="nhập mật khẩu..." required tabindex="4" [ngClass]="{
                                 'is-valid': (f?.password?.valid && (f?.password?.touched)),
                                 'is-invalid': (f?.password?.invalid && (f?.password?.touched))}" />
                         </div> <br>
@@ -63,7 +63,7 @@
                 <!-- Submit button -->
                 <button (keydown.Tab)="onKey($event);false;" type="submit" tabindex="7"
                     class="btn btn-primary btn-block mb-4 bsave"><i class="fas fa-save"></i>
-                    Update</button>
+                    Cập nhật</button>
 
             </form>
         </div>

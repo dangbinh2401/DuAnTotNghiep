@@ -20,6 +20,7 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
 import { ControlMessageComponent } from './component/validate/control-message.component';
 import { OrderHistoryComponent } from './component/order-history/order-history.component';
 import { CommentComponent } from './component/comment/comment.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CommentComponent } from './component/comment/comment.component';
     AutoFocusDirectiveDirective,
     ControlMessageComponent,
     OrderHistoryComponent,
-    CommentComponent
+    CommentComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

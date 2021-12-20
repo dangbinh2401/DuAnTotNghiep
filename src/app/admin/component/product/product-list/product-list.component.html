@@ -2,11 +2,11 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col-10">
-                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">LIST PRODUCT</a>
+                <a class="m-0 font-weight-bold text-primary" style="text-decoration: none;">DANH SÁCH SẢN PHẨM</a>
             </div>
             <div class="col-2">
-                <a class="m-0 float-right" routerLink="/admin/product/add" style="text-decoration: none;">Product
-                    management <i class="far fa-arrow-alt-circle-right"></i></a>
+                <a class="m-0 float-right" routerLink="/admin/product/add" style="text-decoration: none;"> Thêm sản phẩm
+                 <i class="far fa-arrow-alt-circle-right"></i></a>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle prByct" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    -- Choose category --
+                    Chọn thể loại
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li *ngFor="let category of categories"><a class="dropdown-item ctText"
@@ -24,12 +24,11 @@
             </div>
         </div>
         <div class="col-7">
-            <button class="btn btn-outline-danger" (click)="deleteProducts()"><i class="fas fa-trash-alt"></i> Delete
-                multiple</button>
+            <button class="btn btn-outline-danger" (click)="deleteProducts()"><i class="fas fa-trash-alt"></i> Xóa hàng loạt</button>
         </div>
         <div class="col-3">
             <input type="text" appAutoFocusDirective class="form-control" [formControl]="searchs" (keyup)="search()"
-                placeholder="search by name...">
+                placeholder="nhập tên sản phẩm để tìm kiếm...">
         </div>
     </div>
     <div class="card-body">
@@ -42,20 +41,20 @@
                                 (change)="checkAllCheckBox($event)" />
                         </th>
                         <th scope="col" style="width: 10px;">STT</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name <a (click)="sort('name')" class="srt"><i
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Tên sản phẩm <a (click)="sort('name')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('name')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Quantity <a (click)="sort('quantity')" class="srt"><i
+                        <th scope="col">Số lượng <a (click)="sort('quantity')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('quantity')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Unit price <a (click)="sort('unitPrice')" class="srt"><i
+                        <th scope="col">Đơn giá <a (click)="sort('unitPrice')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('unitPrice')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">EnteredDate <a (click)="sort('enteredDate')" class="srt"><i
+                        <th scope="col">Ngày nhập <a (click)="sort('enteredDate')" class="srt"><i
                                     class="fas fa-long-arrow-alt-down sx"></i></a><a (click)="sort('enteredDate')"
                                 class="srt"><i class="fas fa-long-arrow-alt-up sx"></i></a></th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Mô tả</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -89,11 +88,11 @@
                     </tr>
                 </tbody>
             </table>
-            <p *ngIf="products.length == 0" style="text-align: center;">No items displayed!</p>
+            <p *ngIf="products.length == 0" style="text-align: center;">Không có sản phẩm nào được hiển thị!</p>
         </div>
         <div class="pg">
             <div class="c" *ngIf="products.length != 0">
-                <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                <label class="lbsize">kích thước trang&nbsp;&nbsp; </label>
                 <select class="form-select" [(ngModel)]="pageSize" (change)="getAllProducts()"
                     style="width: 4.3rem;float: right;">
                     <option [value]="3">3</option>
@@ -104,20 +103,20 @@
             </div>
             <div class="pagina">
                 <div class="pg a">
-                    <label *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">Showing <b>{{page}}</b>
+                    <label *ngIf="page==1&&(page*pageSize)<totalLength && products.length != 0">đang hiển thị <b>{{page}}</b>
                         -
-                        <b>{{page*pageSize}}</b> of
-                        <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)<totalLength  && products.length != 0">Showing
+                        <b>{{page*pageSize}}</b> của
+                        <b>{{totalLength}}</b> sản phẩm</label>
+                    <label *ngIf="page!=1&&(page*pageSize)<totalLength  && products.length != 0">đang hiển thị
                         <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength  && products.length != 0">Showing
+                        <b>{{page*pageSize}}</b> của <b>{{totalLength}}</b> sản phẩm</label>
+                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength  && products.length != 0">đang hiển thị
                         <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page==1&&(page*pageSize)>=totalLength  && products.length != 0">Showing
+                        <b>{{totalLength}}</b> của <b>{{totalLength}}</b> sản phẩm</label>
+                    <label *ngIf="page==1&&(page*pageSize)>=totalLength  && products.length != 0">đang hiển thị
                         <b>{{page}}</b>
-                        - <b>{{totalLength}}</b> of
-                        <b>{{totalLength}}</b> items</label>
+                        - <b>{{totalLength}}</b> của
+                        <b>{{totalLength}}</b> sản phẩm</label>
                 </div> &nbsp;&nbsp;
                 <div class=" b">
                     <input *ngIf="products.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"

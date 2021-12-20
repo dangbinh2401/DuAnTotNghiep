@@ -59,6 +59,12 @@ export class LoginUserComponent implements OnInit {
   /** Navigate to home and reload Page when login */
 
   reloadPage(): void {
+    if (this.tokenStorage.getUser().username==="admin"){
+      this.router.navigate(['/admin/product/list'])
+      .then(() => {
+        window.location.reload();
+      });
+    }else
     this.router.navigate(['/user'])
       .then(() => {
         window.location.reload();
