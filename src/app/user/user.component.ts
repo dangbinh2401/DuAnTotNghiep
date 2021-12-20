@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/service/loginService/token-storage.service';
@@ -26,7 +27,6 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
