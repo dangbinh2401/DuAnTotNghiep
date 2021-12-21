@@ -67,7 +67,7 @@
 
         <div class="pg">
             <div class="c" *ngIf="orders.length != 0">
-                <label class="lbsize">Page size&nbsp;&nbsp; </label>
+                <label class="lbsize">Kích thước trang&nbsp;&nbsp; </label>
                 <select class="form-select" style="width: 4.3rem;float: right;" [(ngModel)]="pageSize">
                     <option [value]="3">3</option>
                     <option [value]="7">7</option>
@@ -78,19 +78,19 @@
             <div class="pagina">
 
                 <div class="pg a">
-                    <label *ngIf="page==1&&(page*pageSize)<totalLength && orders.length != 0">Showing
-                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> of
-                        <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && orders.length != 0">Showing
+                    <label *ngIf="page==1&&(page*pageSize)<totalLength && orders.length != 0">Đang hiển thị
+                        <b>{{page}}</b> - <b>{{page*pageSize}}</b> của
+                        <b>{{totalLength}}</b> đơn hàng</label>
+                    <label *ngIf="page!=1&&(page*pageSize)<totalLength && orders.length != 0">Đang hiển thị
                         <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{page*pageSize}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength && orders.length != 0">Showing
+                        <b>{{page*pageSize}}</b> của <b>{{totalLength}}</b> đơn hàng</label>
+                    <label *ngIf="page!=1&&(page*pageSize)>=totalLength && orders.length != 0">Đang hiển thị
                         <b>{{((page-1)*pageSize)+1}}</b> -
-                        <b>{{totalLength}}</b> of <b>{{totalLength}}</b> items</label>
-                    <label *ngIf="page==1&&(page*pageSize)>=totalLength && orders.length != 0">Showing
+                        <b>{{totalLength}}</b> của <b>{{totalLength}}</b> đơn hàng</label>
+                    <label *ngIf="page==1&&(page*pageSize)>=totalLength && orders.length != 0">Đang hiển thị
                         <b>{{page}}</b> -
-                        <b>{{totalLength}}</b> of
-                        <b>{{totalLength}}</b> items</label>
+                        <b>{{totalLength}}</b> của
+                        <b>{{totalLength}}</b> đơn hàng</label>
                 </div> &nbsp;&nbsp;
                 <div class=" b">
                     <input *ngIf="orders.length != 0" #i type="text" inputmode="numeric" pattern="[0-9]*"

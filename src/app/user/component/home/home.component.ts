@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     console.log(`product name: ${product.name}, and price: ${product.unitPrice}`);
     const cartItem = new cartItems(product);
     this.cartService.addToCart(cartItem);
-    Swal.fire("success!", "Add cart successfully!", "success");
+    Swal.fire("Thành cồng!", "Thêm giỏ hàng thành công!", "success");
   }
 
    /** Load category */

@@ -56,7 +56,7 @@ export class ProductUpdateComponent implements OnInit {
         },1500)
       }
       else {
-        Swal.fire("error!", "System error!", "error");
+        Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
       }
 
     })
@@ -137,15 +137,15 @@ export class ProductUpdateComponent implements OnInit {
     this.productService.updateProduct(this.productId, this.product).subscribe((data: any) => {
       console.log(data);
       if (data.status === true) {
-        Swal.fire("Update product successfull!", "You clicked the button!", "success");
+        Swal.fire("Cập nhật sản phẩm thành công!", "Bạn đã nhấp vào nút!", "success");
         this.getListProducts();
         
       }
       if (data.status === false) {
-        Swal.fire("Update product error!", "Product already exist!", "error");
+        Swal.fire("Cập nhật sản phẩm thất bại!", "Sản phẩm đã tồn tại!", "error");
       }
       if (data.status === 500) {
-        Swal.fire("Update product error!", "System error!", "error");
+        Swal.fire("Cập nhật sản phẩm thất bại!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -165,7 +165,7 @@ export class ProductUpdateComponent implements OnInit {
       this.updateproduct();
     }
     else {
-      Swal.fire("Update product error!", "You clicked the button!", "error");
+      Swal.fire("Cập nhật sản phẩm thất bại!", "Bạn đã nhấp vào nút!", "error");
       this.validateAllFormFields(this.productForm);
     }
   }

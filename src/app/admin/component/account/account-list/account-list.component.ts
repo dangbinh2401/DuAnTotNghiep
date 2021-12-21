@@ -124,12 +124,12 @@ export class AccountListComponent implements OnInit {
       }
       if (data.status === false) {
         Swal.fire({
-          title: 'Custommer does not exist!',
-          text: 'Do you want to reload page?',
+          title: 'Custommer không tồn tại!',
+          text: 'Bạn có muốn tải lại trang không?',
           icon: 'question',
           showCancelButton: true,
-          confirmButtonText: 'Yes, reload page!',
-          cancelButtonText: 'No, keep it'
+          confirmButtonText: 'Có, tải lại trang!',
+          cancelButtonText: 'Không'
         }).then((result) => {
           if (result.value) {
             this.ngOnInit();
@@ -138,7 +138,7 @@ export class AccountListComponent implements OnInit {
         })
       }
       if (data.status === 500) {
-        Swal.fire("Error!", "System error!", "error");
+        Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -147,27 +147,27 @@ export class AccountListComponent implements OnInit {
 
   deleteCustommer(id: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to delete your custommer?!',
+      title: 'Bạn có chắc không?',
+      text: 'Bạn có muốn xóa custommer không?!',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Có, Xóa !',
+      cancelButtonText: 'Không'
     }).then((result) => {
       if (result.value) {
         this.custommerService.deleteCustommer(id).subscribe((data: any) => {
           if (data.status === true) {
-            Swal.fire("Delete custommer successfull!", "You clicked the button!", "success");
+            Swal.fire("Xóa custommer thành công!", "Bạn đã nhấp vào nút!", "success");
             this.ngOnInit();
           }
           if (data.status === false) {
             Swal.fire({
-              title: 'Custommer has been deleted by someone else!',
-              text: 'Do you want to reload page?',
+              title: 'Custommer đã bị người khác xóa!',
+              text: 'Bạn có muốn tải lại trang không?',
               icon: 'question',
               showCancelButton: true,
-              confirmButtonText: 'Yes, reload page!',
-              cancelButtonText: 'No, keep it'
+              confirmButtonText: 'Có, tải lại trang!',
+              cancelButtonText: 'Không'
             }).then((result) => {
               if (result.value) {
                 this.ngOnInit();
@@ -175,7 +175,7 @@ export class AccountListComponent implements OnInit {
             })
           }
           if (data.status === 500) {
-            Swal.fire("Delete custommer error!", "System error!", "error");
+            Swal.fire("Xóa custommer thất bại!", "Lỗi hệ thống!", "error");
           }
         })
       }

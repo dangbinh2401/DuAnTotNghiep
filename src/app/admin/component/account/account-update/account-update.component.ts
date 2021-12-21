@@ -40,7 +40,7 @@ export class AccountUpdateComponent implements OnInit {
         },1500)
       }
       else {
-        Swal.fire("error!", "System error!", "error");
+        Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
       }
 
     })
@@ -85,14 +85,14 @@ export class AccountUpdateComponent implements OnInit {
   updateCustommer() {
     this.custommerService.updateCustommer(this.id, this.custommer).subscribe((data: any) => {
       if (data.status === true) {
-        Swal.fire("Update custommer successfull!", "You clicked the button!", "success");
+        Swal.fire("Cập nhật custommer thành công!", "Bạn đã nhấp vào nút!", "success");
         this.getListCustommers();
       }
       if (data.status === false) {
-        Swal.fire("Update custommer error!", "Account already exist!", "error");
+        Swal.fire("Cập nhật custommer thất bại!", "Tài khoản đã tồn tại!", "error");
       }
       if (data.status === 500) {
-        Swal.fire("Update custommer error!", "System error!", "error");
+        Swal.fire("Cập nhật custommer thất bại!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -114,7 +114,7 @@ export class AccountUpdateComponent implements OnInit {
       this.updateCustommer();
     }
     else {
-      Swal.fire("Add custommer error!", "You clicked the button!", "error");
+      Swal.fire("Thêm custommer thất bại!", "Bạn đã nhấp vào nút!", "error");
       this.validateAllFormFields(this.custommerForm);
     }
   }

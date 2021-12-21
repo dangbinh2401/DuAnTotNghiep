@@ -20,12 +20,12 @@
                             <p class="comment-text">&nbsp;&nbsp;&nbsp;{{comment.content}}</p>
                             <div class="d-flex flex-row fs-12">
                                 <div class="like p-2 cursor"><i class="far fa-thumbs-up"></i><span
-                                        class="ml-1">Like</span>
+                                        class="ml-1">Thích</span>
                                 </div>
                                 <div class="like p-2 cursor"><i class="far fa-comment"></i><span
-                                        class="ml-1">Comment</span>
+                                        class="ml-1">Bình luận</span>
                                 </div>
-                                <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span>
+                                <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Chia sẽ</span>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
 
                 </div>
                 <div class="bg-light p-2" *ngIf="!isAuthenticated">
-                    <p>Please login to comment!&nbsp;<a routerLink="/user/login"><b>Login</b></a></p>
+                    <p>Vui lòng đăng nhập để bình luận !&nbsp;<a routerLink="/user/login"><b>Đăng nhập</b></a></p>
                 </div>
                 <div class="bg-light p-2" *ngIf="isAuthenticated">
                     <form [formGroup]="commentForm" (ngSubmit)="createComment()">
@@ -52,9 +52,8 @@
                                 class="form-control ml-1 shadow-none textarea"></textarea>
                         </div>
                         <div class="mt-2 text-right">
-                            <button class="btn btn-outline-danger btn-sm shadow-none" type="submit">Post
-                                comment</button>
-                            <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="reset">Cancel</button>
+                            <button class="btn btn-outline-danger btn-sm shadow-none" type="submit">Đăng bình luận</button>
+                            <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="reset">Hủy</button>
                         </div>
                     </form>
                 </div>

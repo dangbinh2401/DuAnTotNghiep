@@ -62,14 +62,14 @@ export class AccountAddComponent implements OnInit {
     this.custommerService.createCustommer(this.custommer).subscribe((data:any) => {
       console.log(data);
       if(data.status === true){
-        Swal.fire("Add custommer successfull!", "You clicked the button!", "success");
+        Swal.fire("Thêm custommer thành công!", "Bạn đã nhấp vào nút!", "success");
         this.getListCustommers();
       }
       if(data.status === false){
-        Swal.fire("Add custommer error!", "Account already exist!", "error");
+        Swal.fire("Thêm custommer thất bại!", "Tài khoản đã tồn tại!", "error");
       }
       if(data.status === 500){
-        Swal.fire("Add custommer error!", "System error!", "error");
+        Swal.fire("Thêm custommer thất bại!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -91,7 +91,7 @@ export class AccountAddComponent implements OnInit {
       this.saveAccount();
     }
     else{
-      Swal.fire("Add custommer error!", "You clicked the button!", "error");
+      Swal.fire("Thêm custommer thất bại!", "Bạn đã nhấp vào nút!", "error");
       this.validateAllFormFields(this.custommerForm);
     }
   }

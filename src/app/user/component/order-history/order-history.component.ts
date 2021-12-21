@@ -66,7 +66,7 @@ export class OrderHistoryComponent implements OnInit {
             this.ngOnInit();
           }
           if (data.status === false) {
-            Swal.fire("Update order error!", "System error!", "error");
+            Swal.fire("Cập nhật đơn hàng thất bại!", "Lỗi hệ thống!", "error");
           }
         })
       }
@@ -78,12 +78,12 @@ export class OrderHistoryComponent implements OnInit {
 
   updatePending(orderId: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to pending your order?!',
+      title: 'Bạn có chắc?',
+      text: 'Bạn có muốn chờ đơn đặt hàng của mình không ?!',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Có, Xóa!',
+      cancelButtonText: 'Không'
     }).then((result) => {
       if (result.value) {
         this.orderHistoryService.updateOrderPending(orderId, this.orderHistory).subscribe((data: any) => {
@@ -92,7 +92,7 @@ export class OrderHistoryComponent implements OnInit {
             this.ngOnInit();
           }
           if (data.status === false) {
-            Swal.fire("Update order error!", "System error!", "error");
+            Swal.fire("Cập nhất đơn hàng thất bại!", "Lỗi hệ thống!", "error");
           }
         })
       }

@@ -42,7 +42,7 @@ export class ProductDetailComponent implements OnInit {
           this.spinner.hide();
         }
         else {
-          Swal.fire("error!", "System error!", "error");
+          Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
         }
       },1500)
     })
@@ -56,7 +56,7 @@ export class ProductDetailComponent implements OnInit {
     console.log(`product name: ${this.product.name}, and price: ${this.product.unitPrice}`);
     const cartItem = new cartItems(this.product);
     this.cartService.addToCart(cartItem);
-    Swal.fire("success!", "Add cart successfully!", "success");
+    Swal.fire("Thành công!", "Thêm vào giỏ hàng thành công!", "success");
   }
 
   /** Get productId */

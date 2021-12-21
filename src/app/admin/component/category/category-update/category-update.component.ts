@@ -40,7 +40,7 @@ export class CategoryUpdateComponent implements OnInit {
         },1500)
       }
       else {
-        Swal.fire("error!", "System error!", "error");
+        Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
       }
 
     })
@@ -80,14 +80,14 @@ export class CategoryUpdateComponent implements OnInit {
   updateCategory() {
     this.categoryService.updateCategory(this.categoryId, this.category).subscribe((data: any) => {
       if (data.status === true) {
-        Swal.fire("Update category successfull!", "You clicked the button!", "success");
+        Swal.fire("Cập nhật category thành công!", "Bạn đã nhấp vào nút!", "success");
         this.getListCategories();
       }
       if (data.status === false) {
-        Swal.fire("Update category error!", "Account already exist!", "error");
+        Swal.fire("Cập nhật category thất bại!", "Tài khoản đã tồn tại!", "error");
       }
       if (data.status === 500) {
-        Swal.fire("Update category error!", "System error!", "error");
+        Swal.fire("Cập nhật category thất bại!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -106,7 +106,7 @@ export class CategoryUpdateComponent implements OnInit {
       this.updateCategory();
     }
     else {
-      Swal.fire("Update category error!", "You clicked the button!", "error");
+      Swal.fire("Cập nhật category thất bại!", "Bạn đã nhấp vào nút!", "error");
       this.validateAllFormFields(this.categoryForm);
     }
   }

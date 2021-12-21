@@ -109,7 +109,7 @@ export class CheckoutComponent implements OnInit {
     if (this.checkoutForm.invalid) {
       console.log(this.checkoutForm);
       // this.checkoutForm.markAllAsTouched();
-      Swal.fire("error!", "Order error!", "error");
+      Swal.fire("Lỗi!", "Đặt hàng thất bại!", "error");
       this.validateAllFormFields(this.checkoutForm);
       return;
     }
@@ -142,7 +142,7 @@ export class CheckoutComponent implements OnInit {
         
       }, error => {
         console.log(error);
-        Swal.fire("Order error!", "System error!", "error");
+        Swal.fire("Đặt hàng thất bại!", "Lỗi hệ thống!", "error");
       })
     }
 

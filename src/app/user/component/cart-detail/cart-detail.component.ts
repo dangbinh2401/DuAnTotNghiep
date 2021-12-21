@@ -55,12 +55,12 @@ export class CartDetailComponent implements OnInit {
 
   showConfilm(cartItem: cartItems) {
     Swal.fire({
-      title: 'Quantity is one',
-      text: `Do you want to delete?!`,
+      title: 'Số lượng là một',
+      text: `Bạn có muốn xóa không?!`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Có, Xóa!',
+      cancelButtonText: 'Không'
     }).then((result) => {
       if (result.value) {
         this.remove(cartItem);

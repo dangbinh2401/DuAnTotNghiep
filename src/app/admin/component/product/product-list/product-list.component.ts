@@ -179,7 +179,7 @@ export class ProductListComponent implements OnInit {
         })
       }
       if (data.status === 500) {
-        Swal.fire("Error!", "System error!", "error");
+        Swal.fire("Lỗi!", "Lỗi hệ thống!", "error");
       }
     })
   }
@@ -192,7 +192,7 @@ export class ProductListComponent implements OnInit {
       text: 'Bạn có chắc muốn xóa sản phẩm?!',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Vâng, Xóa nó!',
+      confirmButtonText: 'Vâng, Xóa!',
       cancelButtonText: 'Không, Giữ nguyên'
     }).then((result) => {
       if (result.value) {

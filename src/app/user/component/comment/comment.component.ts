@@ -87,7 +87,7 @@ export class CommentComponent implements OnInit {
   createComment() {
     this.spinner.show();
     if (this.commentForm.invalid) {
-      Swal.fire("error!", "Order error!", "error");
+      Swal.fire("Lỗi!", "Đặt hàng thất bại!", "error");
       this.validateAllFormFields(this.commentForm);
       return;
     }
@@ -106,7 +106,7 @@ export class CommentComponent implements OnInit {
       }, 1000);
     }, error => {
       console.log(error);
-      Swal.fire("Comment error!", "System error!", "error");
+      Swal.fire("Bình luận thất bại!", "Lỗi hệ thống!", "error");
     }
     )
   }
